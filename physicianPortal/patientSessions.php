@@ -39,7 +39,7 @@ if (isset($_POST['btnSubmit'])) {
 
  */
 //print "<div id = 'container'> ";
-print "<h2>View Patient Sessions</h2>";
+print "<h2>View Patient Information</h2>";
 print '<p>Select a patient to view their session history.</p>';
 // or you can print it out
 print "<fieldset><form method='POST'>";
@@ -64,7 +64,6 @@ print '</select></label>';
 print '</form>';
 
 //TBLSESSION INFORMATION
-print'<h2>Patient Sessions</h2>';
 //--------------------------DISPLAY IF PATIENT IS IN/OUT OF COMPLIANCE---------------------
 if (isset($_POST['btnSubmit'])) {
     print"<p>Patient $patient is ";
@@ -84,7 +83,6 @@ if (isset($_POST['btnSubmit'])) {
 }
 
 //-------------------------DISPLAY ALL PATIENT INFORMATION--------------------------------
-print '<h2>Patient Information</h2>';
 if ($tblPatient != "") {
     print '<aside id="records">';
     $queryPatient = 'SHOW COLUMNS FROM ' . $tblPatient;
@@ -120,10 +118,14 @@ foreach ($infopatient as $rec) {
 print '</table><br>';
 // all done
 
+//---------------------------UPDATE INTENSITY GOAL ------------------------------------------
+include 'updateIntensity.php';
+print '<br>';
 
-//-------------------------DISPLAY ALL PATIENT SESSION INFORMATION -------------------------
+
+//-------------------------DISPLAY ALL PATIENT SESSION HISTORY -------------------------
 // Display all the records for a given table
-print'<h2>Patient Sessions </h2>';
+print'<h2>Session History </h2>';
 if ($tblSession != "") {
     print '<aside id="records">';
     $query2 = 'SHOW COLUMNS FROM ' . $tblSession;

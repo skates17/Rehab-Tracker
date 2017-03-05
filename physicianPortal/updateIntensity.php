@@ -5,10 +5,9 @@
  * Written By: Meaghan Winter
 
  */
-
 ?>
 
-<h2>Activate/Deactivate Patient</h2>
+<h2>Update Intensity</h2>
 
 <?php
 //%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%
@@ -32,14 +31,14 @@ $yourURL = $domain . $phpSelf;
 // Initialize variables one for each form element
 // in the order they appear on the form
 $patient = $resultsInfo [0]['pmkPatientID'];
-$active = $resultsInfo[0]['fldActive'];
+$goal = $resultsInfo[0]['fldGoal'];
 //
 //query for movie pick initialization 
 if ($debug) {
     print '<p> initialize variables</p>';
 } else {
     $patient = "";
-    $active = "";
+    $goal = "";
 }
 
 //%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%
@@ -49,7 +48,7 @@ if ($debug) {
 // Initialize Error Flags one for each form element we validate
 // in the order they appear in section 1c.
 $patientERROR = false;
-$activeERROR = false;
+$goalERROR = false;
 
 //%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%
 //
@@ -89,9 +88,9 @@ if (isset($_POST["btnUpdate"])) {
 // SECTION: 2b Sanitize (clean) data
 // remove any potential JavaScript or html code from users input on the
 // form. Note it is best to follow the same order as declared in section 1c.
-        $active = htmlentities($_POST["fldActive"], ENT_QUOTES, "UTF-8");
-    $parameters[] = $active;
-    
+    $goal = htmlentities($_POST["fldGoal"], ENT_QUOTES, "UTF-8");
+    $parameters[] = $goal;
+
     $patient = htmlentities($_POST["pmkPatientID"], ENT_QUOTES, "UTF-8");
     $parameters[] = $patient;
 
@@ -106,9 +105,9 @@ if (isset($_POST["btnUpdate"])) {
         $errorMsg[] = "Please select patient";
         $docIDERROR = true;
     }
-    if ($active == "") {
-        $errorMsg[] = "Please activate/deactivate patient";
-        $activeERROR = true;
+    if ($goal == "") {
+        $errorMsg[] = "Please set a patient Goal";
+        $goalERROR = true;
     }
 
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -143,7 +142,7 @@ if (isset($_POST["btnUpdate"])) {
             }
 
             $queryUpdate = "UPDATE tblPatient SET ";
-            $queryUpdate .= "fldActive = ?, ";
+            $queryUpdate .= "fldGoal = ?, ";
             $queryUpdate .= 'fldLastUpdate = CURRENT_TIMESTAMP ';
             $queryUpdate .= "WHERE pmkPatientID = ?";
             $results = $thisDatabaseWriter->update($queryUpdate, $parameters, 1, 0, 0, 0, false, false);
@@ -162,106 +161,99 @@ if (isset($_POST["btnUpdate"])) {
         }
     } // end form is valid
 } // ends if form was submitted.
-
 //#############################################################################
 //
 // SECTION 3 Display Form
 //
 ?>
 
-    <?php
+<?php
 //####################################
 // SECTION 3a.
 // If its the first time coming to the form or there are errors we are going
 // to display the form.
-    if (isset($_POST["btnUpdate"]) AND empty($errorMsg)) { // closing of if marked with: end body submit
-        print "<h1>Success!</h1>";
-        print "<p>You have successfully updated '$patient' to '$active'. ";
-    } else {
+if (isset($_POST["btnUpdate"]) AND empty($errorMsg)) { // closing of if marked with: end body submit
+    print "<h1>Success!</h1>";
+    print "<p>You have successfully updated '$patient''s goal to:  '$goal'. ";
+} else {
 //####################################
 //
 // SECTION 3b Error Messages
 //
 // display any error messages before we print out the form
-        if ($errorMsg) {
-            print '<div id="errors">';
-            print '<h1>Your form has the following mistakes</h1>';
+    if ($errorMsg) {
+        print '<div id="errors">';
+        print '<h1>Your form has the following mistakes</h1>';
 
-            print "<ol>\n";
-            foreach ($errorMsg as $err) {
-                print "<li>" . $err . "</li>\n";
-            }
-            print "</ol>\n";
-            print '</div>';
+        print "<ol>\n";
+        foreach ($errorMsg as $err) {
+            print "<li>" . $err . "</li>\n";
         }
+        print "</ol>\n";
+        print '</div>';
+    }
 //####################################
 //
 // SECTION 3c html Form
 //
-        /* Display the HTML form. note that the action is to this same page. $phpSelf
-          is defined in top.php
-          NOTE the line:
-          value="<?php print $email; ?>
-          this makes the form sticky by displaying either the initial default value (line 35)
-          or the value they typed in (line 84)
-          NOTE this line:
-          <?php if($emailERROR) print 'class="mistake"'; ?>
-          this prints out a css class so that we can highlight the background etc. to
-          make it stand out that a mistake happened here.
-         */
-        ?>
-        <div>
-            <form action="<?php print $phpSelf; ?>"
-                  method="post"
-                  id="frmRegister">
-                <fieldset
-<!--                    patient dropdown-->
-                    <?php
-                    print '<label for="pmkPatientID">Patient ';
-                    print '<select id="pmkPatientID" name = "pmkPatientID"';
-                    print '        name="pmkPatientID" ';
-                    print '        tabindex="300" >';
+    /* Display the HTML form. note that the action is to this same page. $phpSelf
+      is defined in top.php
+      NOTE the line:
+      value="<?php print $email; ?>
+      this makes the form sticky by displaying either the initial default value (line 35)
+      or the value they typed in (line 84)
+      NOTE this line:
+      <?php if($emailERROR) print 'class="mistake"'; ?>
+      this prints out a css class so that we can highlight the background etc. to
+      make it stand out that a mistake happened here.
+     */
+    ?>
+    <div>
+        <form action="<?php print $phpSelf; ?>"
+              method="post"
+              id="frmRegister">
+            <fieldset
+                <!--                    patient dropdown-->
+    <?php
+    print '<label for="pmkPatientID">Patient ';
+    print '<select id="pmkPatientID" name = "pmkPatientID"';
+    print '        name="pmkPatientID" ';
+    print '        tabindex="300" >';
 
 
-                    foreach ($patientList as $row) {
-                        print '<option ';
-                        if ($patientList == $row["pmkPatientID"])
-                            print " value='selected' ";
-                        print 'value="' . $row["pmkPatientID"] . '">' . $row["pmkPatientID"];
-                        print '</option>';
-                    }
-                    print '</select></label>';
-                    ?>
+    foreach ($patientList as $row) {
+        print '<option ';
+        if ($patientList == $row["pmkPatientID"])
+            print " value='selected' ";
+        print 'value="' . $row["pmkPatientID"] . '">' . $row["pmkPatientID"];
+        print '</option>';
+    }
+    print '</select></label>';
+    ?>
 
-<!--                    <fieldset class="radio">-->
+                <!--                    <fieldset class="radio">-->
 
-<br>
-                        <label for="radActivate">
-                            <input type="radio" 
-                                   id="radActivate" 
-                                   name="fldActive" 
-                                   value="1">Activate
-                        </label><br>
+                <br>
+                <label for="fldGoal" class="required"> Goal Intensity
+                    <input type="text" id="fldGoal" name="fldGoal"
+                           value="<?php print $goal; ?>"
+                           tabindex="140" maxlength="3" placeholder="Enter goal intensity"
+    <?php if ($goalERROR) print 'class="mistake"'; ?>
+                           onfocus="this.select()" 
+                           autofocus>
 
-                        <label for="radDeactivate">
-                            <input type="radio" 
-                                   id="radDeactivate" 
-                                   name="fldActive" 
-                                   value="0">Deactivate
-                        </label><br>
-
-                            <input type="submit" id="btnUpdate" name="btnUpdate" value="Save" tabindex="900" class="button">
-                        </fieldset> <!-- ends buttons -->
-                        </form>
-                        <?php
-                    } // end body submit
-                    ?>
-                    </article>
-                    </div>
+                    <input type="submit" id="btnUpdate" name="btnUpdate" value="Save" tabindex="900" class="button">
+                    </fieldset> <!-- ends buttons -->
+                    </form>
+    <?php
+} // end body submit
+?>
+                </article>
+                </div>
 
 
-                    <?php
-                    include "footer.php";
-                    if ($debug)
-                        print "<p>END OF PROCESSING</p>";
-                    ?>
+<?php
+include "footer.php";
+if ($debug)
+    print "<p>END OF PROCESSING</p>";
+?>

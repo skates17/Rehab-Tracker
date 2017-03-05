@@ -7,4 +7,5 @@ print '<div id="header">
 
 include 'form.php';
 print '<br>';
+
 include 'updatePatient.php';

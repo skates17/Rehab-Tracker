@@ -37,6 +37,8 @@ $pmkPatientID = $resultsInfo[0]["pmkPatientID"];
 $patientEmail = $resultsInfo[0]["fldPatientEmail"];
 $lastUpdate = $resultsInfo[0]['fldLastUpdate'];
 $dateCreated = $resultsInfo[0]['fldStartDate'];
+$phone = $resultsInfo[0]['fldPhone'];
+$goal = $resultsInfo[0]['fldGoal'];
 
 
 $queryD = "SELECT DocID ";
@@ -61,7 +63,9 @@ if ($debug) {
     $docID = "";
     $pmkPatientID = "";
     $patientEmail = "";
-
+$phone = '';
+$goal = '';
+    
     // $update = "";
 }
 
@@ -74,6 +78,8 @@ if ($debug) {
 $docIDERROR = false;
 $pmkPatientIDERROR = false;
 $patientEmailERROR = false;
+$phoneERROR = false;
+$goalERROR = false;
 
 
 //%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%
@@ -114,6 +120,13 @@ if (isset($_POST["btnSubmit"])) {
 
     $patientEmail = filter_var($_POST["fldPatientEmail"], FILTER_SANITIZE_EMAIL, 'UTF-8');
     $resultsInfo[] = $patientEmail;
+    
+    $phone = htmlentities($_POST['fldPhone'],ENT_QUOTES, 'UTF-8');
+    $resultsInfo[] = $phone;
+    
+    $goal = htmlentities ($_POST ['fldGoal'], ENT_QUOTES, 'UTF-8');
+    $resultsInfo[] = $goal;
+    
 
 
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -138,6 +151,23 @@ if (isset($_POST["btnSubmit"])) {
     } elseif (!verifyEmail($patientEmail)) {
         $errorMsg[] = "Your email address appears to be incorrect.";
         $patientEmailERROR = true;
+    }
+    
+    if ($phone == ""){
+        $errorMsg[] = "Please enter patient's phone number";
+        $phoneERROR = true;
+    }elseif (!verifyPhone($phone)){
+        $errorMsg[] = "Your phone number appears to be incorrect.";
+        $phoneERROR = true;
+    }
+    
+    if ($goal == ""){
+        $errorMsg[] = "Please enter a patient goal";
+        $goalERROR = true;
+    }elseif (!verifyNumeric($goal)){
+        $errorMsg [] = "Please enter a numeric goal.";
+        $goalERROR= true;
+    
     }
 
 
@@ -176,14 +206,18 @@ if (isset($_POST["btnSubmit"])) {
 //} else{
 
 
-            $query = 'INSERT INTO tblPatient SET ';
+           // $query = 'if NOT exists (SELECT pmkPatientID = ? from tblPatient';
+            $query ='INSERT INTO tblPatient SET ';
 //}
             $query .= 'fnkDocID = ?, ';
             $query .= 'pmkPatientID = ?, ';
             $query .= 'fldPatientEmail = ?, ';
             $query .= 'fldActive = 1, ';
             $query .= 'fldLastUpdate = CURRENT_TIMESTAMP, ';
-            $query .= 'fldStartDate = CURRENT_TIMESTAMP ';
+            $query .= 'fldStartDate = CURRENT_TIMESTAMP, ';
+            $query .= 'fldPhone = ?, ';
+            $query .= 'fldGoal = ?';
+            
 
             $results = $thisDatabaseWriter->insert($query, $resultsInfo, 0, 0, 0, 0, false, false);
 
@@ -201,8 +235,10 @@ if (isset($_POST["btnSubmit"])) {
     } // end form is valid
 } // ends if form was submitted.
 
+if (isset($_POST["btnSubmit"]) AND empty($errorMsg)){
 $message = '<h2>You have successfully been registered for a user account with Rehabilitation Compliance</h2>';
-$message .= 'Please consult with your doctor for registration details.</p>';
+$message .= 'Please consult with your doctor for more registration details.</p>';
+$message .= '<p>Username: ' . $pmkPatientID;
 
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 //
@@ -219,7 +255,7 @@ $from = "Rehab Compliance Registration  <contact@complianceregistration.com>";
 $todaysDate = strftime("%x");
 $subject = "Registration Complete: " . $todaysDate;
 
-$mailed = sendMail($to, $cc, $bcc, $from, $subject, $message);
+$mailed = sendMail($to, $cc, $bcc, $from, $subject, $message);}
 
 //#############################################################################
 //
@@ -317,6 +353,24 @@ if ($docIDERROR) print 'class="mistake"';
                                value="<?php print $patientEmail; ?>"
                                tabindex="120" maxlength="45" placeholder="Enter patient's email address"
                                <?php if ($patientEmailERROR) print 'class="mistake"'; ?>
+                               onfocus="this.select()" 
+                               autofocus>
+                    </label><br>
+                    
+                    <label for="fldPhone" class="required"> Patient Phone #
+                        <input type="text" id="fldPhone" name="fldPhone"
+                               value="<?php print $phone; ?>"
+                               tabindex="130" maxlength="45" placeholder="Enter patient's phone #"
+                               <?php if ($phoneERROR) print 'class="mistake"'; ?>
+                               onfocus="this.select()" 
+                               autofocus>
+                    </label><br>
+                    
+                    <label for="fldGoal" class="required"> Goal Intensity
+                        <input type="text" id="fldGoal" name="fldGoal"
+                               value="<?php print $goal; ?>"
+                               tabindex="140" maxlength="3" placeholder="Enter goal intensity"
+                               <?php if ($goalERROR) print 'class="mistake"'; ?>
                                onfocus="this.select()" 
                                autofocus>
                     </label><br>
