@@ -14,7 +14,14 @@ import CoreData
 import Foundation
 import CoreBluetooth
 
-class SyncViewController: UIViewController {
+protocol BLEDelegate1 {
+    func bleDidUpdateState()
+    func bleDidConnectToPeripheral()
+    func bleDidDisconenctFromPeripheral()
+    func bleDidReceiveData(data: NSData?)
+}
+
+class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDelegate  {
     
     // Array and dictionary to hold stats
     private var sessions = [Session]()
@@ -238,10 +245,257 @@ class SyncViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        self.centralManager = CBCentralManager(delegate: self, queue: nil)
+        self.data = NSMutableData()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    //***************************//
+    // MARK: Bluetooth (BLE) Code
+    
+    // Initialize the UUID's
+    let RBL_SERVICE_UUID = "713D0000-503E-4C75-BA94-3148F18D941E"
+    let RBL_CHAR_TX_UUID = "713D0002-503E-4C75-BA94-3148F18D941E"
+    let RBL_CHAR_RX_UUID = "713D0003-503E-4C75-BA94-3148F18D941E"
+    
+    //
+    let my_UUID = "023DD007-7C99-447F-BE6A-9B9F18287FFB"
+    
+    // Initialize the BLEDelgate as delegate
+    var delegate: BLEDelegate1?
+    
+    // Initialize all needed variables (make private)
+    private      var centralManager:   CBCentralManager!
+    private      var activePeripheral: CBPeripheral?
+    private      var characteristics = [String : CBCharacteristic]()
+    private      var data:             NSMutableData?
+    private(set) var peripherals     = [CBPeripheral]()
+    private      var RSSICompletionHandler: ((NSNumber?, NSError?) -> ())?
+    
+    // Private function to stop the scan after the scan has timed-out
+    @objc private func scanTimeout() {
+        
+        print("[DEBUG] Scanning stopped")
+        print("**************************")
+        self.centralManager.stopScan()
+    }
+    
+    // MARK: Public methods
+    
+    // Function to start scanning for BLE's, takes the timeout as a boolean, returns boolean
+    func startScanning(timeout: Double) -> Bool {
+        
+        if self.centralManager.state != .poweredOn {
+            print("[ERROR] Couldn´t start scanning")
+            return false
+        }
+        
+        print("**************************")
+        print("[DEBUG] Scanning started")
+        
+        // CBCentralManagerScanOptionAllowDuplicatesKey
+        
+        // Creates a timer to check the time
+        Timer.scheduledTimer(timeInterval: timeout, target: self, selector: #selector(self.scanTimeout), userInfo: nil, repeats: false)
+        
+        // Initialize the services and call the scanForPeripherals functions with the services
+        let services:[CBUUID] = [CBUUID(string: RBL_SERVICE_UUID)]
+        self.centralManager.scanForPeripherals(withServices: services, options: nil)
+        
+        // return true if the scanning happened
+        return true
+    }
+    
+    // Method to connect to peripheral that we have found
+    func connectToPeripheral(peripheral: CBPeripheral) -> Bool {
+        
+        if self.centralManager.state != .poweredOn {
+            
+            print("[ERROR] Couldn´t connect to peripheral")
+            return false
+        }
+        
+        //print("[DEBUG] Connecting to peripheral: \(peripheral.identifier.UUIDString)")
+        
+        self.centralManager.connect(peripheral, options: [CBConnectPeripheralOptionNotifyOnDisconnectionKey : NSNumber(value: true)])
+        
+        return true
+    }
+    
+    // Method to disconnect from the peripheral
+    func disconnectFromPeripheral(peripheral: CBPeripheral) -> Bool {
+        
+        if self.centralManager.state != .poweredOn {
+            
+            print("[ERROR] Couldn´t disconnect from peripheral")
+            return false
+        }
+        
+        self.centralManager.cancelPeripheralConnection(peripheral)
+        
+        return true
+    }
+    
+    func read() {
+        
+        guard let char = self.characteristics[RBL_CHAR_TX_UUID] else { return }
+        
+        self.activePeripheral?.readValue(for: char)
+    }
+    
+    // Writes data
+    func write(data: NSData) {
+        
+        guard let char = self.characteristics[RBL_CHAR_RX_UUID] else { return }
+        
+        self.activePeripheral?.writeValue(data as Data, for: char, type: .withoutResponse)
+    }
+    
+    func enableNotifications(enable: Bool) {
+        
+        guard let char = self.characteristics[RBL_CHAR_TX_UUID] else { return }
+        
+        self.activePeripheral?.setNotifyValue(enable, for: char)
+    }
+    
+    func readRSSI(completion: @escaping (_ RSSI: NSNumber?, _ error: NSError?) -> ()) {
+        
+        self.RSSICompletionHandler = completion
+        self.activePeripheral?.readRSSI()
+    }
+    
+    // MARK: CBCentralManager delegate
+    func centralManagerDidUpdateState(_ central: CBCentralManager) {
+        
+        switch central.state {
+        case .poweredOn:
+            print("[DEBUG] Central manager state: Powered on")
+            self.startScanning(timeout: 10)
+            break
+            
+        case .unknown:
+            print("[DEBUG] Central manager state: Unknown")
+            break
+            
+        case .resetting:
+            print("[DEBUG] Central manager state: Resseting")
+            break
+            
+        case .unsupported:
+            print("[DEBUG] Central manager state: Unsopported")
+            break
+            
+        case .unauthorized:
+            print("[DEBUG] Central manager state: Unauthorized")
+            break
+            
+        case .poweredOff:
+            print("[DEBUG] Central manager state: Powered off")
+            break
+        }
+        
+        self.delegate?.bleDidUpdateState()
+    }
+    
+    private func centralManager(central: CBCentralManager, didDiscoverPeripheral peripheral: CBPeripheral, advertisementData: [String : AnyObject],RSSI: NSNumber) {
+        print("[DEBUG] Find peripheral: \(peripheral.identifier.uuidString) RSSI: \(RSSI)")
+        
+        //let index = peripherals.indexOf { $0.identifier.UUIDString == peripheral.identifier.uuidString }
+        
+        //if let index = index {
+        //peripherals[index] = peripheral
+        //} else {
+        peripherals.append(peripheral)
+        //}
+    }
+    
+    func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
+        print("[ERROR] Could not connecto to peripheral \(peripheral.identifier.uuidString) error: \(error)")
+    }
+    
+    func centralManager(central: CBCentralManager, didConnectPeripheral peripheral: CBPeripheral) {
+        
+        print("[DEBUG] Connected to peripheral \(peripheral.identifier.uuidString)")
+        
+        self.activePeripheral = peripheral
+        
+        self.activePeripheral?.delegate = self
+        self.activePeripheral?.discoverServices([CBUUID(string: RBL_SERVICE_UUID)])
+        
+        self.delegate?.bleDidConnectToPeripheral()
+    }
+    
+    func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
+        
+        var text = "[DEBUG] Disconnected from peripheral: \(peripheral.identifier.uuidString)"
+        
+        if error != nil {
+            text += ". Error: \(error)"
+        }
+        
+        print(text)
+        
+        self.activePeripheral?.delegate = nil
+        self.activePeripheral = nil
+        self.characteristics.removeAll(keepingCapacity: false)
+        
+        self.delegate?.bleDidDisconenctFromPeripheral()
+    }
+    
+    // MARK: CBPeripheral delegate
+    func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
+        
+        if error != nil {
+            print("[ERROR] Error discovering services. \(error)")
+            return
+        }
+        
+        print("[DEBUG] Found services for peripheral: \(peripheral.identifier.uuidString)")
+        
+        
+        for service in peripheral.services! {
+            let theCharacteristics = [CBUUID(string: RBL_CHAR_RX_UUID), CBUUID(string: RBL_CHAR_TX_UUID)]
+            
+            peripheral.discoverCharacteristics(theCharacteristics, for: service)
+        }
+    }
+    
+    func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
+        
+        if error != nil {
+            print("[ERROR] Error discovering characteristics. \(error)")
+            return
+        }
+        
+        print("[DEBUG] Found characteristics for peripheral: \(peripheral.identifier.uuidString)")
+        
+        for characteristic in service.characteristics! {
+            self.characteristics[characteristic.uuid.uuidString] = characteristic
+        }
+        
+        enableNotifications(enable: true)
+    }
+    
+    func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
+        
+        if error != nil {
+            
+            print("[ERROR] Error updating value. \(error)")
+            return
+        }
+        
+        if characteristic.uuid.uuidString == RBL_CHAR_TX_UUID {
+            
+            self.delegate?.bleDidReceiveData(data: characteristic.value as NSData?)
+        }
+    }
+    
+    func peripheral(_ peripheral: CBPeripheral, didReadRSSI RSSI: NSNumber, error: Error?) {
+        self.RSSICompletionHandler?(RSSI, error as NSError?)
+        self.RSSICompletionHandler = nil
     }
 }

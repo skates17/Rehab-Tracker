@@ -94,17 +94,6 @@ class StatsViewController: UIViewController {
             print("Could not find stats. \(error)")
         }
     }
-    
-    // Start the BLE process
-    func startBLE() {
-        let thisBLE = BLE()
-        thisBLE.startBLEProcess()
-    }
-    
-    // Call the function to start the BLE process
-    @IBAction func startBLEScan(_ sender: UIBarButtonItem) {
-        self.startBLE()
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

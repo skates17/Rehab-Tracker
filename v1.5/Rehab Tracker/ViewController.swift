@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import Foundation
+import CoreBluetooth
 
 class ViewController: UIViewController {
 
