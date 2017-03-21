@@ -263,9 +263,11 @@ class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
         If and only if the state = .poweredOn can the centralManager do anything.
         To check for the state, centralManagerDidUpdateState is called and updates state.
      2. To scan for BLE, startScanning() is called as long as state = .poweredOn
-     3. The centralManager then calls scanForPeriferals(services) which scans for BLE devices with specific services.
+     3. The centralManager then calls scanForPeripherals(services) which scans for BLE devices with specific services.
         These services are determined by the UUID string on the BLE device.
-     4. If a device is found with that service, then didDiscoverPeriferal() is called.
+     4. If a device is found with that service, then didDiscoverPeripheral() is called.
+     5. didDiscoverPeripheral() then attempts to connect to the peripheral that was discovered, if the connect is
+        successful, didConnect() is called. If its unsuccessful, didFailToConnect() is called.
     */
  
     // Initialize the UUID's
@@ -289,16 +291,16 @@ class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     
     // Private function to stop the scan after the scan has timed-out
     @objc private func scanTimeout() {
-        
-        print("[DEBUG] Scanning stopped")
-        print("**************************")
         self.centralManager.stopScan()
     }
     
     // Function that gets called when the connect button is clicked on the screen
     // Starts scanning for periferals
     @IBAction func connectBLE(_ sender: Any) {
-        self.startScanning(timeout: 5)
+        let scan = self.startScanning(timeout: 5)
+        if scan == false {
+            print("Scan Never Started")
+        }
     }
     
     // MARK: Public methods
@@ -389,22 +391,27 @@ class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
         self.delegate?.bleDidUpdateState()
     }
     
-    private func centralManager(central: CBCentralManager, didDiscoverPeripheral peripheral: CBPeripheral, advertisementData: [String : AnyObject],RSSI: NSNumber) {
-        print("[DEBUG] Find peripheral: \(peripheral.identifier.uuidString) RSSI: \(RSSI)")
+    // Function called if peripherals are discovered during scanForPeripherals() function call with specific services
+    func centralManager(_ central: CBCentralManager, didDiscoverPeripheral peripheral: CBPeripheral, advertisementData: [String : AnyObject],RSSI: NSNumber) {
+        print("[DEBUG] Found peripheral:", peripheral.identifier.uuidString, "With RSSI:", RSSI)
         
-        //let index = peripherals.indexOf { $0.identifier.UUIDString == peripheral.identifier.uuidString }
+        if (!peripherals.contains(peripheral)){
+            peripherals.append(peripheral)
+        }
         
-        //if let index = index {
-        //peripherals[index] = peripheral
-        //} else {
-        peripherals.append(peripheral)
-        //}
+        // Try to connect to the peripheral
+        let success = self.connectToPeripheral(peripheral: peripheral)
+        if success == true {
+            
+        }
     }
     
+    // If the connection was unsuccessful, print an error saying we failed to connect
     func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
         print("[ERROR] Could not connecto to peripheral \(peripheral.identifier.uuidString) error: \(error)")
     }
     
+    // If the connection was successful, set the activePeripheral to peripheral and discoverServices()
     func centralManager(central: CBCentralManager, didConnectPeripheral peripheral: CBPeripheral) {
         
         print("[DEBUG] Connected to peripheral \(peripheral.identifier.uuidString)")
