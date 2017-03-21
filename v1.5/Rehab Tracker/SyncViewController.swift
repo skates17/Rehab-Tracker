@@ -257,6 +257,17 @@ class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     //***************************//
     // MARK: Bluetooth (BLE) Code
     
+    /*
+     CoreBluetooth Process:
+     1. When view loads, centralManager is declared and checks the centralManager.state,
+        If and only if the state = .poweredOn can the centralManager do anything.
+        To check for the state, centralManagerDidUpdateState is called and updates state.
+     2. To scan for BLE, startScanning() is called as long as state = .poweredOn
+     3. The centralManager then calls scanForPeriferals(services) which scans for BLE devices with specific services.
+        These services are determined by the UUID string on the BLE device.
+     4. If a device is found with that service, then didDiscoverPeriferal() is called.
+    */
+ 
     // Initialize the UUID's
     let RBL_SERVICE_UUID = "713D0000-503E-4C75-BA94-3148F18D941E"
     let RBL_CHAR_TX_UUID = "713D0002-503E-4C75-BA94-3148F18D941E"
@@ -282,6 +293,12 @@ class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
         print("[DEBUG] Scanning stopped")
         print("**************************")
         self.centralManager.stopScan()
+    }
+    
+    // Function that gets called when the connect button is clicked on the screen
+    // Starts scanning for periferals
+    @IBAction func connectBLE(_ sender: Any) {
+        self.startScanning(timeout: 5)
     }
     
     // MARK: Public methods
@@ -319,7 +336,7 @@ class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
             return false
         }
         
-        //print("[DEBUG] Connecting to peripheral: \(peripheral.identifier.UUIDString)")
+        print("[DEBUG] Connecting to peripheral: \(peripheral.identifier.uuidString)")
         
         self.centralManager.connect(peripheral, options: [CBConnectPeripheralOptionNotifyOnDisconnectionKey : NSNumber(value: true)])
         
@@ -340,41 +357,12 @@ class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
         return true
     }
     
-    func read() {
-        
-        guard let char = self.characteristics[RBL_CHAR_TX_UUID] else { return }
-        
-        self.activePeripheral?.readValue(for: char)
-    }
-    
-    // Writes data
-    func write(data: NSData) {
-        
-        guard let char = self.characteristics[RBL_CHAR_RX_UUID] else { return }
-        
-        self.activePeripheral?.writeValue(data as Data, for: char, type: .withoutResponse)
-    }
-    
-    func enableNotifications(enable: Bool) {
-        
-        guard let char = self.characteristics[RBL_CHAR_TX_UUID] else { return }
-        
-        self.activePeripheral?.setNotifyValue(enable, for: char)
-    }
-    
-    func readRSSI(completion: @escaping (_ RSSI: NSNumber?, _ error: NSError?) -> ()) {
-        
-        self.RSSICompletionHandler = completion
-        self.activePeripheral?.readRSSI()
-    }
-    
     // MARK: CBCentralManager delegate
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         
         switch central.state {
         case .poweredOn:
             print("[DEBUG] Central manager state: Powered on")
-            self.startScanning(timeout: 10)
             break
             
         case .unknown:
@@ -497,5 +485,33 @@ class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     func peripheral(_ peripheral: CBPeripheral, didReadRSSI RSSI: NSNumber, error: Error?) {
         self.RSSICompletionHandler?(RSSI, error as NSError?)
         self.RSSICompletionHandler = nil
+    }
+    
+    func read() {
+        
+        guard let char = self.characteristics[RBL_CHAR_TX_UUID] else { return }
+        
+        self.activePeripheral?.readValue(for: char)
+    }
+    
+    // Writes data
+    func write(data: NSData) {
+        
+        guard let char = self.characteristics[RBL_CHAR_RX_UUID] else { return }
+        
+        self.activePeripheral?.writeValue(data as Data, for: char, type: .withoutResponse)
+    }
+    
+    func enableNotifications(enable: Bool) {
+        
+        guard let char = self.characteristics[RBL_CHAR_TX_UUID] else { return }
+        
+        self.activePeripheral?.setNotifyValue(enable, for: char)
+    }
+    
+    func readRSSI(completion: @escaping (_ RSSI: NSNumber?, _ error: NSError?) -> ()) {
+        
+        self.RSSICompletionHandler = completion
+        self.activePeripheral?.readRSSI()
     }
 }
