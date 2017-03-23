@@ -267,7 +267,10 @@ class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
         These services are determined by the UUID string on the BLE device.
      4. If a device is found with that service, then didDiscoverPeripheral() is called.
      5. didDiscoverPeripheral() then attempts to connect to the peripheral that was discovered, if the connect is
-        successful, didConnect() is called. If its unsuccessful, didFailToConnect() is called.
+        successful, didConnect() is called. If its unsuccessful, didFailToConnect() is called.\
+     6. In the event of a successful connection (didConnect()) we then query the peripheral for the services,
+        and for the characteristics of those services using the didDiscoverServices() and didDiscoverCharacteristics()
+     7.
     */
  
     // Initialize the UUID's
@@ -412,7 +415,7 @@ class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     }
     
     // If the connection was successful, set the activePeripheral to peripheral and discoverServices()
-    func centralManager(central: CBCentralManager, didConnectPeripheral peripheral: CBPeripheral) {
+    func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         
         print("[DEBUG] Connected to peripheral \(peripheral.identifier.uuidString)")
         
@@ -442,6 +445,8 @@ class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     }
     
     // MARK: CBPeripheral delegate
+    
+    // didDiscoverServices() is called once a connection is formed with the peripheral
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         
         if error != nil {
@@ -459,6 +464,7 @@ class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
         }
     }
     
+    // didDiscoverCharacteristics is called if services are found on the peripheral, we want those characteristics
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
         
         if error != nil {
@@ -473,6 +479,7 @@ class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
         }
         
         enableNotifications(enable: true)
+        read()
     }
     
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
@@ -494,6 +501,7 @@ class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
         self.RSSICompletionHandler = nil
     }
     
+    // Reads value of the characteristic from the peripheral
     func read() {
         
         guard let char = self.characteristics[RBL_CHAR_TX_UUID] else { return }
@@ -509,6 +517,7 @@ class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
         self.activePeripheral?.writeValue(data as Data, for: char, type: .withoutResponse)
     }
     
+    //
     func enableNotifications(enable: Bool) {
         
         guard let char = self.characteristics[RBL_CHAR_TX_UUID] else { return }
@@ -516,6 +525,7 @@ class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
         self.activePeripheral?.setNotifyValue(enable, for: char)
     }
     
+    // Reads the RSSI from the peripheral and updates the field
     func readRSSI(completion: @escaping (_ RSSI: NSNumber?, _ error: NSError?) -> ()) {
         
         self.RSSICompletionHandler = completion
