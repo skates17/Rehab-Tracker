@@ -124,6 +124,7 @@
 		42CBBECC1E8EC32200B215A8 /* NotificationService.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationService.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		42CBBECE1E8EC32300B215A8 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		42CBBED01E8EC32300B215A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		42CBBED71E8ED21F00B215A8 /* Rehab Tracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Rehab Tracker.entitlements"; sourceTree = "<group>"; };
 		42CCA4281E39456F009CB0DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		42F087D21DFDE60600C38CAC /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "Charts-master/Charts.xcodeproj"; sourceTree = "<group>"; };
 		42F252A51DC8F42200C79D99 /* Rehab Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rehab Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -230,6 +231,7 @@
 		42F252A71DC8F42200C79D99 /* Rehab Tracker */ = {
 			isa = PBXGroup;
 			children = (
+				42CBBED71E8ED21F00B215A8 /* Rehab Tracker.entitlements */,
 				42A96A941DF5E6380016FD5B /* practiceData.csv */,
 				42F252B71DC8F42300C79D99 /* Info.plist */,
 				42F252A81DC8F42200C79D99 /* AppDelegate.swift */,
@@ -398,20 +400,22 @@
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
-								enabled = 0;
+								enabled = 1;
 							};
 							com.apple.Push = {
-								enabled = 0;
+								enabled = 1;
 							};
 						};
 					};
 					42F252BB1DC8F42300C79D99 = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = XD63BJ9269;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 42F252A41DC8F42200C79D99;
 					};
 					42F252C61DC8F42300C79D99 = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = XD63BJ9269;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 42F252A41DC8F42200C79D99;
 					};
@@ -735,7 +739,7 @@
 				INFOPLIST_FILE = NotificationService/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "UVM.Rehab-Tracker.NotificationService";
+				PRODUCT_BUNDLE_IDENTIFIER = "UVM.Rehab-Tracker-CS275.NotificationService";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
@@ -749,7 +753,7 @@
 				INFOPLIST_FILE = NotificationService/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "UVM.Rehab-Tracker.NotificationService";
+				PRODUCT_BUNDLE_IDENTIFIER = "UVM.Rehab-Tracker-CS275.NotificationService";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
@@ -856,12 +860,13 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "Rehab Tracker/Rehab Tracker.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = XD63BJ9269;
 				INFOPLIST_FILE = "Rehab Tracker/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "UVM.Rehab-Tracker";
+				PRODUCT_BUNDLE_IDENTIFIER = "UVM.Rehab-Tracker-CS275";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -876,12 +881,13 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "Rehab Tracker/Rehab Tracker.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = XD63BJ9269;
 				INFOPLIST_FILE = "Rehab Tracker/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "UVM.Rehab-Tracker";
+				PRODUCT_BUNDLE_IDENTIFIER = "UVM.Rehab-Tracker-CS275";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
@@ -894,6 +900,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = XD63BJ9269;
 				INFOPLIST_FILE = "Rehab TrackerTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "UVM.Rehab-TrackerTests";
@@ -909,6 +916,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = XD63BJ9269;
 				INFOPLIST_FILE = "Rehab TrackerTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "UVM.Rehab-TrackerTests";
@@ -923,6 +931,7 @@
 			baseConfigurationReference = 4676B7F1FDCF7A07BAD6D26C /* Pods-Rehab TrackerUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = XD63BJ9269;
 				INFOPLIST_FILE = "Rehab TrackerUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "UVM.Rehab-TrackerUITests";
@@ -937,6 +946,7 @@
 			baseConfigurationReference = 287D7DB1AAD5C316CD3B6319 /* Pods-Rehab TrackerUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = XD63BJ9269;
 				INFOPLIST_FILE = "Rehab TrackerUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "UVM.Rehab-TrackerUITests";
