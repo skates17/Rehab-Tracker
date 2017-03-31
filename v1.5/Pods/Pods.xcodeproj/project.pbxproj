@@ -1,0 +1,900 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		029A8895CB15489C7A0640D50CED3ECE /* PusherSwift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B48728C6B18A655D23F7D56DA36D671 /* PusherSwift-dummy.m */; };
+		0B0A4B1BC965839C68CAAB58CD4A8197 /* Pods-Rehab Tracker-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = CFD7B8C0F0A58EF04C9F748C55981765 /* Pods-Rehab Tracker-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1D46D840BC7D1C201D9166E0E24F0923 /* PusherChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60B85CCE2A182CFDB3C1FF22F7E5950 /* PusherChannel.swift */; };
+		20BB5D5F72A2D08E3EF3AA6EC41791DA /* PusherGlobalChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B758DCC76BA0E7E38E186B2B1084450B /* PusherGlobalChannel.swift */; };
+		279AD3D15756FB871E8BA43397C555DE /* PusherChannels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67112AE47677D3604B8417FCE22ADF72 /* PusherChannels.swift */; };
+		2A2B1741AAB685AF955427C196F863FF /* PusherConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9463AD92E0ADFA413D96F575A37A22 /* PusherConnection.swift */; };
+		2CFB83183A77483344038EB64615DCFA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
+		2D298E4531A2CBA2A6EC7F125D05D972 /* CryptoSwiftHMACModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11BFC9C0348DE4A00CE6FBEDFAFA956 /* CryptoSwiftHMACModule.swift */; };
+		2E6822FA787269E886A662FC24D4E65A /* TaskQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A9FFFDAD4E96B0145BE2669943FA9E /* TaskQueue.swift */; };
+		332049A26D9DCB025388F2C2F1D16CBA /* PusherPresenceChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE4BA8925C80C6518B7FC6595EF0B70 /* PusherPresenceChannel.swift */; };
+		34745D6DFA57AE2B52F97C7655372A5B /* Pods-Rehab TrackerUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C117AFAF4BF2DE062A88C0343EF7EB55 /* Pods-Rehab TrackerUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		371794E958B2C81026BE2CB61DF8A0C2 /* Pods-Rehab TrackerTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 73096F5B0B5A7DF441142EEE8658A165 /* Pods-Rehab TrackerTests-dummy.m */; };
+		4ED3A0C9B4BB1BD9DBB234600808F219 /* Starscream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B220B536E624CBCE406FD769F0F69F /* Starscream.swift */; };
+		5257C516B87DECE5C6E9EAC1088197BF /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07975EB083E212C0D63A2C5B4FE9666A /* Reachability.swift */; };
+		65FCD18102FD649526E62AE8F6D4C578 /* Pods-Rehab TrackerTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C68BABC1BBF7E099FB3F38869C54C1B8 /* Pods-Rehab TrackerTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		72D99128C2C99C163E186546BBF7087A /* Pods-Rehab TrackerUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 40846D8563398B3E0D603759B9825AA6 /* Pods-Rehab TrackerUITests-dummy.m */; };
+		79C19DC75C9BF334C63ABEE3C0EF588E /* NativePusher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BBC28B056E66CED0690095968A3FC46 /* NativePusher.swift */; };
+		7AE4044AC163E7D6BCB21063CB1E42E2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
+		8A9B842D07B7B7E65AE81167BAF28410 /* PusherSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53BBDD2E06F8D2C65E487ABB83DEFC6C /* PusherSwift.swift */; };
+		8DA24037C4073279E8DEF657557F02EB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
+		A304A935C91F1C881A261D44A6CD509E /* PusherWebsocketDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560B4934C8EA8F2F5C1454F1EF945F1F /* PusherWebsocketDelegate.swift */; };
+		AB78907B326290CBD84053A3DFB78ABB /* PusherClientOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93B62A15D82C4A2A51783AFBC38AF5E /* PusherClientOptions.swift */; };
+		ADF3E16093E1F2285F18B5F7CA435C96 /* PusherDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C6581044568021198D5D8F08DAC06 /* PusherDelegate.swift */; };
+		BBB5AEB52B364CC6A3510B2ADD412509 /* ObjectiveC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B944EFDE4B14D6869F2D8355573401 /* ObjectiveC.swift */; };
+		CD9EFF6B4C0748CACA1879A0E230E5BC /* Pods-Rehab Tracker-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 620E19970F494017594C5519150B3135 /* Pods-Rehab Tracker-dummy.m */; };
+		E32B112D83FECD7D8D7E786C7F1449D7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
+		F1D4043806D66A7869273225ECB81E73 /* PusherSwift-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = AE012CD8FD70753FD52E587549E8140E /* PusherSwift-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		24F3CAC1631C80B2823533D223F416F0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0EBBDF0A13764C16CBB71C2CF48D5262;
+			remoteInfo = PusherSwift;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		07975EB083E212C0D63A2C5B4FE9666A /* Reachability.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Reachability.swift; path = Source/Reachability.swift; sourceTree = "<group>"; };
+		08C94B27B8BEF88B29E604C79C5A2ACB /* Pods_Rehab_TrackerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Rehab_TrackerUITests.framework; path = "Pods-Rehab TrackerUITests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		09EF7DCEC6C4C1C5B7C8830EC39735AD /* Pods-Rehab TrackerTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Rehab TrackerTests-resources.sh"; sourceTree = "<group>"; };
+		0F52FFEDFF1F7F348851B439BDE48118 /* PusherSwift.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PusherSwift.xcconfig; sourceTree = "<group>"; };
+		1A2F74E102DDACE36F28833187096225 /* Pods-Rehab Tracker-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Rehab Tracker-acknowledgements.plist"; sourceTree = "<group>"; };
+		2AC4FFBF3CC501BEFFE6305252D0BBC2 /* Pods-Rehab Tracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Rehab Tracker.release.xcconfig"; sourceTree = "<group>"; };
+		2B48728C6B18A655D23F7D56DA36D671 /* PusherSwift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "PusherSwift-dummy.m"; sourceTree = "<group>"; };
+		31B34B57E231A6031587D87A3CC71587 /* Pods-Rehab Tracker-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Rehab Tracker-resources.sh"; sourceTree = "<group>"; };
+		3808E519816C1ADFCD716518FC532E0E /* Pods-Rehab TrackerTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Rehab TrackerTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		3F9E953E11EEE3EBB98E18E37F6B3AB7 /* Pods-Rehab TrackerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Rehab TrackerUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		40846D8563398B3E0D603759B9825AA6 /* Pods-Rehab TrackerUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Rehab TrackerUITests-dummy.m"; sourceTree = "<group>"; };
+		42B515B59763CDBC626004C13E15868B /* Pods-Rehab TrackerUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Rehab TrackerUITests-acknowledgements.plist"; sourceTree = "<group>"; };
+		50C60E627D69D78B9B5CD5802518BE43 /* Pods-Rehab TrackerTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Rehab TrackerTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		520C6581044568021198D5D8F08DAC06 /* PusherDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PusherDelegate.swift; path = Source/PusherDelegate.swift; sourceTree = "<group>"; };
+		53BBDD2E06F8D2C65E487ABB83DEFC6C /* PusherSwift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PusherSwift.swift; path = Source/PusherSwift.swift; sourceTree = "<group>"; };
+		560B4934C8EA8F2F5C1454F1EF945F1F /* PusherWebsocketDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PusherWebsocketDelegate.swift; path = Source/PusherWebsocketDelegate.swift; sourceTree = "<group>"; };
+		5A00C348777F276F514C955C00F4D488 /* PusherSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = PusherSwift.framework; path = PusherSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		620E19970F494017594C5519150B3135 /* Pods-Rehab Tracker-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Rehab Tracker-dummy.m"; sourceTree = "<group>"; };
+		64B220B536E624CBCE406FD769F0F69F /* Starscream.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Starscream.swift; path = Source/Starscream.swift; sourceTree = "<group>"; };
+		650673C0361640A6675D80E5054C297F /* Pods-Rehab TrackerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Rehab TrackerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		668686485B0E18D5D5A777992DC7F2EA /* Pods-Rehab Tracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Rehab Tracker.debug.xcconfig"; sourceTree = "<group>"; };
+		66B7ABC1B6222411B8E0B8597D01E66B /* Pods-Rehab TrackerTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Rehab TrackerTests-frameworks.sh"; sourceTree = "<group>"; };
+		67112AE47677D3604B8417FCE22ADF72 /* PusherChannels.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PusherChannels.swift; path = Source/PusherChannels.swift; sourceTree = "<group>"; };
+		693698AFDA8AE4DB5C63AA36A7527D84 /* Pods-Rehab TrackerUITests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Rehab TrackerUITests-resources.sh"; sourceTree = "<group>"; };
+		6F26A0AC369F9AA4AB7238B8FC8F0088 /* Pods_Rehab_TrackerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Rehab_TrackerTests.framework; path = "Pods-Rehab TrackerTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		73096F5B0B5A7DF441142EEE8658A165 /* Pods-Rehab TrackerTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Rehab TrackerTests-dummy.m"; sourceTree = "<group>"; };
+		7BBC28B056E66CED0690095968A3FC46 /* NativePusher.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NativePusher.swift; path = Source/NativePusher.swift; sourceTree = "<group>"; };
+		7C9463AD92E0ADFA413D96F575A37A22 /* PusherConnection.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PusherConnection.swift; path = Source/PusherConnection.swift; sourceTree = "<group>"; };
+		7D7E000513EBE061EB303C959DA1169A /* PusherSwift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = PusherSwift.modulemap; sourceTree = "<group>"; };
+		7FE4BA8925C80C6518B7FC6595EF0B70 /* PusherPresenceChannel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PusherPresenceChannel.swift; path = Source/PusherPresenceChannel.swift; sourceTree = "<group>"; };
+		811BBB979799F9EF0A19E689A5D52016 /* Pods-Rehab TrackerUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Rehab TrackerUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		88978F6737DE8780CDD4711CF32ECBDC /* Pods-Rehab TrackerTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-Rehab TrackerTests.modulemap"; sourceTree = "<group>"; };
+		89E6BD6C63606E4CDCF6789050F331D8 /* Pods-Rehab Tracker.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-Rehab Tracker.modulemap"; sourceTree = "<group>"; };
+		8EF7E526F8AFD5CD880CB1EEB3672132 /* Pods-Rehab TrackerUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-Rehab TrackerUITests.modulemap"; sourceTree = "<group>"; };
+		91FA712B1E665B72D2A63B2D808DD58A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		95B1BB3D4AC7377CD2E42638F1F39678 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AB52F9D47574EB40933DA69C1104513B /* Pods-Rehab Tracker-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Rehab Tracker-acknowledgements.markdown"; sourceTree = "<group>"; };
+		AE012CD8FD70753FD52E587549E8140E /* PusherSwift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PusherSwift-umbrella.h"; sourceTree = "<group>"; };
+		AEDF9307F3B0CB89D4DB9693A9F71FA4 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B11BFC9C0348DE4A00CE6FBEDFAFA956 /* CryptoSwiftHMACModule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CryptoSwiftHMACModule.swift; path = Source/CryptoSwiftHMACModule.swift; sourceTree = "<group>"; };
+		B758DCC76BA0E7E38E186B2B1084450B /* PusherGlobalChannel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PusherGlobalChannel.swift; path = Source/PusherGlobalChannel.swift; sourceTree = "<group>"; };
+		BE648E19292E019F5AC148C23C9784EC /* Pods-Rehab TrackerUITests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Rehab TrackerUITests-frameworks.sh"; sourceTree = "<group>"; };
+		C117AFAF4BF2DE062A88C0343EF7EB55 /* Pods-Rehab TrackerUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Rehab TrackerUITests-umbrella.h"; sourceTree = "<group>"; };
+		C68BABC1BBF7E099FB3F38869C54C1B8 /* Pods-Rehab TrackerTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Rehab TrackerTests-umbrella.h"; sourceTree = "<group>"; };
+		C93B62A15D82C4A2A51783AFBC38AF5E /* PusherClientOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PusherClientOptions.swift; path = Source/PusherClientOptions.swift; sourceTree = "<group>"; };
+		CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		CFD7B8C0F0A58EF04C9F748C55981765 /* Pods-Rehab Tracker-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Rehab Tracker-umbrella.h"; sourceTree = "<group>"; };
+		D1B250E62A7031B826AB27ED54EB84DE /* Pods-Rehab TrackerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Rehab TrackerUITests.release.xcconfig"; sourceTree = "<group>"; };
+		D5B944EFDE4B14D6869F2D8355573401 /* ObjectiveC.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ObjectiveC.swift; path = Source/ObjectiveC.swift; sourceTree = "<group>"; };
+		EAEBCE7B6E6EF59056B3E33F8F7CA430 /* Pods_Rehab_Tracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Rehab_Tracker.framework; path = "Pods-Rehab Tracker.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE5EC5D2A47564066EB0830423AC53A6 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F0A9FFFDAD4E96B0145BE2669943FA9E /* TaskQueue.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TaskQueue.swift; path = Source/TaskQueue.swift; sourceTree = "<group>"; };
+		F602A56BB9C00AB8FFFFAD7C3922C0B8 /* Pods-Rehab TrackerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Rehab TrackerTests.release.xcconfig"; sourceTree = "<group>"; };
+		F60B85CCE2A182CFDB3C1FF22F7E5950 /* PusherChannel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PusherChannel.swift; path = Source/PusherChannel.swift; sourceTree = "<group>"; };
+		F6ECE4E688B7809DFFF0757B0F0418CC /* PusherSwift-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PusherSwift-prefix.pch"; sourceTree = "<group>"; };
+		F8451CEDCE632025B8E3FE87E1BC2CAC /* Pods-Rehab Tracker-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Rehab Tracker-frameworks.sh"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3B70E9E000B240E75397BA2EDC582C76 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E32B112D83FECD7D8D7E786C7F1449D7 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7DA9A347F25502F09EBDF5BBE424492C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8DA24037C4073279E8DEF657557F02EB /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A43B8EEA12CAC5889FDFCCDE6AFD327D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7AE4044AC163E7D6BCB21063CB1E42E2 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CA4D616D730445C1278B34FEA592928A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2CFB83183A77483344038EB64615DCFA /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		27D86E3FC075756C5D145D532FF9A3DA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EAEBCE7B6E6EF59056B3E33F8F7CA430 /* Pods_Rehab_Tracker.framework */,
+				6F26A0AC369F9AA4AB7238B8FC8F0088 /* Pods_Rehab_TrackerTests.framework */,
+				08C94B27B8BEF88B29E604C79C5A2ACB /* Pods_Rehab_TrackerUITests.framework */,
+				5A00C348777F276F514C955C00F4D488 /* PusherSwift.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2CF89217173CBE1FBFF4F331F7221FC8 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				91FA712B1E665B72D2A63B2D808DD58A /* Info.plist */,
+				7D7E000513EBE061EB303C959DA1169A /* PusherSwift.modulemap */,
+				0F52FFEDFF1F7F348851B439BDE48118 /* PusherSwift.xcconfig */,
+				2B48728C6B18A655D23F7D56DA36D671 /* PusherSwift-dummy.m */,
+				F6ECE4E688B7809DFFF0757B0F0418CC /* PusherSwift-prefix.pch */,
+				AE012CD8FD70753FD52E587549E8140E /* PusherSwift-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/PusherSwift";
+			sourceTree = "<group>";
+		};
+		4B13FA4EBB91B8DC4B2A35DB676212CC /* Pods-Rehab TrackerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				AEDF9307F3B0CB89D4DB9693A9F71FA4 /* Info.plist */,
+				8EF7E526F8AFD5CD880CB1EEB3672132 /* Pods-Rehab TrackerUITests.modulemap */,
+				811BBB979799F9EF0A19E689A5D52016 /* Pods-Rehab TrackerUITests-acknowledgements.markdown */,
+				42B515B59763CDBC626004C13E15868B /* Pods-Rehab TrackerUITests-acknowledgements.plist */,
+				40846D8563398B3E0D603759B9825AA6 /* Pods-Rehab TrackerUITests-dummy.m */,
+				BE648E19292E019F5AC148C23C9784EC /* Pods-Rehab TrackerUITests-frameworks.sh */,
+				693698AFDA8AE4DB5C63AA36A7527D84 /* Pods-Rehab TrackerUITests-resources.sh */,
+				C117AFAF4BF2DE062A88C0343EF7EB55 /* Pods-Rehab TrackerUITests-umbrella.h */,
+				3F9E953E11EEE3EBB98E18E37F6B3AB7 /* Pods-Rehab TrackerUITests.debug.xcconfig */,
+				D1B250E62A7031B826AB27ED54EB84DE /* Pods-Rehab TrackerUITests.release.xcconfig */,
+			);
+			name = "Pods-Rehab TrackerUITests";
+			path = "Target Support Files/Pods-Rehab TrackerUITests";
+			sourceTree = "<group>";
+		};
+		7531C8F8DE19F1AA3C8A7AC97A91DC29 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
+				7FE271583D49B40292C1066A7080206A /* Pods */,
+				27D86E3FC075756C5D145D532FF9A3DA /* Products */,
+				826B28A876131A204397CF791AEB71F5 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		7FE271583D49B40292C1066A7080206A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9D9C3140D6D685F6978B111053234C4D /* PusherSwift */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		826B28A876131A204397CF791AEB71F5 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				C5E7A0A2CB89DD98BBB738F660E12BCD /* Pods-Rehab Tracker */,
+				B71511D9C1D89E9EA677E361F5D7BB21 /* Pods-Rehab TrackerTests */,
+				4B13FA4EBB91B8DC4B2A35DB676212CC /* Pods-Rehab TrackerUITests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		9D9C3140D6D685F6978B111053234C4D /* PusherSwift */ = {
+			isa = PBXGroup;
+			children = (
+				B11BFC9C0348DE4A00CE6FBEDFAFA956 /* CryptoSwiftHMACModule.swift */,
+				7BBC28B056E66CED0690095968A3FC46 /* NativePusher.swift */,
+				D5B944EFDE4B14D6869F2D8355573401 /* ObjectiveC.swift */,
+				F60B85CCE2A182CFDB3C1FF22F7E5950 /* PusherChannel.swift */,
+				67112AE47677D3604B8417FCE22ADF72 /* PusherChannels.swift */,
+				C93B62A15D82C4A2A51783AFBC38AF5E /* PusherClientOptions.swift */,
+				7C9463AD92E0ADFA413D96F575A37A22 /* PusherConnection.swift */,
+				520C6581044568021198D5D8F08DAC06 /* PusherDelegate.swift */,
+				B758DCC76BA0E7E38E186B2B1084450B /* PusherGlobalChannel.swift */,
+				7FE4BA8925C80C6518B7FC6595EF0B70 /* PusherPresenceChannel.swift */,
+				53BBDD2E06F8D2C65E487ABB83DEFC6C /* PusherSwift.swift */,
+				560B4934C8EA8F2F5C1454F1EF945F1F /* PusherWebsocketDelegate.swift */,
+				07975EB083E212C0D63A2C5B4FE9666A /* Reachability.swift */,
+				64B220B536E624CBCE406FD769F0F69F /* Starscream.swift */,
+				F0A9FFFDAD4E96B0145BE2669943FA9E /* TaskQueue.swift */,
+				2CF89217173CBE1FBFF4F331F7221FC8 /* Support Files */,
+			);
+			name = PusherSwift;
+			path = PusherSwift;
+			sourceTree = "<group>";
+		};
+		B71511D9C1D89E9EA677E361F5D7BB21 /* Pods-Rehab TrackerTests */ = {
+			isa = PBXGroup;
+			children = (
+				95B1BB3D4AC7377CD2E42638F1F39678 /* Info.plist */,
+				88978F6737DE8780CDD4711CF32ECBDC /* Pods-Rehab TrackerTests.modulemap */,
+				50C60E627D69D78B9B5CD5802518BE43 /* Pods-Rehab TrackerTests-acknowledgements.markdown */,
+				3808E519816C1ADFCD716518FC532E0E /* Pods-Rehab TrackerTests-acknowledgements.plist */,
+				73096F5B0B5A7DF441142EEE8658A165 /* Pods-Rehab TrackerTests-dummy.m */,
+				66B7ABC1B6222411B8E0B8597D01E66B /* Pods-Rehab TrackerTests-frameworks.sh */,
+				09EF7DCEC6C4C1C5B7C8830EC39735AD /* Pods-Rehab TrackerTests-resources.sh */,
+				C68BABC1BBF7E099FB3F38869C54C1B8 /* Pods-Rehab TrackerTests-umbrella.h */,
+				650673C0361640A6675D80E5054C297F /* Pods-Rehab TrackerTests.debug.xcconfig */,
+				F602A56BB9C00AB8FFFFAD7C3922C0B8 /* Pods-Rehab TrackerTests.release.xcconfig */,
+			);
+			name = "Pods-Rehab TrackerTests";
+			path = "Target Support Files/Pods-Rehab TrackerTests";
+			sourceTree = "<group>";
+		};
+		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7531C8F8DE19F1AA3C8A7AC97A91DC29 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C5E7A0A2CB89DD98BBB738F660E12BCD /* Pods-Rehab Tracker */ = {
+			isa = PBXGroup;
+			children = (
+				EE5EC5D2A47564066EB0830423AC53A6 /* Info.plist */,
+				89E6BD6C63606E4CDCF6789050F331D8 /* Pods-Rehab Tracker.modulemap */,
+				AB52F9D47574EB40933DA69C1104513B /* Pods-Rehab Tracker-acknowledgements.markdown */,
+				1A2F74E102DDACE36F28833187096225 /* Pods-Rehab Tracker-acknowledgements.plist */,
+				620E19970F494017594C5519150B3135 /* Pods-Rehab Tracker-dummy.m */,
+				F8451CEDCE632025B8E3FE87E1BC2CAC /* Pods-Rehab Tracker-frameworks.sh */,
+				31B34B57E231A6031587D87A3CC71587 /* Pods-Rehab Tracker-resources.sh */,
+				CFD7B8C0F0A58EF04C9F748C55981765 /* Pods-Rehab Tracker-umbrella.h */,
+				668686485B0E18D5D5A777992DC7F2EA /* Pods-Rehab Tracker.debug.xcconfig */,
+				2AC4FFBF3CC501BEFFE6305252D0BBC2 /* Pods-Rehab Tracker.release.xcconfig */,
+			);
+			name = "Pods-Rehab Tracker";
+			path = "Target Support Files/Pods-Rehab Tracker";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		3FB106835A762B61DE232E04CE2FC0B1 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65FCD18102FD649526E62AE8F6D4C578 /* Pods-Rehab TrackerTests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		77B5147C64B33584F7312CD49DB087E4 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34745D6DFA57AE2B52F97C7655372A5B /* Pods-Rehab TrackerUITests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		972462B835322722CA5AFAE80A568758 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0B0A4B1BC965839C68CAAB58CD4A8197 /* Pods-Rehab Tracker-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EF020CE2D2A959A4B776222D18086AE0 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F1D4043806D66A7869273225ECB81E73 /* PusherSwift-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		07489F67C97D966D76D23E12CB9D72D7 /* Pods-Rehab TrackerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1171B3AAFD8532858329FAF36809A6B8 /* Build configuration list for PBXNativeTarget "Pods-Rehab TrackerUITests" */;
+			buildPhases = (
+				53EDB6C3D3302B1AAAA422EE0D82AFD8 /* Sources */,
+				7DA9A347F25502F09EBDF5BBE424492C /* Frameworks */,
+				77B5147C64B33584F7312CD49DB087E4 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-Rehab TrackerUITests";
+			productName = "Pods-Rehab TrackerUITests";
+			productReference = 08C94B27B8BEF88B29E604C79C5A2ACB /* Pods_Rehab_TrackerUITests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		0EBBDF0A13764C16CBB71C2CF48D5262 /* PusherSwift */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C696FA626A1B95B88D53E3F74E87E404 /* Build configuration list for PBXNativeTarget "PusherSwift" */;
+			buildPhases = (
+				6571AE86BC89DF351194EA091F5CF72E /* Sources */,
+				3B70E9E000B240E75397BA2EDC582C76 /* Frameworks */,
+				EF020CE2D2A959A4B776222D18086AE0 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PusherSwift;
+			productName = PusherSwift;
+			productReference = 5A00C348777F276F514C955C00F4D488 /* PusherSwift.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		BF5E941AC37887BAAC1A1C48D6EB072C /* Pods-Rehab Tracker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4B6843AB9A7E07292577C3547EE71E5C /* Build configuration list for PBXNativeTarget "Pods-Rehab Tracker" */;
+			buildPhases = (
+				A85ABB0C0C29642B90FA310AB96CEB51 /* Sources */,
+				CA4D616D730445C1278B34FEA592928A /* Frameworks */,
+				972462B835322722CA5AFAE80A568758 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DA0E7819C9E0F893DBD1AF03762EC137 /* PBXTargetDependency */,
+			);
+			name = "Pods-Rehab Tracker";
+			productName = "Pods-Rehab Tracker";
+			productReference = EAEBCE7B6E6EF59056B3E33F8F7CA430 /* Pods_Rehab_Tracker.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		F0F0EC97646F086476672F5E685BB95A /* Pods-Rehab TrackerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DEA45B9C4D1B01A04C17BD14407825C1 /* Build configuration list for PBXNativeTarget "Pods-Rehab TrackerTests" */;
+			buildPhases = (
+				F6AC9897CF533EC906FF83C96DA8EC2B /* Sources */,
+				A43B8EEA12CAC5889FDFCCDE6AFD327D /* Frameworks */,
+				3FB106835A762B61DE232E04CE2FC0B1 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-Rehab TrackerTests";
+			productName = "Pods-Rehab TrackerTests";
+			productReference = 6F26A0AC369F9AA4AB7238B8FC8F0088 /* Pods_Rehab_TrackerTests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0700;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = 27D86E3FC075756C5D145D532FF9A3DA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BF5E941AC37887BAAC1A1C48D6EB072C /* Pods-Rehab Tracker */,
+				F0F0EC97646F086476672F5E685BB95A /* Pods-Rehab TrackerTests */,
+				07489F67C97D966D76D23E12CB9D72D7 /* Pods-Rehab TrackerUITests */,
+				0EBBDF0A13764C16CBB71C2CF48D5262 /* PusherSwift */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		53EDB6C3D3302B1AAAA422EE0D82AFD8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				72D99128C2C99C163E186546BBF7087A /* Pods-Rehab TrackerUITests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6571AE86BC89DF351194EA091F5CF72E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D298E4531A2CBA2A6EC7F125D05D972 /* CryptoSwiftHMACModule.swift in Sources */,
+				79C19DC75C9BF334C63ABEE3C0EF588E /* NativePusher.swift in Sources */,
+				BBB5AEB52B364CC6A3510B2ADD412509 /* ObjectiveC.swift in Sources */,
+				1D46D840BC7D1C201D9166E0E24F0923 /* PusherChannel.swift in Sources */,
+				279AD3D15756FB871E8BA43397C555DE /* PusherChannels.swift in Sources */,
+				AB78907B326290CBD84053A3DFB78ABB /* PusherClientOptions.swift in Sources */,
+				2A2B1741AAB685AF955427C196F863FF /* PusherConnection.swift in Sources */,
+				ADF3E16093E1F2285F18B5F7CA435C96 /* PusherDelegate.swift in Sources */,
+				20BB5D5F72A2D08E3EF3AA6EC41791DA /* PusherGlobalChannel.swift in Sources */,
+				332049A26D9DCB025388F2C2F1D16CBA /* PusherPresenceChannel.swift in Sources */,
+				029A8895CB15489C7A0640D50CED3ECE /* PusherSwift-dummy.m in Sources */,
+				8A9B842D07B7B7E65AE81167BAF28410 /* PusherSwift.swift in Sources */,
+				A304A935C91F1C881A261D44A6CD509E /* PusherWebsocketDelegate.swift in Sources */,
+				5257C516B87DECE5C6E9EAC1088197BF /* Reachability.swift in Sources */,
+				4ED3A0C9B4BB1BD9DBB234600808F219 /* Starscream.swift in Sources */,
+				2E6822FA787269E886A662FC24D4E65A /* TaskQueue.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A85ABB0C0C29642B90FA310AB96CEB51 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CD9EFF6B4C0748CACA1879A0E230E5BC /* Pods-Rehab Tracker-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F6AC9897CF533EC906FF83C96DA8EC2B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				371794E958B2C81026BE2CB61DF8A0C2 /* Pods-Rehab TrackerTests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DA0E7819C9E0F893DBD1AF03762EC137 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = PusherSwift;
+			target = 0EBBDF0A13764C16CBB71C2CF48D5262 /* PusherSwift */;
+			targetProxy = 24F3CAC1631C80B2823533D223F416F0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		0BC734EE19D327A0FCE536F57C183BB4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0F52FFEDFF1F7F348851B439BDE48118 /* PusherSwift.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/PusherSwift/PusherSwift-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/PusherSwift/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/PusherSwift/PusherSwift.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = PusherSwift;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		12914D756594D15C6F2CA12FE5F89F1B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		75BF3ACB1E7F5BD8C3120E73A330AD4D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1B250E62A7031B826AB27ED54EB84DE /* Pods-Rehab TrackerUITests.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-Rehab TrackerUITests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Rehab TrackerUITests/Pods-Rehab TrackerUITests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_Rehab_TrackerUITests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		806E8A1E249F0E9C0485BE774F69D61A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F602A56BB9C00AB8FFFFAD7C3922C0B8 /* Pods-Rehab TrackerTests.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-Rehab TrackerTests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Rehab TrackerTests/Pods-Rehab TrackerTests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_Rehab_TrackerTests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		81020813ABF99FAE9C288168D25BE765 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 668686485B0E18D5D5A777992DC7F2EA /* Pods-Rehab Tracker.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-Rehab Tracker/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Rehab Tracker/Pods-Rehab Tracker.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_Rehab_Tracker;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		A7C1F54EE20ABECDFEB15420E4A9EB3E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 650673C0361640A6675D80E5054C297F /* Pods-Rehab TrackerTests.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-Rehab TrackerTests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Rehab TrackerTests/Pods-Rehab TrackerTests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_Rehab_TrackerTests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		C0C2431E6E5988758593A7C6CDDB96F0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0F52FFEDFF1F7F348851B439BDE48118 /* PusherSwift.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/PusherSwift/PusherSwift-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/PusherSwift/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/PusherSwift/PusherSwift.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = PusherSwift;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		CCC626CA2E0E0A6EA7ABC7BBCFC7090A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3F9E953E11EEE3EBB98E18E37F6B3AB7 /* Pods-Rehab TrackerUITests.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-Rehab TrackerUITests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Rehab TrackerUITests/Pods-Rehab TrackerUITests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_Rehab_TrackerUITests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		E72E7977875C2D251FC62736BBDDC389 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FBC4DC810723E3704A89C6F8D8208BD3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2AC4FFBF3CC501BEFFE6305252D0BBC2 /* Pods-Rehab Tracker.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-Rehab Tracker/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Rehab Tracker/Pods-Rehab Tracker.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_Rehab_Tracker;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1171B3AAFD8532858329FAF36809A6B8 /* Build configuration list for PBXNativeTarget "Pods-Rehab TrackerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CCC626CA2E0E0A6EA7ABC7BBCFC7090A /* Debug */,
+				75BF3ACB1E7F5BD8C3120E73A330AD4D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				12914D756594D15C6F2CA12FE5F89F1B /* Debug */,
+				E72E7977875C2D251FC62736BBDDC389 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4B6843AB9A7E07292577C3547EE71E5C /* Build configuration list for PBXNativeTarget "Pods-Rehab Tracker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				81020813ABF99FAE9C288168D25BE765 /* Debug */,
+				FBC4DC810723E3704A89C6F8D8208BD3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C696FA626A1B95B88D53E3F74E87E404 /* Build configuration list for PBXNativeTarget "PusherSwift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C0C2431E6E5988758593A7C6CDDB96F0 /* Debug */,
+				0BC734EE19D327A0FCE536F57C183BB4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DEA45B9C4D1B01A04C17BD14407825C1 /* Build configuration list for PBXNativeTarget "Pods-Rehab TrackerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A7C1F54EE20ABECDFEB15420E4A9EB3E /* Debug */,
+				806E8A1E249F0E9C0485BE774F69D61A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}

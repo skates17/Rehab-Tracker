@@ -10,13 +10,24 @@
 import UIKit
 import CoreData
 import UserNotifications
+import PusherSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
+    // Initialize the pusher instance with key from server
+    let pusher = Pusher(key: "1a12b25128b9b2b28ee1")
+    
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        // Push Notifications
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
+            // actions based on whether notifications were authorized or not
+        }
+        application.registerForRemoteNotifications()
         
         // Define all the color schemes here for consistency
         // RED = 28, GREEN = 117, BLUE = 127
@@ -106,6 +117,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func animationDidStop( finished flag: Bool ) {
         // remove mask when animation completes
         self.window!.rootViewController!.view.layer.mask = nil
+    }
+    
+    // Push Notifications
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken : NSData) {
+        pusher.nativePusher.register(deviceToken: deviceToken as Data)
+        pusher.nativePusher.subscribe(interestName: "donuts")
+    }
+    
+    func application(application: UIApplication, didReceiveRemoteNotification notification : [NSObject : AnyObject]) {
+        print(notification)
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

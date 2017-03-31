@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		253F54820F106EFAB202EDA9 /* Pods_Rehab_TrackerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B4F1967C44C3AC89C57BF4B /* Pods_Rehab_TrackerUITests.framework */; };
 		4221681C1DF9A069008FDDF8 /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4221681B1DF9A069008FDDF8 /* StatsViewController.swift */; };
 		42378C6C1E53D39C005575D6 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42378C6B1E53D39C005575D6 /* Util.swift */; };
 		42A0D50E1E5259960003A96B /* Rehab_Tracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 42A0D50C1E5259960003A96B /* Rehab_Tracker.xcdatamodeld */; };
@@ -16,6 +17,8 @@
 		42A96A9C1DF5E7FC0016FD5B /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A96A981DF5E7FC0016FD5B /* User+CoreDataClass.swift */; };
 		42A96A9D1DF5E7FC0016FD5B /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A96A991DF5E7FC0016FD5B /* User+CoreDataProperties.swift */; };
 		42B654C61DCA90DA0031C21F /* SyncViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B654C51DCA90DA0031C21F /* SyncViewController.swift */; };
+		42CBBECF1E8EC32300B215A8 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CBBECE1E8EC32300B215A8 /* NotificationService.swift */; };
+		42CBBED31E8EC32300B215A8 /* NotificationService.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 42CBBECC1E8EC32200B215A8 /* NotificationService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		42CCA4291E39456F009CB0DE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 42CCA4271E39456F009CB0DE /* LaunchScreen.xib */; };
 		42F087DE1DFDE62800C38CAC /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F087D91DFDE60700C38CAC /* Charts.framework */; };
 		42F087DF1DFDE62800C38CAC /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 42F087D91DFDE60700C38CAC /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -25,9 +28,18 @@
 		42F252B31DC8F42300C79D99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42F252B21DC8F42300C79D99 /* Assets.xcassets */; };
 		42F252C11DC8F42300C79D99 /* Rehab_TrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F252C01DC8F42300C79D99 /* Rehab_TrackerTests.swift */; };
 		42F252CC1DC8F42300C79D99 /* Rehab_TrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F252CB1DC8F42300C79D99 /* Rehab_TrackerUITests.swift */; };
+		626A8E611486C0530AE4264B /* Pods_Rehab_Tracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD9D15B4DCEC4A7E0B37AAD6 /* Pods_Rehab_Tracker.framework */; };
+		74321E3FECFFE3B0A1BCA013 /* Pods_Rehab_TrackerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19CED83F4022241E44F1F882 /* Pods_Rehab_TrackerTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		42CBBED11E8EC32300B215A8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 42F2529D1DC8F42200C79D99 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 42CBBECB1E8EC32200B215A8;
+			remoteInfo = NotificationService;
+		};
 		42F087D81DFDE60700C38CAC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 42F087D21DFDE60600C38CAC /* Charts.xcodeproj */;
@@ -79,6 +91,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				42CBBED31E8EC32300B215A8 /* NotificationService.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -97,6 +110,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		19CED83F4022241E44F1F882 /* Pods_Rehab_TrackerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Rehab_TrackerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		287D7DB1AAD5C316CD3B6319 /* Pods-Rehab TrackerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rehab TrackerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Rehab TrackerUITests/Pods-Rehab TrackerUITests.release.xcconfig"; sourceTree = "<group>"; };
 		4221681B1DF9A069008FDDF8 /* StatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
 		42378C6B1E53D39C005575D6 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		42A0D50D1E5259960003A96B /* CoreDataPractice.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataPractice.xcdatamodel; sourceTree = "<group>"; };
@@ -106,6 +121,9 @@
 		42A96A981DF5E7FC0016FD5B /* User+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
 		42A96A991DF5E7FC0016FD5B /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		42B654C51DCA90DA0031C21F /* SyncViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncViewController.swift; sourceTree = "<group>"; };
+		42CBBECC1E8EC32200B215A8 /* NotificationService.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationService.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		42CBBECE1E8EC32300B215A8 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		42CBBED01E8EC32300B215A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		42CCA4281E39456F009CB0DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		42F087D21DFDE60600C38CAC /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "Charts-master/Charts.xcodeproj"; sourceTree = "<group>"; };
 		42F252A51DC8F42200C79D99 /* Rehab Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rehab Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -120,14 +138,29 @@
 		42F252C71DC8F42300C79D99 /* Rehab TrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Rehab TrackerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		42F252CB1DC8F42300C79D99 /* Rehab_TrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rehab_TrackerUITests.swift; sourceTree = "<group>"; };
 		42F252CD1DC8F42300C79D99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4676B7F1FDCF7A07BAD6D26C /* Pods-Rehab TrackerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rehab TrackerUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Rehab TrackerUITests/Pods-Rehab TrackerUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		9199E6BC45625A11DD740DA1 /* Pods-Rehab Tracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rehab Tracker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Rehab Tracker/Pods-Rehab Tracker.debug.xcconfig"; sourceTree = "<group>"; };
+		9B4F1967C44C3AC89C57BF4B /* Pods_Rehab_TrackerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Rehab_TrackerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA0F2C0D9220C8BE8902FD31 /* Pods-Rehab TrackerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rehab TrackerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Rehab TrackerTests/Pods-Rehab TrackerTests.release.xcconfig"; sourceTree = "<group>"; };
+		CC4264F0AD470317BB45D4EE /* Pods-Rehab TrackerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rehab TrackerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Rehab TrackerTests/Pods-Rehab TrackerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D1ACEE1566EC88AFD17DFE66 /* Pods-Rehab Tracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rehab Tracker.release.xcconfig"; path = "Pods/Target Support Files/Pods-Rehab Tracker/Pods-Rehab Tracker.release.xcconfig"; sourceTree = "<group>"; };
+		FD9D15B4DCEC4A7E0B37AAD6 /* Pods_Rehab_Tracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Rehab_Tracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		42CBBEC91E8EC32200B215A8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		42F252A21DC8F42200C79D99 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				42F087DE1DFDE62800C38CAC /* Charts.framework in Frameworks */,
+				626A8E611486C0530AE4264B /* Pods_Rehab_Tracker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,6 +168,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74321E3FECFFE3B0A1BCA013 /* Pods_Rehab_TrackerTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,12 +176,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				253F54820F106EFAB202EDA9 /* Pods_Rehab_TrackerUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		42CBBECD1E8EC32300B215A8 /* NotificationService */ = {
+			isa = PBXGroup;
+			children = (
+				42CBBECE1E8EC32300B215A8 /* NotificationService.swift */,
+				42CBBED01E8EC32300B215A8 /* Info.plist */,
+			);
+			path = NotificationService;
+			sourceTree = "<group>";
+		};
 		42F087D31DFDE60600C38CAC /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -165,7 +209,10 @@
 				42F252A71DC8F42200C79D99 /* Rehab Tracker */,
 				42F252BF1DC8F42300C79D99 /* Rehab TrackerTests */,
 				42F252CA1DC8F42300C79D99 /* Rehab TrackerUITests */,
+				42CBBECD1E8EC32300B215A8 /* NotificationService */,
 				42F252A61DC8F42200C79D99 /* Products */,
+				8E76A0E7ADDAF07116EDA23B /* Pods */,
+				EFBAE6211F521A6C74B9EFE7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -175,6 +222,7 @@
 				42F252A51DC8F42200C79D99 /* Rehab Tracker.app */,
 				42F252BC1DC8F42300C79D99 /* Rehab TrackerTests.xctest */,
 				42F252C71DC8F42300C79D99 /* Rehab TrackerUITests.xctest */,
+				42CBBECC1E8EC32200B215A8 /* NotificationService.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -219,23 +267,67 @@
 			path = "Rehab TrackerUITests";
 			sourceTree = "<group>";
 		};
+		8E76A0E7ADDAF07116EDA23B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9199E6BC45625A11DD740DA1 /* Pods-Rehab Tracker.debug.xcconfig */,
+				D1ACEE1566EC88AFD17DFE66 /* Pods-Rehab Tracker.release.xcconfig */,
+				CC4264F0AD470317BB45D4EE /* Pods-Rehab TrackerTests.debug.xcconfig */,
+				CA0F2C0D9220C8BE8902FD31 /* Pods-Rehab TrackerTests.release.xcconfig */,
+				4676B7F1FDCF7A07BAD6D26C /* Pods-Rehab TrackerUITests.debug.xcconfig */,
+				287D7DB1AAD5C316CD3B6319 /* Pods-Rehab TrackerUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		EFBAE6211F521A6C74B9EFE7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FD9D15B4DCEC4A7E0B37AAD6 /* Pods_Rehab_Tracker.framework */,
+				19CED83F4022241E44F1F882 /* Pods_Rehab_TrackerTests.framework */,
+				9B4F1967C44C3AC89C57BF4B /* Pods_Rehab_TrackerUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		42CBBECB1E8EC32200B215A8 /* NotificationService */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 42CBBED41E8EC32300B215A8 /* Build configuration list for PBXNativeTarget "NotificationService" */;
+			buildPhases = (
+				42CBBEC81E8EC32200B215A8 /* Sources */,
+				42CBBEC91E8EC32200B215A8 /* Frameworks */,
+				42CBBECA1E8EC32200B215A8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NotificationService;
+			productName = NotificationService;
+			productReference = 42CBBECC1E8EC32200B215A8 /* NotificationService.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		42F252A41DC8F42200C79D99 /* Rehab Tracker */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 42F252D01DC8F42300C79D99 /* Build configuration list for PBXNativeTarget "Rehab Tracker" */;
 			buildPhases = (
+				0B16778760AD373251C7F2AB /* [CP] Check Pods Manifest.lock */,
 				42F252A11DC8F42200C79D99 /* Sources */,
 				42F252A21DC8F42200C79D99 /* Frameworks */,
 				42F252A31DC8F42200C79D99 /* Resources */,
 				42F087E21DFDE62800C38CAC /* Embed Frameworks */,
 				420831281E6CB2F8007297DF /* Embed App Extensions */,
+				D2AAEEC623C16EBE485B3E44 /* [CP] Embed Pods Frameworks */,
+				9C32B2D5A8323A7F6735EBE4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				42F087E11DFDE62800C38CAC /* PBXTargetDependency */,
+				42CBBED21E8EC32300B215A8 /* PBXTargetDependency */,
 			);
 			name = "Rehab Tracker";
 			productName = "Rehab Tracker";
@@ -246,9 +338,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 42F252D31DC8F42300C79D99 /* Build configuration list for PBXNativeTarget "Rehab TrackerTests" */;
 			buildPhases = (
+				2F6161FC12C3916E649C209B /* [CP] Check Pods Manifest.lock */,
 				42F252B81DC8F42300C79D99 /* Sources */,
 				42F252B91DC8F42300C79D99 /* Frameworks */,
 				42F252BA1DC8F42300C79D99 /* Resources */,
+				B305CBE7F1C72BB4BD8E2F20 /* [CP] Embed Pods Frameworks */,
+				978274B85034016F76D2F0AC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -264,9 +359,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 42F252D61DC8F42300C79D99 /* Build configuration list for PBXNativeTarget "Rehab TrackerUITests" */;
 			buildPhases = (
+				04CF19F0BC1C9E29FA23A2C4 /* [CP] Check Pods Manifest.lock */,
 				42F252C31DC8F42300C79D99 /* Sources */,
 				42F252C41DC8F42300C79D99 /* Frameworks */,
 				42F252C51DC8F42300C79D99 /* Resources */,
+				9E9163661216B0D7DDC06B61 /* [CP] Embed Pods Frameworks */,
+				A35836EA07BFE4EEAA881A56 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -288,6 +386,11 @@
 				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "CS 275 Project Group 6";
 				TargetAttributes = {
+					42CBBECB1E8EC32200B215A8 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = XD63BJ9269;
+						ProvisioningStyle = Automatic;
+					};
 					42F252A41DC8F42200C79D99 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = XD63BJ9269;
@@ -336,6 +439,7 @@
 				42F252A41DC8F42200C79D99 /* Rehab Tracker */,
 				42F252BB1DC8F42300C79D99 /* Rehab TrackerTests */,
 				42F252C61DC8F42300C79D99 /* Rehab TrackerUITests */,
+				42CBBECB1E8EC32200B215A8 /* NotificationService */,
 			);
 		};
 /* End PBXProject section */
@@ -365,6 +469,13 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		42CBBECA1E8EC32200B215A8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		42F252A31DC8F42200C79D99 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -392,7 +503,153 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		04CF19F0BC1C9E29FA23A2C4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		0B16778760AD373251C7F2AB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		2F6161FC12C3916E649C209B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		978274B85034016F76D2F0AC /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Rehab TrackerTests/Pods-Rehab TrackerTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9C32B2D5A8323A7F6735EBE4 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Rehab Tracker/Pods-Rehab Tracker-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9E9163661216B0D7DDC06B61 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Rehab TrackerUITests/Pods-Rehab TrackerUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A35836EA07BFE4EEAA881A56 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Rehab TrackerUITests/Pods-Rehab TrackerUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B305CBE7F1C72BB4BD8E2F20 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Rehab TrackerTests/Pods-Rehab TrackerTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D2AAEEC623C16EBE485B3E44 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Rehab Tracker/Pods-Rehab Tracker-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		42CBBEC81E8EC32200B215A8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42CBBECF1E8EC32300B215A8 /* NotificationService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		42F252A11DC8F42200C79D99 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -429,6 +686,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		42CBBED21E8EC32300B215A8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 42CBBECB1E8EC32200B215A8 /* NotificationService */;
+			targetProxy = 42CBBED11E8EC32300B215A8 /* PBXContainerItemProxy */;
+		};
 		42F087E11DFDE62800C38CAC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Charts;
@@ -466,6 +728,34 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		42CBBED51E8EC32300B215A8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = XD63BJ9269;
+				INFOPLIST_FILE = NotificationService/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "UVM.Rehab-Tracker.NotificationService";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		42CBBED61E8EC32300B215A8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = XD63BJ9269;
+				INFOPLIST_FILE = NotificationService/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "UVM.Rehab-Tracker.NotificationService";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
 		42F252CE1DC8F42300C79D99 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -561,6 +851,7 @@
 		};
 		42F252D11DC8F42300C79D99 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9199E6BC45625A11DD740DA1 /* Pods-Rehab Tracker.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -580,6 +871,7 @@
 		};
 		42F252D21DC8F42300C79D99 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1ACEE1566EC88AFD17DFE66 /* Pods-Rehab Tracker.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -598,6 +890,7 @@
 		};
 		42F252D41DC8F42300C79D99 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CC4264F0AD470317BB45D4EE /* Pods-Rehab TrackerTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -612,6 +905,7 @@
 		};
 		42F252D51DC8F42300C79D99 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CA0F2C0D9220C8BE8902FD31 /* Pods-Rehab TrackerTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -626,6 +920,7 @@
 		};
 		42F252D71DC8F42300C79D99 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4676B7F1FDCF7A07BAD6D26C /* Pods-Rehab TrackerUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = "Rehab TrackerUITests/Info.plist";
@@ -639,6 +934,7 @@
 		};
 		42F252D81DC8F42300C79D99 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 287D7DB1AAD5C316CD3B6319 /* Pods-Rehab TrackerUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = "Rehab TrackerUITests/Info.plist";
@@ -653,6 +949,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		42CBBED41E8EC32300B215A8 /* Build configuration list for PBXNativeTarget "NotificationService" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				42CBBED51E8EC32300B215A8 /* Debug */,
+				42CBBED61E8EC32300B215A8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		42F252A01DC8F42200C79D99 /* Build configuration list for PBXProject "Rehab Tracker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

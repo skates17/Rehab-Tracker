@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>Pods-Rehab Tracker.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-Rehab TrackerTests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-Rehab TrackerUITests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>PusherSwift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>07489F67C97D966D76D23E12CB9D72D7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>0EBBDF0A13764C16CBB71C2CF48D5262</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BF5E941AC37887BAAC1A1C48D6EB072C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F0F0EC97646F086476672F5E685BB95A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>
