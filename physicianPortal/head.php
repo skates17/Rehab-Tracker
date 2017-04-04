@@ -1,7 +1,7 @@
 <head>
     <title>Rehab Compliance</title>
     <meta charset="UTF-8">
-    <meta name="author" content="Abigail Zacchea">
+    <meta name="author" content="Meaghan Winter">
     <meta name="description" content="Physician Physical Rehabilitation Tracking Portal">
     <link rel="stylesheet" type="text/css" href="style.css">
     
@@ -94,7 +94,7 @@
         $thisDatabaseAdmin = new Database($dbUserName, $whichPass, $dbName);
         ?>
 </head>
-<table style="border-style:none; background-color: rgb(70,73,76);" >
+<table style="border-style:none; background-color: rgb(70,73,76); border-color: rgb(70,73,76);" >
     <tr>
     <td><div id="page-logo">
     <img id="page-pic" src="Running.jpeg" alt="Run">

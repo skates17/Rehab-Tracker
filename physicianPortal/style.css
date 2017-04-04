@@ -68,12 +68,11 @@ margin-left: 15px;
 }
 
 nav ul {
-    float: right;
-    width: auto;
-    padding: 25px;
-    margin: auto;
-    border-left: black dashed thin;
-    list-style: none;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    top: 0;
+    width: 100%;
 }
 
 
@@ -82,16 +81,23 @@ nav ul {
     margin-top: 30px;
 }
 
-nav li {
-    font-size: 17px;
+nav{
+    border:1px; //solid #ccc;
+    border-width:1px 0;
+    list-style:none;
+    margin:0;
+    padding:0;
+    text-align:center;
+}
+nav li{
+    display:inline;
     padding: 10px;
 }
-nav li 
-#page-logo{
-    margin-left: 20px;
-    margin-top: 20px;
-    display: inline-flex;
+nav a{
+    display:inline-block;
+    padding:10px;
 }
+
 #page-pic {
     max-height: 80px;
 }
@@ -153,64 +159,6 @@ a:active {
     color: teal;
 }
 
-/*h1 {
-    font-size: 1.8em;
-}
-
-h2 {
-    font-size: 1.4em;
-    float: none;
-    padding-top: 1em;
-}
-
-p {
-    padding: 0;
-    margin: 0 0 20px 0;
-}
-
-
-a:hover {
-    text-decoration: none;
-}
-
-
-
-ul li {
-    padding: 5px 0;
-}
-
-ui li input[type='text'], ul li input[type='password']{
-    width: 200px
-}
-
-
-.logo {
-    font: 2em Arial;
-    margin: 0 0 10px 0;
-    padding: 0;
-    width: 200px;
-    color: #fff;
-}
-
-
-
-body {
-    background: lightslategray;
-    font-family: Arial;
-    font-size: 0.8em;
-}
-
-header {
-    width: 940px;
-    padding: 10px;
-    margin: 0 auto 10px auto;
-}
-
-
-footer {
-    border-radius: 0 0 5px 5px;
-}*/
-
 #table {
     float: center;
     margin-bottom: 3em;
@@ -227,4 +175,55 @@ tr:nth-child(odd) {
 fieldset{
   width: 60%;
   margin-left: 10%;
+}
+
+.verticalBarGraph {
+    border-bottom: 1px solid #FFF;
+    height: 200px;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    }
+    
+.verticalBarGraph li {
+    border: 1px solid #555;
+    border-bottom: none;
+    bottom: 0;
+    list-style:none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    text-align: center;
+    width: 39px;
+    }
+    
+    .chart { width: 100%; }
+
+.chart li {
+  border-radius: 4px 4px 0 0; /* Remember vendor prefixes */
+  box-shadow: 0 1px 0 0 rgba(255,255,255,.6) inset; /* Remember vendor prefixes */
+  display: block;
+  height: 125px;
+  padding: 25px 0;
+  position: relative;
+  text-align: center;
+  vertical-align: bottom;
+}
+
+.chart .axis { 
+  display: none;
+  top: -25px;
+  width: 11%;
+ }
+
+.chart .label {
+  background: #eaeaea;
+  margin: -.6em 0 65px 0;
+}
+
+.chart .percent {
+  font-size: 30px;
+  letter-spacing: -3px;
+  opacity: .4;
+  width: 100%;
 }

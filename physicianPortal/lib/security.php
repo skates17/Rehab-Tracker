@@ -37,6 +37,8 @@ function securityCheck($path_parts, $yourURL, $form = false) {
     $whiteListPages[] = "updatePatient.php";
     $whiteListPages[] = "managePatients.php";
     $whiteListPages[] = "managePhysicians.php";
+    $whiteListPages[] = "overview.php";
+     $whiteListPages[] = "testChart.php";
 
 
     $whiteListPages[] = 'post.php';

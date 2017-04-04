@@ -215,57 +215,62 @@ if (isset($_POST["btnUpdate"]) AND empty($errorMsg)) { // closing of if marked w
      */
     ?>
     <div>
-            <form action="<?php print $phpSelf; ?>"
-                  method="post"
-                  id="frmRegister">
-                <fieldset
-<!--                    patient dropdown-->
-                    <?php
-                    print '<label for="DocID">Physician ';
-                    print '<select id="DocID" name = "DocID"';
-                    print '        name="DocID" ';
-                    print '        tabindex="300" >';
+        <form  class = "form-signin"
+               action="<?php print $phpSelf; ?>"
+               method="post"
+               id="frmRegister">
+            <fieldset
+                <!--                    patient dropdown-->
+                <?php
+                print '<div class="form-group">'
+                        . '<label for="DocID">Physician ';
+                print '<select id="DocID" name = "DocID"';
+                print '        name="DocID" ';
+                print '        tabindex="300" >';
 
 
-                    foreach ($physicianList as $row) {
-                        print '<option ';
-                        if ($physicianList == $row["DocID"])
-                            print " value='selected' ";
-                        print 'value="' . $row["DocID"] . '">' . $row["DocID"];
-                        print '</option>';
-                    }
-                    print '</select></label>';
-                    ?>
+                foreach ($physicianList as $row) {
+                    print '<option ';
+                    if ($physicianList == $row["DocID"])
+                        print " value='selected' ";
+                    print 'value="' . $row["DocID"] . '">' . $row["DocID"];
+                    print '</option>';
+                }
+                print '</select></label></div>';
+                ?>
 
-<!--                    <fieldset class="radio">-->
+                <!--                    <fieldset class="radio">-->
 
-<br>
-                        <label for="radActivate">
-                            <input type="radio" 
-                                   id="radActivate" 
-                                   name="fldActive" 
-                                   value="1">Activate
-                        </label><br>
+                <br>
+                <div class="form-group">                       
+                    <label for="radActivate">
+                        <input type="radio" 
+                               id="radActivate" 
+                               name="fldActive" 
+                               value="1">Activate
+                    </label><br>
 
-                        <label for="radDeactivate">
-                            <input type="radio" 
-                                   id="radDeactivate" 
-                                   name="fldActive" 
-                                   value="0">Deactivate
-                        </label><br>
+                    <label for="radDeactivate">
+                        <input type="radio" 
+                               id="radDeactivate" 
+                               name="fldActive" 
+                               value="0">Deactivate
+                    </label></div><br>
 
-                            <input type="submit" id="btnUpdate" name="btnUpdate" value="Save" tabindex="900" class="button">
-                        </fieldset> <!-- ends buttons -->
-                        </form>
-                        <?php
-                    } // end body submit
-                    ?>
-                    </article>
-                    </div>
+                <div class="form-group">   <input type="submit" id="btnUpdate" 
+                                                  name="btnUpdate" value="Save" tabindex="900" class="button">
+                </div>
+            </fieldset> <!-- ends buttons -->
+        </form>
+        <?php
+    } // end body submit
+    ?>
+</article>
+</div>
 
 
-                    <?php
-                    include "footer.php";
-                    if ($debug)
-                        print "<p>END OF PROCESSING</p>";
-                    ?>
+<?php
+include "footer.php";
+if ($debug)
+    print "<p>END OF PROCESSING</p>";
+?>

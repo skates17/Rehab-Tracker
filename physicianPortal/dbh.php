@@ -1,8 +1,4 @@
 <?php
-//$DBhost = "webdb.uvm.edu";
-//$DBuser = "azacchea_admin";
-//$DBpass = "cPA2252PsmV4";
-//$DBname = "AZACCHEA_CS275";
 $DBhost = "webdb.uvm.edu";
 $DBuser = "bgoodwin_admin";
 $DBpass = "9ORjQCNJwzLx";

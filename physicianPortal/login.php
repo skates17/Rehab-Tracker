@@ -14,32 +14,39 @@ if (isset($_POST["submit"])) {
         echo "<script>alert('Email or password is not correct, try again!')</script>";
     }
 }
+
+include'head.php';
 ?>
 <!doctype html>
 <html>
+
     <head>
         <title>Login</title>
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body>
 
+
         <div id="container">
-            <div id="logo">
-                <img src="Running.jpeg" alt="Run">
-                <h1>Rehab Compliance Portal</h1>
+            <!--            <div id="logo">
+                            <img src="Running.jpeg" alt="Run">
+                            <h1>Rehab Compliance Portal</h1>-->
 
-            </div>
+            <!--            </div>-->
 
-            <div>
-                <div id="login">
-                    <form action="" method="post">
-                        <label>Doctor ID:</label><input type="text" name="DocID"><br/>
-                        <label>Password:</label><input type="password" name="fldPass"><br/>
-                        <input type="submit" value="Login" name="submit"><br/>
-                    </form>
-                    <h2>Please enter Doctor ID and Password</h2>
-                </div>
-            </div>
+            <!--            <div>-->
+            <!--                <div id="login">-->
+
+            <form action="" method="post">
+                <p></p>                    
+                <label>Doctor ID:</label><input type="text" name="DocID"><br/>
+                <label>Password:</label><input type="password" name="fldPass"><br/>
+                <input type="submit" value="Login" name="submit"><br/>
+            </form>
+
+            <!--                </div>-->
+            <!--            </div>-->
         </div>
+
     </body>
 </html>

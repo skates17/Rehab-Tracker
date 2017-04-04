@@ -144,8 +144,8 @@ if (isset($_POST["btnUpdate"])) {
             $queryUpdate = "UPDATE tblPatient SET ";
             $queryUpdate .= "fldGoal = ?, ";
             $queryUpdate .= 'fldLastUpdate = CURRENT_TIMESTAMP ';
-            $queryUpdate .= "WHERE pmkPatientID = ?";
-            $results = $thisDatabaseWriter->update($queryUpdate, $parameters, 1, 0, 0, 0, false, false);
+            $queryUpdate .= "WHERE pmkPatientID = '$patient'";
+            $results = $thisDatabaseWriter->update($queryUpdate, $parameters, 1, 0, 2, 0, false, false);
 
             // all sql statements are done so lets commit to our changes
 
