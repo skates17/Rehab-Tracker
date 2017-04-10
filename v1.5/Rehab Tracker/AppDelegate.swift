@@ -120,13 +120,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     // Push Notifications
-    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken : NSData) {
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken : NSData) {
         pusher.nativePusher.register(deviceToken: deviceToken as Data)
         pusher.nativePusher.subscribe(interestName: "donuts")
-        pusher.connect()
+        
+        //setActions()
     }
     
-    func application(application: UIApplication, didReceiveRemoteNotification notification : [NSObject : AnyObject]) {
+    
+    /*func setActions() {
+        let pusherWeb = UNNotificationAction(
+            identifier: "pusher-web",
+            title: "Take me to Pusher.com 🚀"
+        )
+        let dismiss = UNNotificationAction(
+            identifier: "dismiss",
+            title: "Dismiss",
+            options: [.destructive]
+        )
+        let category = UNNotificationCategory(
+            identifier: "pusher",
+            actions: [pusherWeb, dismiss],
+            intentIdentifiers: []
+        )
+        
+        UNUserNotificationCenter.current().setNotificationCategories([category])
+    }*/
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification notification: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         print(notification)
     }
 
