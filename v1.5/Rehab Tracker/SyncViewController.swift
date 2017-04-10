@@ -277,6 +277,7 @@ class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     let RBL_SERVICE_UUID = "713D0000-503E-4C75-BA94-3148F18D941E"
     let RBL_CHAR_TX_UUID = "713D0002-503E-4C75-BA94-3148F18D941E"
     let RBL_CHAR_RX_UUID = "713D0003-503E-4C75-BA94-3148F18D941E"
+    let RBL_BLE_FRAMEWORK_VER = 0x0200
     
     //
     let my_UUID = "023DD007-7C99-447F-BE6A-9B9F18287FFB"
@@ -482,6 +483,7 @@ class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
         read()
     }
     
+    // Use the data we receive from the peripheral
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         
         if error != nil {
@@ -489,10 +491,12 @@ class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
             print("[ERROR] Error updating value. \(error)")
             return
         }
-        
-        if characteristic.uuid.uuidString == RBL_CHAR_TX_UUID {
-            
+
+        if characteristic.uuid.uuidString == RBL_CHAR_RX_UUID {
             self.delegate?.bleDidReceiveData(data: characteristic.value as NSData?)
+            
+        }else{
+            print("[DEBUG] characteristic UUID is wrong")
         }
     }
     
@@ -503,21 +507,21 @@ class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     
     // Reads value of the characteristic from the peripheral
     func read() {
+        print("[DEBUG] Reading characteristic from the peripheral")
         
-        guard let char = self.characteristics[RBL_CHAR_TX_UUID] else { return }
+        guard let char = self.characteristics[RBL_CHAR_RX_UUID] else { return }
         
         self.activePeripheral?.readValue(for: char)
     }
     
     // Writes data
     func write(data: NSData) {
-        
+        print("Write function activated!")
         guard let char = self.characteristics[RBL_CHAR_RX_UUID] else { return }
         
         self.activePeripheral?.writeValue(data as Data, for: char, type: .withoutResponse)
     }
     
-    //
     func enableNotifications(enable: Bool) {
         
         guard let char = self.characteristics[RBL_CHAR_TX_UUID] else { return }

@@ -123,6 +123,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken : NSData) {
         pusher.nativePusher.register(deviceToken: deviceToken as Data)
         pusher.nativePusher.subscribe(interestName: "donuts")
+        pusher.connect()
     }
     
     func application(application: UIApplication, didReceiveRemoteNotification notification : [NSObject : AnyObject]) {

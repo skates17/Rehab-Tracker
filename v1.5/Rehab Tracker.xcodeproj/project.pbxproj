@@ -966,6 +966,7 @@
 				42CBBED61E8EC32300B215A8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		42F252A01DC8F42200C79D99 /* Build configuration list for PBXProject "Rehab Tracker" */ = {
 			isa = XCConfigurationList;
