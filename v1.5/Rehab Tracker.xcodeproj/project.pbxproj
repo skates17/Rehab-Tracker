@@ -10,6 +10,7 @@
 		253F54820F106EFAB202EDA9 /* Pods_Rehab_TrackerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B4F1967C44C3AC89C57BF4B /* Pods_Rehab_TrackerUITests.framework */; };
 		4221681C1DF9A069008FDDF8 /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4221681B1DF9A069008FDDF8 /* StatsViewController.swift */; };
 		42378C6C1E53D39C005575D6 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42378C6B1E53D39C005575D6 /* Util.swift */; };
+		426A350C1E9ED31F00F7C74B /* data.csv in Resources */ = {isa = PBXBuildFile; fileRef = 426A350B1E9ED31E00F7C74B /* data.csv */; };
 		42A0D50E1E5259960003A96B /* Rehab_Tracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 42A0D50C1E5259960003A96B /* Rehab_Tracker.xcdatamodeld */; };
 		42A96A951DF5E6380016FD5B /* practiceData.csv in Resources */ = {isa = PBXBuildFile; fileRef = 42A96A941DF5E6380016FD5B /* practiceData.csv */; };
 		42A96A9A1DF5E7FC0016FD5B /* Session+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A96A961DF5E7FC0016FD5B /* Session+CoreDataClass.swift */; };
@@ -114,6 +115,7 @@
 		287D7DB1AAD5C316CD3B6319 /* Pods-Rehab TrackerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rehab TrackerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Rehab TrackerUITests/Pods-Rehab TrackerUITests.release.xcconfig"; sourceTree = "<group>"; };
 		4221681B1DF9A069008FDDF8 /* StatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
 		42378C6B1E53D39C005575D6 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		426A350B1E9ED31E00F7C74B /* data.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = data.csv; sourceTree = "<group>"; };
 		42A0D50D1E5259960003A96B /* CoreDataPractice.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataPractice.xcdatamodel; sourceTree = "<group>"; };
 		42A96A941DF5E6380016FD5B /* practiceData.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = practiceData.csv; sourceTree = "<group>"; };
 		42A96A961DF5E7FC0016FD5B /* Session+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Session+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 		42F252A71DC8F42200C79D99 /* Rehab Tracker */ = {
 			isa = PBXGroup;
 			children = (
+				426A350B1E9ED31E00F7C74B /* data.csv */,
 				42CBBED71E8ED21F00B215A8 /* Rehab Tracker.entitlements */,
 				42A96A941DF5E6380016FD5B /* practiceData.csv */,
 				42F252B71DC8F42300C79D99 /* Info.plist */,
@@ -486,6 +489,7 @@
 			files = (
 				42CCA4291E39456F009CB0DE /* LaunchScreen.xib in Resources */,
 				42F252B31DC8F42300C79D99 /* Assets.xcassets in Resources */,
+				426A350C1E9ED31F00F7C74B /* data.csv in Resources */,
 				42F252AE1DC8F42300C79D99 /* Main.storyboard in Resources */,
 				42A96A951DF5E6380016FD5B /* practiceData.csv in Resources */,
 			);

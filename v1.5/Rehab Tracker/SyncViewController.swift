@@ -80,7 +80,14 @@ class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
                                         
                                         // Call parseCSV to grab data
                                         do {
+                                            // Disconnects from the BLE Device
+                                            _ = self.disconnectFromPeripheral(peripheral: self.activePeripheral!)
+                                            
+                                            // NEED TO CHANGE THIS
                                             Util.overwriteSessions()
+                                            
+                                            // Parses the CSV and saves it in core data
+                                            // YOU SHOULD PUT THIS IN THE WRITE TO CSV FUNCTION
                                             try self.parseCSV()
                                         }
                                         catch {
@@ -278,9 +285,8 @@ class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     let RBL_CHAR_TX_UUID = "713D0002-503E-4C75-BA94-3148F18D941E"
     let RBL_CHAR_RX_UUID = "713D0003-503E-4C75-BA94-3148F18D941E"
     let RBL_BLE_FRAMEWORK_VER = 0x0200
-    
-    //
-    let my_UUID = "023DD007-7C99-447F-BE6A-9B9F18287FFB"
+
+    //let my_UUID = "023DD007-7C99-447F-BE6A-9B9F18287FFB"
     
     // Initialize the BLEDelgate as delegate
     var delegate: BLEDelegate1?
@@ -292,6 +298,8 @@ class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     private      var data:             NSMutableData?
     private(set) var peripherals     = [CBPeripheral]()
     private      var RSSICompletionHandler: ((NSNumber?, NSError?) -> ())?
+    
+    var dataFromPeripheral = [String]()
     
     // Private function to stop the scan after the scan has timed-out
     @objc private func scanTimeout() {
@@ -351,7 +359,6 @@ class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     
     // Method to disconnect from the peripheral
     func disconnectFromPeripheral(peripheral: CBPeripheral) -> Bool {
-        
         if self.centralManager.state != .poweredOn {
             
             print("[ERROR] Couldn´t disconnect from peripheral")
@@ -359,7 +366,10 @@ class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
         }
         
         self.centralManager.cancelPeripheralConnection(peripheral)
+        print("[DEBUG] Disconnected from peripheral")
         
+        // Once disconnected, write all the data you got to the CSV
+        writeToCSV()
         return true
     }
     
@@ -492,12 +502,20 @@ class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
             return
         }
 
-        if characteristic.uuid.uuidString == RBL_CHAR_RX_UUID {
+        if characteristic.uuid.uuidString == RBL_CHAR_TX_UUID {
             self.delegate?.bleDidReceiveData(data: characteristic.value as NSData?)
             
         }else{
             print("[DEBUG] characteristic UUID is wrong")
         }
+        
+        // Convert NSData to NSString to String
+        let resultNSString = NSString(data: characteristic.value!, encoding: String.Encoding.utf8.rawValue)!
+        let resultString = resultNSString as String
+        
+        // Append the data string to the data array!
+        dataFromPeripheral.append(resultString)
+        
     }
     
     func peripheral(_ peripheral: CBPeripheral, didReadRSSI RSSI: NSNumber, error: Error?) {
@@ -507,6 +525,7 @@ class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     
     // Reads value of the characteristic from the peripheral
     func read() {
+        
         print("[DEBUG] Reading characteristic from the peripheral")
         
         guard let char = self.characteristics[RBL_CHAR_RX_UUID] else { return }
@@ -534,5 +553,31 @@ class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
         
         self.RSSICompletionHandler = completion
         self.activePeripheral?.readRSSI()
+    }
+    
+    // Write what is in the dataFromPeripheral array to a CSV
+    func writeToCSV(){
+        let fileName = "data.csv"
+        let path = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName)
+        var csvText = ""
+        var newLine = ""
+        var counter = 0
+        for myData in dataFromPeripheral{
+            if counter == 4 {
+                newLine += "\(myData)\n"
+                print(newLine)
+                csvText.append(newLine)
+                counter = 0
+            }else{
+                newLine += "\(myData),"
+                counter += 1
+            }
+        }
+        do {
+            try csvText.write(to: path!, atomically: true, encoding: String.Encoding.utf8)
+        } catch {
+            print("Failed to create file")
+            print("\(error)")
+        }
     }
 }
