@@ -16,18 +16,27 @@ import PusherSwift
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // Initialize the pusher instance with key from server
-    let pusher = Pusher(key: "1a12b25128b9b2b28ee1")
+    //let pusher = Pusher(key: "1a12b25128b9b2b28ee1")
     
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        // Push Notifications
+        /* Push Notifications
         let center = UNUserNotificationCenter.current()
         center.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
             // actions based on whether notifications were authorized or not
         }
-        application.registerForRemoteNotifications()
+        application.registerForRemoteNotifications()*/
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.sound,.badge]){
+            (granted,error) in
+            if granted{
+                application.registerForRemoteNotifications()
+            } else {
+                print("User Notification permission denied: \(error?.localizedDescription)")
+            }
+        }
+            
         
         // Define all the color schemes here for consistency
         // RED = 28, GREEN = 117, BLUE = 127
@@ -120,36 +129,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     // Push Notifications
-    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken : NSData) {
-        pusher.nativePusher.register(deviceToken: deviceToken as Data)
-        pusher.nativePusher.subscribe(interestName: "donuts")
-        
-        //setActions()
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        //print("Successful registration. Token is:")
+        //print(tokenString(deviceToken))
     }
     
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("Failed to register for remote notifications: \(error.localizedDescription)")
+    }
     
-    /*func setActions() {
-        let pusherWeb = UNNotificationAction(
-            identifier: "pusher-web",
-            title: "Take me to Pusher.com 🚀"
-        )
-        let dismiss = UNNotificationAction(
-            identifier: "dismiss",
-            title: "Dismiss",
-            options: [.destructive]
-        )
-        let category = UNNotificationCategory(
-            identifier: "pusher",
-            actions: [pusherWeb, dismiss],
-            intentIdentifiers: []
-        )
-        
-        UNUserNotificationCenter.current().setNotificationCategories([category])
-    }*/
+    func tokenString(_ deviceToken:Data) -> String{
+        //code to make a token string
+        let bytes = [UInt8](deviceToken)
+        var token = ""
+        for byte in bytes{
+            token += String(format: "%02x",byte)
+        }
+        return token
+    }
     
-    func application(_ application: UIApplication, didReceiveRemoteNotification notification: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+    /*func application(_ application: UIApplication, didReceiveRemoteNotification notification: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         print(notification)
-    }
+    }*/
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

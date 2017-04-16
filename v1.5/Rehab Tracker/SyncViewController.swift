@@ -25,7 +25,7 @@ class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     
     // Array and dictionary to hold stats
     private var sessions = [Session]()
-    private var stats:[(sessionID: String, avg_ch1_intensity:String, avg_ch2_intensity:String, date: String, session_compliance: String)]?
+    private var stats:[(sessionID: String, avg_ch1_intensity:String, avg_ch2_intensity:String, session_compliance: String)]?
     
     // global variable comments to store session comments
     private var comments = "No Comments"
@@ -36,9 +36,8 @@ class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     private var fldSessionCompliance = ""
     private var fldIntensity1 = ""
     private var fldIntensity2 = ""
-    private var fldDate = ""
     private var fldNote = ""
-    private var fldLastUpdate = ""
+    private var fldDeviceSynced = ""
     
     @IBAction func showInfo(_ sender: UIBarButtonItem) {
         // create the alert
@@ -81,7 +80,12 @@ class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
                                         // Call parseCSV to grab data
                                         do {
                                             // Disconnects from the BLE Device
-                                            _ = self.disconnectFromPeripheral(peripheral: self.activePeripheral!)
+                                            
+                                            if(self.activePeripheral != nil){
+                                                _ = self.disconnectFromPeripheral(peripheral: self.activePeripheral!)
+                                            }else{
+                                                print("[DEBUG] There is no peripheral to be disconnected")
+                                            }
                                             
                                             // NEED TO CHANGE THIS
                                             Util.overwriteSessions()
@@ -123,7 +127,7 @@ class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
                 var fields = [String]()
                 if(line != "") {
                     fields = line.components(separatedBy: delimeter)
-                    let stat = (sessionID: fields[0], avg_ch1_intensity:fields[1], avg_ch2_intensity:fields[2], date: fields[3], session_compliance: fields[4])
+                    let stat = (sessionID: fields[0], avg_ch1_intensity:fields[1], avg_ch2_intensity:fields[2], session_compliance: fields[3])
                     self.stats?.append(stat)
                 }
             }
@@ -150,7 +154,6 @@ class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
             session.session_compliance = stat.session_compliance
             session.avg_ch1_intensity = stat.avg_ch1_intensity
             session.avg_ch2_intensity = stat.avg_ch2_intensity
-            session.date = stat.date
             session.notes = self.comments
             session.hasUser = Util.returnCurrentUser()
         }
@@ -176,7 +179,6 @@ class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
                 fldSessionCompliance = val.session_compliance
                 fldIntensity1 = val.avg_ch1_intensity!
                 fldIntensity2 = val.avg_ch2_intensity!
-                fldDate = val.date!
                 fldNote = self.comments
                 pmkPatientID = Util.returnCurrentUsersID()
                 self.thisDate()
@@ -197,7 +199,7 @@ class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
         let currDate = Date()
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy/MM/dd"
-        fldLastUpdate = formatter.string(from: currDate)
+        fldDeviceSynced = formatter.string(from: currDate)
     }
     
     private func pushToDatabase() {
@@ -211,12 +213,10 @@ class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
             + fldIntensity1
             + "&fldIntensity2="
             + fldIntensity2
-            + "&fldDate="
-            + fldDate
             + "&fldNote="
             + fldNote
-            + "&fldLastUpdate="
-            + fldLastUpdate
+            + "&fldDeviceSynced="
+            + fldDeviceSynced
         
         let urlurl = urlstr.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
         
@@ -240,7 +240,7 @@ class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
                 // Sync Error Alert
                 self.syncErrorAlert()
                 
-                print("error is \(error)")
+                print("[ERROR] There was an error with the URL/Sync")
                 return;
             }
         })
@@ -366,10 +366,7 @@ class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
         }
         
         self.centralManager.cancelPeripheralConnection(peripheral)
-        print("[DEBUG] Disconnected from peripheral")
         
-        // Once disconnected, write all the data you got to the CSV
-        writeToCSV()
         return true
     }
     
@@ -453,6 +450,10 @@ class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
         self.characteristics.removeAll(keepingCapacity: false)
         
         self.delegate?.bleDidDisconenctFromPeripheral()
+        
+        // Once disconnected, write all the data you got to the CSV
+        writeToCSV()
+        readDataFromFile(file: "data")
     }
     
     // MARK: CBPeripheral delegate
@@ -556,28 +557,48 @@ class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     }
     
     // Write what is in the dataFromPeripheral array to a CSV
-    func writeToCSV(){
-        let fileName = "data.csv"
-        let path = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName)
+    func writeToCSV() {
         var csvText = ""
         var newLine = ""
-        var counter = 0
         for myData in dataFromPeripheral{
-            if counter == 4 {
-                newLine += "\(myData)\n"
-                print(newLine)
-                csvText.append(newLine)
-                counter = 0
-            }else{
-                newLine += "\(myData),"
-                counter += 1
+            newLine += "\(myData)"
+            //if (newLine.contains(<#T##other: String##String#>))
+            csvText.append(newLine)
+        }
+        let fileName = "data"
+        let docDirectory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+        if let fileURL = docDirectory?.appendingPathComponent(fileName).appendingPathExtension("csv") {
+            
+            // Write to a file on disk
+            do {
+                print("[DEBUG] Attempting to write to file!")
+                
+                // Print out the csvTest
+                print("[DEBUG] What we are writing:\n", csvText)
+                
+                try csvText.write(to: fileURL, atomically: true, encoding: .utf8)
+            } catch {
+                print("Failed writing to URL: \(fileURL), Error: " + error.localizedDescription)
             }
         }
-        do {
-            try csvText.write(to: path!, atomically: true, encoding: String.Encoding.utf8)
-        } catch {
-            print("Failed to create file")
-            print("\(error)")
+    }
+        
+    
+    // Function to read data from a CSV file given the fileName as a param
+    func readDataFromFile(file:String) {
+        let fileName = file
+        let docDirectory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+        if let fileURL = docDirectory?.appendingPathComponent(fileName).appendingPathExtension("csv") {
+            do {
+                print("[DEBUG] Attempting to read from file!")
+                let db = try String(contentsOf: fileURL)
+                let lines:[String] = db.components(separatedBy: "\n") as [String]
+                for line in lines{
+                    print(line)
+                }
+            } catch {
+                print("File Read Error for file")
+            }
         }
     }
 }

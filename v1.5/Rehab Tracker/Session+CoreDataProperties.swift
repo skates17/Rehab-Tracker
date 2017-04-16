@@ -17,7 +17,6 @@ extension Session {
 
     @NSManaged public var avg_ch1_intensity: String?
     @NSManaged public var avg_ch2_intensity: String?
-    @NSManaged public var date: String?
     @NSManaged public var notes: String?
     @NSManaged public var session_compliance: String
     @NSManaged public var sessionID: String?

@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="15G1217" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16E195" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Session" representedClassName=".Session" syncable="YES">
         <attribute name="avg_ch1_intensity" attributeType="String" syncable="YES"/>
         <attribute name="avg_ch2_intensity" attributeType="String" syncable="YES"/>
-        <attribute name="date" attributeType="String" syncable="YES"/>
         <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="session_compliance" attributeType="String" syncable="YES"/>
         <attribute name="sessionID" attributeType="String" syncable="YES"/>
@@ -15,7 +14,7 @@
         <relationship name="hasSession" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Session" inverseName="hasUser" inverseEntity="Session" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Session" positionX="225" positionY="108" width="128" height="148"/>
+        <element name="Session" positionX="225" positionY="108" width="128" height="135"/>
         <element name="User" positionX="-45" positionY="27" width="128" height="90"/>
     </elements>
 </model>
