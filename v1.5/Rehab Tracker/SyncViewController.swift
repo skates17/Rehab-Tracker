@@ -561,9 +561,13 @@ class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
         var csvText = ""
         var newLine = ""
         for myData in dataFromPeripheral{
-            newLine += "\(myData)"
-            //if (newLine.contains(<#T##other: String##String#>))
-            csvText.append(newLine)
+            let myDataArr = myData.components(separatedBy: ",")
+            if myDataArr.count == 4{
+                newLine += "\(myData)"
+                csvText.append(newLine)
+            }else{
+                print("[DEBUG] Tried to write invalid data: " , myData)
+            }
         }
         let fileName = "data"
         let docDirectory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
