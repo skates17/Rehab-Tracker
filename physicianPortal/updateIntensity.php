@@ -1,43 +1,29 @@
 <?php
-/* the purpose of this page is to display a form to allow a user and allow us
- * to add a new user or update an existing user 
- * 
- * Written By: Meaghan Winter
+//---------------------------UPDATE INTENSITY GOAL ------------------------------------------
 
- */
-?>
+print '<h2>Update Intensity</h2>';
 
-<h2>Update Intensity</h2>
-
-<?php
 //%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%
 //
 // SECTION: 1 Initialize variables
 $debug = false;
-$update = false;
+$update = true;
 
 // SECTION: 1a.
 //%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%
 //
-// SECTION: 1b Security
-//
-// define security variable to be used in SECTION 2a.
-$yourURL = $domain . $phpSelf;
-
 //%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%
 //
 // SECTION: 1c form variables
 //
 // Initialize variables one for each form element
 // in the order they appear on the form
-$patient = $resultsInfo [0]['pmkPatientID'];
 $goal = $resultsInfo[0]['fldGoal'];
 //
 //query for movie pick initialization 
 if ($debug) {
     print '<p> initialize variables</p>';
 } else {
-    $patient = "";
     $goal = "";
 }
 
@@ -47,7 +33,6 @@ if ($debug) {
 //
 // Initialize Error Flags one for each form element we validate
 // in the order they appear in section 1c.
-$patientERROR = false;
 $goalERROR = false;
 
 //%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%
@@ -62,14 +47,8 @@ $dataEntered = false;
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 //
 // SECTION: 2 Process for when the form is submitted
-$queryP = "SELECT pmkPatientID ";
-$queryP .= "FROM tblPatient ";
-$queryP .= "ORDER BY  pmkPatientID";
-
-
 // Step Three: code can be in initialize variables or where step four needs to be
 // $patient is an associative array
-$patientList = $thisDatabaseReader->select($queryP, "", 0, 1, 0, 0, false, false); //
 
 if (isset($_POST["btnUpdate"])) {
 
@@ -91,20 +70,10 @@ if (isset($_POST["btnUpdate"])) {
     $goal = htmlentities($_POST["fldGoal"], ENT_QUOTES, "UTF-8");
     $parameters[] = $goal;
 
-    $patient = htmlentities($_POST["pmkPatientID"], ENT_QUOTES, "UTF-8");
-    $parameters[] = $patient;
-
-
-
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 //
 // SECTION: 2c Validation
 //
-
-    if ($patient == "") {
-        $errorMsg[] = "Please select patient";
-        $docIDERROR = true;
-    }
     if ($goal == "") {
         $errorMsg[] = "Please set a patient Goal";
         $goalERROR = true;
@@ -141,11 +110,9 @@ if (isset($_POST["btnUpdate"])) {
                 print '<p> begin transaction</p>';
             }
 
-            $queryUpdate = "UPDATE tblPatient SET ";
-            $queryUpdate .= "fldGoal = ?, ";
-            $queryUpdate .= 'fldLastUpdate = CURRENT_TIMESTAMP ';
-            $queryUpdate .= "WHERE pmkPatientID = '$patient'";
-            $results = $thisDatabaseWriter->update($queryUpdate, $parameters, 1, 0, 2, 0, false, false);
+            $queryUpdate = "UPDATE tblPatient SET fldGoal = ?, "
+                    . "fldLastUpdate = CURRENT_TIMESTAMP WHERE pmkPatientID = $patient";
+            $results = $thisDatabaseWriter->select($queryUpdate, $parameters, 1, 0, 0, 0, false, false);
 
             // all sql statements are done so lets commit to our changes
 
@@ -165,16 +132,13 @@ if (isset($_POST["btnUpdate"])) {
 //
 // SECTION 3 Display Form
 //
-?>
-
-<?php
 //####################################
 // SECTION 3a.
 // If its the first time coming to the form or there are errors we are going
 // to display the form.
 if (isset($_POST["btnUpdate"]) AND empty($errorMsg)) { // closing of if marked with: end body submit
     print "<h1>Success!</h1>";
-    print "<p>You have successfully updated '$patient''s goal to:  '$goal'. ";
+    print "<p>You have successfully updated $patient 's goal to:  '$goal'. ";
 } else {
 //####################################
 //
@@ -192,68 +156,44 @@ if (isset($_POST["btnUpdate"]) AND empty($errorMsg)) { // closing of if marked w
         print "</ol>\n";
         print '</div>';
     }
+}
 //####################################
 //
 // SECTION 3c html Form
 //
-    /* Display the HTML form. note that the action is to this same page. $phpSelf
-      is defined in top.php
-      NOTE the line:
-      value="<?php print $email; ?>
-      this makes the form sticky by displaying either the initial default value (line 35)
-      or the value they typed in (line 84)
-      NOTE this line:
-      <?php if($emailERROR) print 'class="mistake"'; ?>
-      this prints out a css class so that we can highlight the background etc. to
-      make it stand out that a mistake happened here.
-     */
-    ?>
-    <div>
-        <form action="<?php print $phpSelf; ?>"
-              method="post"
-              id="frmRegister">
-            <fieldset
-                <!--                    patient dropdown-->
-    <?php
-    print '<label for="pmkPatientID">Patient ';
-    print '<select id="pmkPatientID" name = "pmkPatientID"';
-    print '        name="pmkPatientID" ';
-    print '        tabindex="300" >';
-
-
-    foreach ($patientList as $row) {
-        print '<option ';
-        if ($patientList == $row["pmkPatientID"])
-            print " value='selected' ";
-        print 'value="' . $row["pmkPatientID"] . '">' . $row["pmkPatientID"];
-        print '</option>';
-    }
-    print '</select></label>';
-    ?>
-
-                <!--                    <fieldset class="radio">-->
-
-                <br>
-                <label for="fldGoal" class="required"> Goal Intensity
-                    <input type="text" id="fldGoal" name="fldGoal"
-                           value="<?php print $goal; ?>"
-                           tabindex="140" maxlength="3" placeholder="Enter goal intensity"
-    <?php if ($goalERROR) print 'class="mistake"'; ?>
-                           onfocus="this.select()" 
-                           autofocus>
-
-                    <input type="submit" id="btnUpdate" name="btnUpdate" value="Save" tabindex="900" class="button">
-                    </fieldset> <!-- ends buttons -->
-                    </form>
-    <?php
-} // end body submit
+/* Display the HTML form. note that the action is to this same page. $phpSelf
+  is defined in top.php
+  NOTE the line:
+  value="<?php print $email; ?>
+  this makes the form sticky by displaying either the initial default value (line 35)
+  or the value they typed in (line 84)
+  NOTE this line:
+  <?php if($emailERROR) print 'class="mistake"'; ?>
+  this prints out a css class so that we can highlight the background etc. to
+  make it stand out that a mistake happened here.
+ */
 ?>
-                </article>
-                </div>
+<div>
+    <p>Patient:  <?php print $patient; ?> 
+    <form action="<?php print $phpSelf; ?>"
+          method="post"
+          id="frmUpdate">
 
+        <div class="form-group">
+            <label for="fldGoal" class="required"> Goal Intensity
+                <input type="text" id="fldGoal" name="fldGoal"
+                       value="<?php print $goal; ?>"
+                       tabindex="140" maxlength="3" placeholder="Enter goal intensity"
+                       <?php if ($goalERROR) print 'class="mistake"'; ?>
+                       onfocus="this.select()" 
+                       autofocus>
+            </label>
+        </div>
 
-<?php
-include "footer.php";
-if ($debug)
-    print "<p>END OF PROCESSING</p>";
-?>
+        <div class="form-group">
+            <input type="submit" id="btnUpdate" name="btnUpdate" value="Update" tabindex="900" class="button">
+        </div> <!-- ends buttons -->
+    </form>
+
+</div>
+

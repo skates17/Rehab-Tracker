@@ -106,9 +106,9 @@ if ($tblPatient != "") {
 }
 
 ////now print out each record
-$querypatient = "SELECT * FROM " . $tblPatient . 
+$querypatient = "SELECT * FROM " . $tblPatient .
         " WHERE pmkPatientID = '$patient' "
-    //    . "GROUP BY pmkPatientID "
+        //    . "GROUP BY pmkPatientID "
         . "ORDER BY pmkPatientID ";
 $infopatient = $thisDatabaseReader->select($querypatient, "", 1, 1, 2, 0, false, false);
 foreach ($infopatient as $rec) {
@@ -133,8 +133,6 @@ $update = true;
 // SECTION: 1a.
 //%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%
 //
-
-
 //%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%
 //
 // SECTION: 1c form variables
@@ -170,7 +168,6 @@ $dataEntered = false;
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 //
 // SECTION: 2 Process for when the form is submitted
-
 // Step Three: code can be in initialize variables or where step four needs to be
 // $patient is an associative array
 
@@ -234,7 +231,7 @@ if (isset($_POST["btnUpdate"])) {
                 print '<p> begin transaction</p>';
             }
 
-            $queryUpdate = "UPDATE tblPatient SET fldGoal = ?, "
+            $queryUpdate = "UPDATE tblPatient SET fldGoal = ? "
                     . "fldLastUpdate = CURRENT_TIMESTAMP WHERE pmkPatientID = $patient";
             $results = $thisDatabaseWriter->select($queryUpdate, $parameters, 1, 0, 0, 0, false, false);
 
@@ -300,7 +297,7 @@ if (isset($_POST["btnUpdate"]) AND empty($errorMsg)) { // closing of if marked w
         <p>Patient:  <?php print $patient; ?> 
         <form action="<?php print $phpSelf; ?>"
               method="post"
-              id="frmRegister">
+              id="frmUpdate">
             <fieldset>
 
                 <label for="fldGoal" class="required"> Goal Intensity
@@ -327,43 +324,71 @@ if (isset($_POST["btnUpdate"]) AND empty($errorMsg)) { // closing of if marked w
                 print'<h2>Session History </h2>';
                 if ($tblSession != "") {
                     print '<aside id="records">';
-                    $query2 = 'SHOW COLUMNS FROM ' . $tblSession;
-                    $info = $thisDatabaseReader->select($query2, "", 0, 0, 0, 0, false, false);
-                    $span = count($info);
-                    print '<table>';
-// print out the column headings, note i always use a 3 letter prefix
-                    print '<tr>';
-                    $columns = 0;
-                    foreach ($info as $field) {
-                        print '<th><b>';
-                        $camelCase = preg_split('/(?=[A-Z])/', substr($field[0], 3));
-                        foreach ($camelCase as $one) {
-                            print $one . " ";
-                        }
-                        print '</b></th>';
-                        $columns++;
+//                    $query2 = 'SHOW COLUMNS FROM ' . $tblSession;
+//                    $info = $thisDatabaseReader->select($query2, "", 0, 0, 0, 0, false, false);
+//                    $span = count($info);
+//                    
+//--------------------- hard coded table headers b/c used a join with another table-------------                
+                    ?>  
+
+                    <table> 
+                        <tr><b>
+                            <th>PatientID</th>
+                            <th>Sess Num </th> 
+                            <th> Session Compliance </th>
+                            <th>Intensity 1</th>
+                            <th>Intensity 2</th>
+                            <th>Goal </th>
+                            <th>Note </th>
+                        </b> </tr>
+
+        <!--print '<table>';
+        // print out the column headings, note i always use a 3 letter prefix
+                            print '<tr>';
+                            $columns = 0;
+                            foreach ($info as $field) {
+                                print '<th><b>';
+                                $camelCase = preg_split('/(?=[A-Z])/', substr($field[0], 3));
+                                foreach ($camelCase as $one) {
+                                    print $one . " ";
+                                }
+                                print '</b></th>';
+                                $columns++;
+                            }
+                            print '</tr>';
+                        -->                 
+                        <?php
                     }
-                    print '</tr>';
-                }
 
 ////now print out each record
-                $query = "SELECT * FROM " . $tblSession . " WHERE pmkPatientID = '$patient' "
-                       // . " GROUP BY fldSessNum "
-                        . "ORDER BY fldDate DESC ";
-                $info3 = $thisDatabaseReader->select($query, "", 1, 1, 2, 0, false, false);
-                foreach ($info3 as $rec) {
-                    print '<tr>';
-                    for ($i = 0; $i < $columns; $i++) {
-                        print '<td>' . $rec[$i] . '</td>';
+                    $query = "SELECT tblPatient.pmkPatientID, fldSessNum, fldSessionCompliance, fldIntensity1, fldIntensity2, fldGoal, fldNote "
+                            ."FROM " . "$tblSession JOIN tblPatient ON tblPatient.pmkPatientID=tblSession.pmkPatientID " .
+                            " WHERE tblPatient.pmkPatientID = '$patient'"
+                            . " ORDER BY fldSessNum DESC ";
+                           
+// . " GROUP BY fldSessNum "
+//       . "ORDER BY fldSessNum DESC ";
+                    $info3 = $thisDatabaseReader->select($query, "", 1, 1, 2, 0, false, false);
+                    $columns = 7; //hard coded this value b/c hard coded headers where columns was calculated
+                    foreach ($info3 as $rec) {
+                        print '<tr>';
+                        for ($i = 0; $i < $columns; $i++) {
+                            if ($i == 2) { ///$i=2 is the 3rd table row = session compliance
+                                $percentage = $rec[$i] * 100;
+                                print '<td> '. $percentage . '% </td>';
+                            } else {
+                                print '<td>' . $rec[$i] . '</td>';
+                            }
+                        }
+                        print '</tr>';
                     }
-                    print '</tr>';
-                }
+                    print '</table>';
 // all done
 
-                print '</aside>';
+                    print '</aside>';
 
-                print '</article><br>';
+                    print '</article><br>';
 
-                include 'footer.php';
+                    include 'footer.php';
 
-                
+                    

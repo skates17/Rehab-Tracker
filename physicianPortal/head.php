@@ -94,12 +94,15 @@
         $thisDatabaseAdmin = new Database($dbUserName, $whichPass, $dbName);
         ?>
 </head>
-<table style="border-style:none; background-color: rgb(70,73,76); border-color: rgb(70,73,76);" >
+<nav><table class ="title" align="center" >
+<!--  <table  style="border-style:none; background-color: rgb(70,73,76); border-color: rgb(70,73,76);" > -->
     <tr>
     <td><div id="page-logo">
     <img id="page-pic" src="Running.jpeg" alt="Run">
     </td>
-    <td><header><h1>Rehab Compliance Portal</h1></header></td>
+    <td>
+        <header><h1>Rehab Compliance Portal</h1></header>
+    </td>
 </div>
     </tr>
 </table>

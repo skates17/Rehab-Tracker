@@ -9,7 +9,7 @@
 //include "top.php";
 ?>
 
-    <?php
+<?php
 //%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%
 //
 // SECTION: 1 Initialize variables
@@ -32,13 +32,14 @@ $yourURL = $domain . $phpSelf;
 // in the order they appear on the form
 
 
-$docID = $resultsInfo [0]['fnkDocID'];
+$DocID = $resultsInfo [0]['fnkCLIN'];
 $pmkPatientID = $resultsInfo[0]["pmkPatientID"];
 $patientEmail = $resultsInfo[0]["fldPatientEmail"];
-$lastUpdate = $resultsInfo[0]['fldLastUpdate'];
-$dateCreated = $resultsInfo[0]['fldStartDate'];
 $phone = $resultsInfo[0]['fldPhone'];
-$goal = $resultsInfo[0]['fldGoal'];
+$active = $resultsInfo[0]['fldActive'];
+$lastUpdate = $resultsInfo[0]['fldDeviceSynced'];
+$dateCreated = $resultsInfo[0]['fldStartDate'];
+
 
 
 $queryD = "SELECT DocID ";
@@ -50,7 +51,7 @@ $queryD .= "ORDER BY DocID";
 $doctorList = $thisDatabaseReader->select($queryD, "", 0, 1, 0, 0, false, false);
 
 if (isset($_POST['btnSubmit'])) {
-    foreach (($_POST['Doctor']) as $DocID) {
+    foreach (($_POST['DocID']) as $DocID) {
         $DocID = $DocID;
     }
 }
@@ -60,12 +61,10 @@ if (isset($_POST['btnSubmit'])) {
 if ($debug) {
     print '<p> initialize variables</p>';
 } else {
-    $docID = "";
+    $DocID = "";
     $pmkPatientID = "";
     $patientEmail = "";
-$phone = '';
-$goal = '';
-    
+    $phone = '';
     // $update = "";
 }
 
@@ -75,11 +74,11 @@ $goal = '';
 //
 // Initialize Error Flags one for each form element we validate
 // in the order they appear in section 1c.
-$docIDERROR = false;
+$DocIDERROR = false;
 $pmkPatientIDERROR = false;
 $patientEmailERROR = false;
 $phoneERROR = false;
-$goalERROR = false;
+
 
 
 //%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%
@@ -112,21 +111,17 @@ if (isset($_POST["btnSubmit"])) {
 // remove any potential JavaScript or html code from users input on the
 // form. Note it is best to follow the same order as declared in section 1c.
 
-    $docID = htmlentities($_POST["fnkDocID"], ENT_QUOTES, "UTF-8");
-    $resultsInfo[] = $docID;
+    $DocID = htmlentities($_POST["fnkCLIN"], ENT_QUOTES, "UTF-8");
+    $resultsInfo[] = $DocID;
 
     $pmkPatientID = htmlentities($_POST["pmkPatientID"], ENT_QUOTES, "UTF-8");
     $resultsInfo[] = $pmkPatientID;
 
     $patientEmail = filter_var($_POST["fldPatientEmail"], FILTER_SANITIZE_EMAIL, 'UTF-8');
     $resultsInfo[] = $patientEmail;
-    
-    $phone = htmlentities($_POST['fldPhone'],ENT_QUOTES, 'UTF-8');
+
+    $phone = htmlentities($_POST['fldPhone'], ENT_QUOTES, 'UTF-8');
     $resultsInfo[] = $phone;
-    
-    $goal = htmlentities ($_POST ['fldGoal'], ENT_QUOTES, 'UTF-8');
-    $resultsInfo[] = $goal;
-    
 
 
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -134,9 +129,9 @@ if (isset($_POST["btnSubmit"])) {
 // SECTION: 2c Validation
 //
 
-    if ($docID == "") {
-        $errorMsg[] = "Please enter doctor ID";
-        $docIDERROR = true;
+    if ($DocID == "") {
+        $errorMsg[] = "Please enter Clinician ID";
+        $DocIDERROR = true;
     }
 
     if ($pmkPatientID == "") {
@@ -152,22 +147,13 @@ if (isset($_POST["btnSubmit"])) {
         $errorMsg[] = "Your email address appears to be incorrect.";
         $patientEmailERROR = true;
     }
-    
-    if ($phone == ""){
+
+    if ($phone == "") {
         $errorMsg[] = "Please enter patient's phone number";
         $phoneERROR = true;
-    }elseif (!verifyPhone($phone)){
+    } elseif (!verifyPhone($phone)) {
         $errorMsg[] = "Your phone number appears to be incorrect.";
         $phoneERROR = true;
-    }
-    
-    if ($goal == ""){
-        $errorMsg[] = "Please enter a patient goal";
-        $goalERROR = true;
-    }elseif (!verifyNumeric($goal)){
-        $errorMsg [] = "Please enter a numeric goal.";
-        $goalERROR= true;
-    
     }
 
 
@@ -191,7 +177,7 @@ if (isset($_POST["btnSubmit"])) {
             print '<p> 2e';
         }
 
-        $dataEntered = false;
+        //    $dataEntered = false;
         try {
 
             if ($debug) {
@@ -204,20 +190,18 @@ if (isset($_POST["btnSubmit"])) {
 //if($update){
 //    $query= 'UPDATE tblPatient SET ';
 //} else{
-
-
-           // $query = 'if NOT exists (SELECT pmkPatientID = ? from tblPatient';
-            $query ='INSERT INTO tblPatient SET ';
+            // $query = 'if NOT exists (SELECT pmkPatientID = ? from tblPatient';
+            $query = 'INSERT INTO tblPatient SET ';
 //}
-            $query .= 'fnkDocID = ?, ';
+            $query .= 'fnkCLIN = ?, ';
             $query .= 'pmkPatientID = ?, ';
             $query .= 'fldPatientEmail = ?, ';
-            $query .= 'fldActive = 1, ';
-            $query .= 'fldLastUpdate = CURRENT_TIMESTAMP, ';
-            $query .= 'fldStartDate = CURRENT_TIMESTAMP, ';
             $query .= 'fldPhone = ?, ';
-            $query .= 'fldGoal = ?';
-            
+            $query .= 'fldActive = 1, ';
+            $query .= 'fldDeviceSynced = CURRENT_TIMESTAMP, ';
+            $query .= 'fldStartDate = CURRENT_TIMESTAMP ';
+
+
 
             $results = $thisDatabaseWriter->insert($query, $resultsInfo, 0, 0, 0, 0, false, false);
 
@@ -235,10 +219,10 @@ if (isset($_POST["btnSubmit"])) {
     } // end form is valid
 } // ends if form was submitted.
 
-if (isset($_POST["btnSubmit"]) AND empty($errorMsg)){
-$message = '<h2>You have successfully been registered for a user account with Rehabilitation Compliance</h2>';
-$message .= 'Please consult with your doctor for more registration details.</p>';
-$message .= '<p>Username: ' . $pmkPatientID;
+if (isset($_POST["btnSubmit"]) AND empty($errorMsg)) {
+    $message = '<h2>You have successfully been registered for a user account with Rehabilitation Compliance</h2>';
+    $message .= 'Please consult with your doctor for more registration details.</p>';
+    $message .= '<p>Username: ' . $pmkPatientID;
 
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 //
@@ -246,16 +230,17 @@ $message .= '<p>Username: ' . $pmkPatientID;
 //
 // Process for mailing a message which contains the forms data
 // the message was built in section 2f.
-$to = $patientEmail; // the person who filled out the form
-$cc = "";
-$bcc = "";
-$from = "Rehab Compliance Registration  <contact@complianceregistration.com>";
+    $to = $patientEmail; // the person who filled out the form
+    $cc = "";
+    $bcc = "";
+    $from = "Rehab Compliance Registration  <contact@complianceregistration.com>";
 
 // subject of mail should make sense to your form
-$todaysDate = strftime("%x");
-$subject = "Registration Complete: " . $todaysDate;
+    $todaysDate = strftime("%x");
+    $subject = "Registration Complete: " . $todaysDate;
 
-$mailed = sendMail($to, $cc, $bcc, $from, $subject, $message);}
+    $mailed = sendMail($to, $cc, $bcc, $from, $subject, $message);
+}
 
 //#############################################################################
 //
@@ -314,84 +299,75 @@ $mailed = sendMail($to, $cc, $bcc, $from, $subject, $message);}
           make it stand out that a mistake happened here.
          */
         ?>
-        <div>
-            <h2>Add Patient</h2>
-            <form action="<?php print $phpSelf; ?>"
-                  method="post"
-                  id="frmRegister">
-                <fieldset>
-                    <!--class="wrapper">-->
-<!--                    <legend><h2>Add Patient</h2></legend><br>-->
-                    <?php
-                    print '<label for="fnkDocID">Doctor ';
-                    print '<select id="fnkDocID" name = "fnkDocID"';
-                    print '        name="fnkDocID" ';
-                    print '        tabindex="100" placeholder="Enter Doctor ID" >';
-if ($docIDERROR) print 'class="mistake"'; 
+        <!--<div>-->
+        <h2>Add Patient</h2>
+        <form action="<?php print $phpSelf; ?>"
+              method="post"
+              id="frmRegister">
+            <fieldset>
+                <!--class="wrapper">-->
+                <!--                    <legend><h2>Add Patient</h2></legend><br>-->
+                <?php
+                print '<label for="fnkCLIN">Clinician ';
+                print '<select id="fnkCLIN" name = "fnkCLIN"';
+                print '        name="fnkCLIN" ';
+                print '        tabindex="100" placeholder="Enter Clinician ID" >';
+                if ($DocIDERROR)
+                    print 'class="mistake"';
 
-                    foreach ($doctorList as $row) {
-                        print '<option ';
-                        if ($doctorList == $row["DocID"])
-                            print " value='selected' ";
-                        print 'value="' . $row["DocID"] . '">' . $row["DocID"];
-                        print '</option>';
-                    }
-                    print '</select></label><br>';
-                    ?>
+                foreach ($doctorList as $row) {
+                    print '<option ';
+                    if ($doctorList == $row["DocID"])
+                        print " value='selected' ";
+                    print 'value="' . $row["DocID"] . '">' . $row["DocID"];
+                    print '</option>';
+                }
+                print '</select></label><br>';
+                ?>
 
-                    <label for="pmkPatientID" class="required">Patient ID
-                        <input type="text" id="pmkPatientID" name="pmkPatientID"
-                               value="<?php print $pmkPatientID; ?>"
-                               tabindex="110" maxlength="45" placeholder="Enter patient ID"
-                               <?php if ($pmkPatientIDERROR) print 'class="mistake"'; ?>
-                               onfocus="this.select()"
-                               >
-                    </label><br>
+                <label for="pmkPatientID" class="required">Patient ID
+                    <input type="text" id="pmkPatientID" name="pmkPatientID"
+                           value="<?php print $pmkPatientID; ?>"
+                           tabindex="110" maxlength="45" placeholder="Enter patient ID"
+                           <?php if ($pmkPatientIDERROR) print 'class="mistake"'; ?>
+                           onfocus="this.select()"
+                           >
+                </label><br>
 
-                    <label for="fldPatientEmail" class="required"> Patient Email
-                        <input type="text" id="fldPatientEmail" name="fldPatientEmail"
-                               value="<?php print $patientEmail; ?>"
-                               tabindex="120" maxlength="45" placeholder="Enter patient's email address"
-                               <?php if ($patientEmailERROR) print 'class="mistake"'; ?>
-                               onfocus="this.select()" 
-                               autofocus>
-                    </label><br>
-                    
-                    <label for="fldPhone" class="required"> Patient Phone #
-                        <input type="text" id="fldPhone" name="fldPhone"
-                               value="<?php print $phone; ?>"
-                               tabindex="130" maxlength="45" placeholder="Enter patient's phone #"
-                               <?php if ($phoneERROR) print 'class="mistake"'; ?>
-                               onfocus="this.select()" 
-                               autofocus>
-                    </label><br>
-                    
-                    <label for="fldGoal" class="required"> Goal Intensity
-                        <input type="text" id="fldGoal" name="fldGoal"
-                               value="<?php print $goal; ?>"
-                               tabindex="140" maxlength="3" placeholder="Enter goal intensity"
-                               <?php if ($goalERROR) print 'class="mistake"'; ?>
-                               onfocus="this.select()" 
-                               autofocus>
-                    </label><br>
+                <label for="fldPatientEmail" class="required"> Patient Email
+                    <input type="text" id="fldPatientEmail" name="fldPatientEmail"
+                           value="<?php print $patientEmail; ?>"
+                           tabindex="120" maxlength="45" placeholder="Enter patient's email address"
+                           <?php if ($patientEmailERROR) print 'class="mistake"'; ?>
+                           onfocus="this.select()" 
+                           autofocus>
+                </label><br>
 
+                <label for="fldPhone" class="required"> Patient Phone #
+                    <input type="text" id="fldPhone" name="fldPhone"
+                           value="<?php print $phone; ?>"
+                           tabindex="130" maxlength="45" placeholder="Enter patient's phone #"
+                           <?php if ($phoneERROR) print 'class="mistake"'; ?>
+                           onfocus="this.select()" 
+                           autofocus>
+                </label><br>
 
                 <!--</fieldset>  ends contact -->
 
 
                 <!--<fieldset class="buttons">-->
-                    <input type="submit" id="btnSubmit" name="btnSubmit" value="Submit" tabindex="900" class="button">
-                </fieldset> <!-- ends buttons -->
-            </form>
-            <?php
-        } // end body submit
-        ?>
-<!--</article>-->
-</div>
+                <input type="submit" id="btnSubmit" name="btnSubmit" value="Submit" tabindex="900" class="button">
+            </fieldset> <!-- ends buttons -->
+        </form>
+        <?php
+    } // end body submit
+    ?>
+    </article>
+    <!--</div>-->
 
 
-<?php
+    <?php
 //include "footer.php";
-if ($debug)
-    print "<p>END OF PROCESSING</p>";
-?>
+    if ($debug)
+        print "<p>END OF PROCESSING</p>";
+    ?>

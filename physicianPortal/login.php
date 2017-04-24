@@ -1,6 +1,7 @@
 <?php
 session_start();
 include 'dbh.php';
+include'head.php';
 if (isset($_POST["submit"])) {
     $DocID = mysqli_real_escape_string($DBcon, $_POST['DocID']);
     $fldPass = mysqli_real_escape_string($DBcon, $_POST['fldPass']);
@@ -9,13 +10,17 @@ if (isset($_POST["submit"])) {
     $check_doc = mysqli_num_rows($run_doc);
     if ($check_doc > 0) {
         $_SESSION['DocID'] = $DocID;
+
+        $check_Admin = "SELECT fldAdmin FROM tblDoctor WHERE DocID = '". $_SESSION['DocID']."'";
+        $admin = $thisDatabaseReader->select($check_Admin, "", 1, 0, 2, 0, false, false);
+     $_SESSION['fldAdmin']= $admin[0][0];
+     
         echo "<script>window.open('index.php','_self')</script>";
     } else {
         echo "<script>alert('Email or password is not correct, try again!')</script>";
     }
+//    $isAdmin = false;
 }
-
-include'head.php';
 ?>
 <!doctype html>
 <html>

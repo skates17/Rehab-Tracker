@@ -1,74 +1,90 @@
 <?php
-
-//##############################################################################
-//
-// This page lists your tables and fields within your database. if you click on
-// a database name it will show you all the records for that table. 
-// 
-// 
-// This file is only for class purposes and should never be publicly live
-//##############################################################################
 include "top.php";
+?>
+<?php
 
-print '<h1> Welcome! </h1>';
-
-print "<h2>The following patients are OUT of weekly compliance*: </h2>";
+//--------------------Table displays summary of patients OUT of weekly compliance----------------
+print "<article><h2>Patients who are OUT of compliance: </h2>";
 
 $tableName = tblPatient;
 
-
-
-$checkCompQuery = "SELECT pmkPatientID FROM tblPatient WHERE fldWeekCompliance = 0";
-$compliance = $thisDatabaseReader->select($checkCompQuery, "", 1, 0, 0, 0, false, false);
-
-
+$checkCompQuery = "SELECT pmkPatientID, fldWeekCompliance, fldPhone, fldPatientEmail FROM tblPatient ";
+$complianceColumn = $thisDatabaseReader->select($checkCompQuery, "", 0, 0, 0, 0, false, false);
 
 if ($tableName != "") {
     print '<aside id="records">';
-    print '<table id = "table" align= "center">';
+    print '<table id = "table">';
     print '<tr>';
     $columns = 0;
     print'<th><b>Patient ID:</b></th>';
-    foreach ($compliance as $field) {
+    print'<th><b>Compliance:</b></th>';
+    print '<th><b>Phone: </b></th>';
+    print '<th><b>Patient Email: </b></th>';
+    foreach ($complianceColumn as $field) {
         $columns++;
     }
     print '</tr>';
 }
-
+print '</article>';
 ////now print out each record
-$query = "SELECT pmkPatientID FROM " . $tableName . " WHERE fldWeekCompliance = 0 ORDER BY fldLastUpdate ";
-$info3 = $thisDatabaseReader->select($query, "", 1, 1, 0, 0, false, false);
-foreach ($info3 as $rec) {
+$notCompliant = "SELECT pmkPatientID, fldWeekCompliance, fldPhone, fldPatientEmail FROM " 
+        . $tableName . " WHERE fldWeekCompliance < 1 and fnkCLIN = '" . $_SESSION['DocID'] . "'"
+        . " ORDER BY fldWeekCompliance ";
+$complianceResult = $thisDatabaseReader->select($notCompliant, "", 1, 2, 2, 1, false, false);
+foreach ($complianceResult as $rec) {
     print '<tr>';
     for ($i = 0; $i < $columns; $i++) {
-        print '<td>' . $rec[$i] . '</td>';
+        if ($i == 1) { //$i=1 is fldWeekCompliance --> format so a % is displayed
+            $percentageTop = $rec[$i] * 100;
+            print '<td>'.$percentageTop . '% </td>';
+        } elseif ($i ==3){//$i=3 is fldPatientEmail --> format so is a clickable link
+                print '<td><a href="mailto:' . $rec[$i] . '">' . $rec[$i] . '</a></td>';
+        } else{
+            print '<td>' . $rec[$i] . '</td>';
+        }
     }
+    
     print '</tr>';
 }
+
+print '</table>';
 // all done
 
 print '</aside>';
+?>
 
-//-------- BEGIN LISTING PATIENTS FOR DOCTOR WHO IS LOGGED IN--------------------------//
+<!-- ------ TABLE LISTS ALL PATIENTS FOR LOGGED IN CLINICIAN------------------------ -->
 
-print "<article><div id='box'>";
-print"<p>*This is a glance at the patients who are out of compliance. "
-        . "More information can be found on the Patient Overview or Patient Sessions pages. </p></br> ";
-print "<h2>All Active Patients</h2>";
+<article><div id='box'>
+<!--        <p>*This is a glance at the patients who are out of compliance. </p>
+        <p>  More information can be found on the Patient Overview or Patient Sessions pages. </p></br>-->
+        <h2>Summary of Active Patients for Clinician <?php print $_SESSION['DocID']; ?> </h2>
 
 
-// Display all the records for a given table
+<?php
+//Display all the records for a given table
 if ($tblPatient != "") {
+
+
     print '<aside id="records">';
-    $query = 'SHOW COLUMNS FROM ' . $tblPatient;
-    $info = $thisDatabaseReader->select($query, "", 0, 0, 0, 0, false, false);
-    $span = count($info);
+//    $query = 'SHOW COLUMNS FROM ' . $tblPatient;
+//    
+//    $info = $thisDatabaseReader->select($query, "", 0, 0, 0, 0, false, false);
+
+    $columnOverview = "SHOW COLUMNS FROM tblPatient where "
+            . "FIELD NOT IN ('fnkCLIN', 'fldActive', 'fldComplianceChecked', 'fldGoal',"
+            . "'fldPatientEmail', 'fldPhone')";
+
+
+    $overviewDisplay = $thisDatabaseReader->select($columnOverview, "", 1, 1, 12, 0, false, false);
+
+    $span = count($overviewDisplay);
     print "<table id ='table'>";
 // print out the column headings, note i always use a 3 letter prefix
 // and camel case like pmkCustomerId and fldFirstName
     print '<tr>';
     $columns = 0;
-    foreach ($info as $field) {
+    foreach ($overviewDisplay as $field) {
         print '<td><b>';
         $camelCase = preg_split('/(?=[A-Z])/', substr($field[0], 3));
         foreach ($camelCase as $one) {
@@ -79,13 +95,25 @@ if ($tblPatient != "") {
     }
     print '</tr>';
 //now print out each record
-    $query = "SELECT * FROM $tblPatient WHERE fnkDocID = '" . $_SESSION['DocID']. "'";
-    
-    $info2 = $thisDatabaseReader->select($query, "", 1, 0, 2, 0, false, false);
-    foreach ($info2 as $rec) {
+    $patientSummary = "SELECT pmkPatientID, "
+           // . "fldPatientEmail, fldPhone, "
+            . "fldDeviceSynced, fldStartDate, fldWeekCompliance"
+            . " FROM $tblPatient WHERE fnkCLIN = '" . $_SESSION['DocID'] . "'";
+
+    $displaySummary = $thisDatabaseReader->select($patientSummary, "", 1, 0, 2, 0, false, false);
+    foreach ($displaySummary as $rec) {
         print '<tr>';
         for ($i = 0; $i < $columns; $i++) {
-            print '<td>' . htmlentities($rec[$i], ENT_QUOTES) . '</td>';
+            print '<td>';
+//            if ($i == 1) { //$i=1 is fldPatientEmail --> format so is a clickable link
+//                print '<a href="mailto:' . $rec[$i] . '">' . $rec[$i] . '</a></td>';
+//            } elseif
+            if ($i == 5) { //$i=5 is fldWeekCompliance --> format so a % is displayed
+                $percentage = $rec[$i] * 100;
+                print $percentage . '% </td>';
+            } else {
+                print htmlentities($rec[$i], ENT_QUOTES) . '</td>';
+            }
         }
         print '</tr>';
     }

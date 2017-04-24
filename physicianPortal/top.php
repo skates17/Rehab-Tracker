@@ -13,13 +13,19 @@
     $tblPatient = 'tblPatient';
     $tblSession = 'tblSession';
     ?>
-    <body>
-        
-        
-        <div id ="container">
+
             <?php
             include "nav.php";
             ?>
+    
+        <div id ="container">
+    
+        
+    <body>
+        
+        
+        
+            
 
             <!-- %%%%%%%%%%%%%%%%%%%%%%     Page header   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
 
