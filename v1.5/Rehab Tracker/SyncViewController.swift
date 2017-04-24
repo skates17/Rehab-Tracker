@@ -3,7 +3,7 @@
 //  Rehab Tracker
 //
 //  Created by Sean Kates on 11/2/16.
-//  Copyright © 2016 CS 275 Project Group 6. All rights reserved.
+//  Copyright © 2017 UVM Medical Center. All rights reserved.
 //
 // Need to give website props for the tab bar icon
 // <a href="https://icons8.com">Icon pack by Icons8</a>
@@ -29,6 +29,9 @@ class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     
     // global variable comments to store session comments
     private var comments = "No Comments"
+    
+    // Array to hold all the session compliances to check for positive feedback
+    private var lastSessionCompliance = [Double]()
     
     // Variables to hold stats for pushToDatabase function
     private var pmkPatientID = ""
@@ -62,6 +65,18 @@ class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
         self.present(alert, animated: true, completion: nil)
     }
     
+    // Show an alert with positive feedback after the sync
+    private func positiveFeedbackAlert() {
+        // create the alert
+        let alert = UIAlertController(title: "Keep it up!", message: Util.getPositiveFeedback(), preferredStyle: UIAlertControllerStyle.alert)
+        
+        // add an action (button)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        
+        // show the alert
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     @IBAction func Sync(_ sender: UIButton) {
         // Alert to take input and save it
         let alert = UIAlertController(title: "Comments",
@@ -80,8 +95,13 @@ class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
                                         // Call parseCSV to grab data
                                         do {
                                             // Disconnects from the BLE Device
-                                            
                                             if(self.activePeripheral != nil){
+                                                // Write true to the Blend so it knows we are disconnecting
+                                                var flag = true;
+                                                let data = NSData(bytes: &flag, length: MemoryLayout<Bool>.size)
+                                                self.write(data: data)
+                                                    
+                                                // Disconnect
                                                 _ = self.disconnectFromPeripheral(peripheral: self.activePeripheral!)
                                             }else{
                                                 print("[DEBUG] There is no peripheral to be disconnected")
@@ -93,6 +113,11 @@ class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
                                             // Parses the CSV and saves it in core data
                                             // YOU SHOULD PUT THIS IN THE WRITE TO CSV FUNCTION
                                             try self.parseCSV()
+                                            
+                                            // If the average compliance is higher than 55/60 minutes, give positive feedback
+                                            if ( Util.average(array: self.lastSessionCompliance) >= 0.9167 ){
+                                                self.positiveFeedbackAlert()
+                                            }
                                         }
                                         catch {
                                             print("Could not find stats. \(error)")
@@ -129,6 +154,10 @@ class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
                     fields = line.components(separatedBy: delimeter)
                     let stat = (sessionID: fields[0], avg_ch1_intensity:fields[1], avg_ch2_intensity:fields[2], session_compliance: fields[3])
                     self.stats?.append(stat)
+                    
+                    // append the session_compliance to the array for calculating if we should give feedback
+                    let compDouble = (fields[3] as NSString).doubleValue
+                    lastSessionCompliance.append(compDouble)
                 }
             }
             self.addData()
@@ -304,15 +333,15 @@ class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     // Private function to stop the scan after the scan has timed-out
     @objc private func scanTimeout() {
         self.centralManager.stopScan()
+        if activePeripheral == nil {
+            print("[DEBUG] No peripherals were found, stopping scan")
+        }
     }
     
     // Function that gets called when the connect button is clicked on the screen
     // Starts scanning for periferals
     @IBAction func connectBLE(_ sender: Any) {
-        let scan = self.startScanning(timeout: 5)
-        if scan == false {
-            print("Scan Never Started")
-        }
+        _ = self.startScanning(timeout: 10)
     }
     
     // MARK: Public methods
@@ -411,15 +440,12 @@ class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
         }
         
         // Try to connect to the peripheral
-        let success = self.connectToPeripheral(peripheral: peripheral)
-        if success == true {
-            
-        }
+        _ = self.connectToPeripheral(peripheral: peripheral)
     }
     
     // If the connection was unsuccessful, print an error saying we failed to connect
     func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
-        print("[ERROR] Could not connecto to peripheral \(peripheral.identifier.uuidString) error: \(error)")
+        print("[ERROR] Could not connect to peripheral \(peripheral.identifier.uuidString) error: \(String(describing: error))")
     }
     
     // If the connection was successful, set the activePeripheral to peripheral and discoverServices()
@@ -440,7 +466,7 @@ class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
         var text = "[DEBUG] Disconnected from peripheral: \(peripheral.identifier.uuidString)"
         
         if error != nil {
-            text += ". Error: \(error)"
+            text += ". Error: \(String(describing: error))"
         }
         
         print(text)
@@ -453,7 +479,7 @@ class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
         
         // Once disconnected, write all the data you got to the CSV
         writeToCSV()
-        readDataFromFile(file: "data")
+        Util.readDataFromFile(file: "data")
     }
     
     // MARK: CBPeripheral delegate
@@ -462,7 +488,7 @@ class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         
         if error != nil {
-            print("[ERROR] Error discovering services. \(error)")
+            print("[ERROR] Error discovering services. \(String(describing: error))")
             return
         }
         
@@ -480,7 +506,7 @@ class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
         
         if error != nil {
-            print("[ERROR] Error discovering characteristics. \(error)")
+            print("[ERROR] Error discovering characteristics. \(String(describing: error))")
             return
         }
         
@@ -499,7 +525,7 @@ class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
         
         if error != nil {
             
-            print("[ERROR] Error updating value. \(error)")
+            print("[ERROR] Error updating value. \(String(describing: error))")
             return
         }
 
@@ -514,11 +540,14 @@ class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
         let resultNSString = NSString(data: characteristic.value!, encoding: String.Encoding.utf8.rawValue)!
         let resultString = resultNSString as String
         
+        print("Got some stuff from read: " , resultString)
+        
         // Append the data string to the data array!
         dataFromPeripheral.append(resultString)
         
     }
     
+    // didReadRSSI function
     func peripheral(_ peripheral: CBPeripheral, didReadRSSI RSSI: NSNumber, error: Error?) {
         self.RSSICompletionHandler?(RSSI, error as NSError?)
         self.RSSICompletionHandler = nil
@@ -560,15 +589,28 @@ class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     func writeToCSV() {
         var csvText = ""
         var newLine = ""
+        var lastSessionCount: Character = " "
         for myData in dataFromPeripheral{
             let myDataArr = myData.components(separatedBy: ",")
-            if myDataArr.count == 4{
+            
+            // Get the first character of the data string which is the session Count to make sure no duplicated
+            let index = myData.index(myData.startIndex, offsetBy: 0)
+            
+            // Check if the array contains 4 data points and that the sessionCount isnt duplicating
+            if (myDataArr.count == 4 && myData[index] != lastSessionCount){
+                // Add validated data to what will be written to csv
                 newLine += "\(myData)"
                 csvText.append(newLine)
+                lastSessionCount = myData[index];
             }else{
-                print("[DEBUG] Tried to write invalid data: " , myData)
+                print("[DEBUG] Invalid Data/Duplicate session number: " , myData)
             }
         }
+        
+        // Clear out the dataFromPeripheral array once we have the data to prevent duplication
+        dataFromPeripheral.removeAll()
+        
+        // Writing time!
         let fileName = "data"
         let docDirectory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
         if let fileURL = docDirectory?.appendingPathComponent(fileName).appendingPathExtension("csv") {
@@ -583,25 +625,6 @@ class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
                 try csvText.write(to: fileURL, atomically: true, encoding: .utf8)
             } catch {
                 print("Failed writing to URL: \(fileURL), Error: " + error.localizedDescription)
-            }
-        }
-    }
-        
-    
-    // Function to read data from a CSV file given the fileName as a param
-    func readDataFromFile(file:String) {
-        let fileName = file
-        let docDirectory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-        if let fileURL = docDirectory?.appendingPathComponent(fileName).appendingPathExtension("csv") {
-            do {
-                print("[DEBUG] Attempting to read from file!")
-                let db = try String(contentsOf: fileURL)
-                let lines:[String] = db.components(separatedBy: "\n") as [String]
-                for line in lines{
-                    print(line)
-                }
-            } catch {
-                print("File Read Error for file")
             }
         }
     }

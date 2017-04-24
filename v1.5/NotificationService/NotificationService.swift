@@ -3,7 +3,7 @@
 //  NotificationService
 //
 //  Created by Sean Kates on 3/31/17.
-//  Copyright © 2017 CS 275 Project Group 6. All rights reserved.
+//  Copyright © 2017 UVM Medical Center. All rights reserved.
 //
 
 import UserNotifications

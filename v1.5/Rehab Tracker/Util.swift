@@ -3,7 +3,7 @@
 //  Rehab Tracker
 //
 //  Created by Sean Kates on 2/14/17.
-//  Copyright © 2017 CS 275 Project Group 6. All rights reserved.
+//  Copyright © 2017 UVM Medical Center. All rights reserved.
 //
 
 import UIKit
@@ -217,5 +217,49 @@ class Util {
             return 0.0
         }
         return 0.0
+    }
+    
+    // Function to read data from a CSV file given the fileName as a param
+    class func readDataFromFile(file: String) {
+        let fileName = file
+        let docDirectory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+        if let fileURL = docDirectory?.appendingPathComponent(fileName).appendingPathExtension("csv") {
+            do {
+                print("[DEBUG] Attempting to read from file!")
+                let db = try String(contentsOf: fileURL)
+                let lines:[String] = db.components(separatedBy: "\n") as [String]
+                for line in lines{
+                    print(line)
+                }
+            } catch {
+                print("File Read Error for file")
+            }
+        }
+    }
+    
+    // Returns a random String that is the positive feedback for the user
+    class func getPositiveFeedback() -> String {
+        // List of positive feedback from Dr. Toth
+        let positiveFeedback = ["Keep up the good work!",
+                                "Nice job!",
+                                "Wahoo"]
+        
+        // Return the positive feedback at the random index of the array
+        return positiveFeedback[random(max: positiveFeedback.count)]
+    }
+    
+    // Function that returns a random int in a specific range
+    class func random(max maxNumber: Int) -> Int {
+        return Int(arc4random_uniform(UInt32(maxNumber)))
+    }
+    
+    // Function that returns the average of an array of doubles
+    class func average(array: [Double]) -> Double {
+        var sum = 0.0
+        for number in array {
+            sum += number
+        }
+        let ave = sum / Double(array.count)
+        return ave
     }
 }

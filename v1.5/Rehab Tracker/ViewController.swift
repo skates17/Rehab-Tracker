@@ -3,7 +3,7 @@
 //  Rehab Tracker
 //
 //  Created by Sean Kates on 11/1/16.
-//  Copyright © 2016 CS 275 Project Group 6. All rights reserved.
+//  Copyright © 2017 UVM Medical Center. All rights reserved.
 //
 
 import UIKit

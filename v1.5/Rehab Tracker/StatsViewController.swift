@@ -3,7 +3,7 @@
 //  Rehab Tracker
 //
 //  Created by Sean Kates on 12/8/16.
-//  Copyright © 2016 CS 275 Project Group 6. All rights reserved.
+//  Copyright © 2017 UVM Medical Center. All rights reserved.
 //
 // Need to give website props for the tab bar icon
 // <a href="https://icons8.com/web-app/7318/Flex-Biceps">Flex biceps icon credits</a>
