@@ -4,7 +4,7 @@
 //  Rehab Tracker
 //
 //  Created by Sean Kates on 11/1/16.
-//  Copyright © 2017 UVM Medical Center. All rights reserved.
+//  Copyright © 2017 University of Vermont. All rights reserved.
 //
 
 import UIKit
