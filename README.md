@@ -1,2 +1,2 @@
-# Final-Rehab-Tracker
-Rehab Tracker App for UVM Medical Center
+# Rehab-Tracker
+Rehab Tracker App for the University of Vermont
