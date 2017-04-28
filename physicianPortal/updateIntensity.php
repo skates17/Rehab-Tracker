@@ -1,4 +1,7 @@
 <?php
+
+$patient = $_SESSION['patient'];
+
 //---------------------------UPDATE INTENSITY GOAL ------------------------------------------
 
 print '<h2>Update Intensity</h2>';
@@ -110,9 +113,10 @@ if (isset($_POST["btnUpdate"])) {
                 print '<p> begin transaction</p>';
             }
 
-            $queryUpdate = "UPDATE tblPatient SET fldGoal = ?, "
-                    . "fldLastUpdate = CURRENT_TIMESTAMP WHERE pmkPatientID = $patient";
-            $results = $thisDatabaseWriter->select($queryUpdate, $parameters, 1, 0, 0, 0, false, false);
+            $queryUpdate = "UPDATE tblPatient SET fldGoal = ? ";
+                //    . ", fldLastUpdate = CURRENT_TIMESTAMP 
+            $queryUpdate .= "WHERE pmkPatientID = '$patient'";
+            $results = $thisDatabaseWriter->select($queryUpdate, $parameters, 1, 0, 2, 0, false, false);
 
             // all sql statements are done so lets commit to our changes
 
@@ -137,8 +141,7 @@ if (isset($_POST["btnUpdate"])) {
 // If its the first time coming to the form or there are errors we are going
 // to display the form.
 if (isset($_POST["btnUpdate"]) AND empty($errorMsg)) { // closing of if marked with: end body submit
-    print "<h1>Success!</h1>";
-    print "<p>You have successfully updated $patient 's goal to:  '$goal'. ";
+    echo "<script type='text/javascript'>alert('Updated goal successfully')</script>";
 } else {
 //####################################
 //
@@ -156,44 +159,41 @@ if (isset($_POST["btnUpdate"]) AND empty($errorMsg)) { // closing of if marked w
         print "</ol>\n";
         print '</div>';
     }
-}
 //####################################
 //
 // SECTION 3c html Form
 //
-/* Display the HTML form. note that the action is to this same page. $phpSelf
-  is defined in top.php
-  NOTE the line:
-  value="<?php print $email; ?>
-  this makes the form sticky by displaying either the initial default value (line 35)
-  or the value they typed in (line 84)
-  NOTE this line:
-  <?php if($emailERROR) print 'class="mistake"'; ?>
-  this prints out a css class so that we can highlight the background etc. to
-  make it stand out that a mistake happened here.
- */
-?>
-<div>
-    <p>Patient:  <?php print $patient; ?> 
-    <form action="<?php print $phpSelf; ?>"
-          method="post"
-          id="frmUpdate">
+    /* Display the HTML form. note that the action is to this same page. $phpSelf
+      is defined in top.php
+      NOTE the line:
+      value="<?php print $email; ?>
+      this makes the form sticky by displaying either the initial default value (line 35)
+      or the value they typed in (line 84)
+      NOTE this line:
+      <?php if($emailERROR) print 'class="mistake"'; ?>
+      this prints out a css class so that we can highlight the background etc. to
+      make it stand out that a mistake happened here.
+     */
+    ?>
+    <div>
+        <p>Patient:  <?php print $patient; ?> 
+        <form action="<?php print $phpSelf; ?>"
+              method="post"
+              id="frmUpdate">
+            <fieldset>
 
-        <div class="form-group">
-            <label for="fldGoal" class="required"> Goal Intensity
-                <input type="text" id="fldGoal" name="fldGoal"
-                       value="<?php print $goal; ?>"
-                       tabindex="140" maxlength="3" placeholder="Enter goal intensity"
-                       <?php if ($goalERROR) print 'class="mistake"'; ?>
-                       onfocus="this.select()" 
-                       autofocus>
-            </label>
-        </div>
+                <label for="fldGoal" class="required"> Goal Intensity
+                    <input type="text" id="fldGoal" name="fldGoal"
+                           value="<?php print $goal; ?>"
+                           tabindex="140" maxlength="3" placeholder="Enter goal intensity"
+                           <?php if ($goalERROR) print 'class="mistake"'; ?>
+                           onfocus="this.select()" 
+                           autofocus>
+                </label>
+                <input type="submit" id="btnUpdate" name="btnUpdate" value="Update" tabindex="900" class="button">
+            </fieldset> <!-- ends buttons -->
+        </form>
 
-        <div class="form-group">
-            <input type="submit" id="btnUpdate" name="btnUpdate" value="Update" tabindex="900" class="button">
-        </div> <!-- ends buttons -->
-    </form>
-
-</div>
-
+    </div>
+    <?php
+} // end body submit

@@ -1,5 +1,5 @@
 <!-- ######################     Main Navigation   ########################## -->
-<nav>
+<nav color = "white">
 <ul><b>
         <?php
         // This sets the current page to not be a link. Repeat this if block for
@@ -11,21 +11,32 @@
         }
 
         if ($path_parts['filename'] == "viewCompliance") {
-            print '<li class="activePage">Patient Overview</li>';
+            print '<li class="activePage">All Patients</li>';
         } else {
-            print '<li class = "nav"><a href="viewCompliance.php">Patient Overview</a></li>';
+            print '<li class = "nav"><a href="viewCompliance.php">All Patients</a></li>';
         }
 
-        if ($path_parts['filename'] == "patientSessions") {
+        if ($path_parts['filename'] == "selectPatient" or $path_parts['filename']== "patientSessions") {
             print '<li class="activePage">Patient Sessions</li>';
         } else {
-            print '<li class = "nav"><a href="patientSessions.php">Patient Sessions</a></li>';
+            print '<li class = "nav"><a href="selectPatient.php">Patient Sessions</a></li>';
         }
+        
+//          if ($path_parts['filename']== "patientSessions") {
+//            print '<li class="activePage">Patient Sessions</li>';
+//        } 
+                
         if ($_SESSION['fldAdmin'] == 1) {
             if ($path_parts['filename'] == "manageUsers") {
-                print '<li class="activePage">Manage Users</li>';
+                print '<li class="activePage">Add Clinician</li>';
             } else {
-                print '<li class = "nav"><a href="manageUsers.php">Manage Users</a></li>';
+                print '<li class = "nav"><a href="manageUsers.php">Add Clinician</a></li>';
+            }
+            
+            if ($path_parts['filename'] == "form") {
+                print '<li class="activePage">Add Patient</li>';
+            } else {
+                print '<li class = "nav"><a href="form.php">Add Patient</a></li>';
             }
         }
 

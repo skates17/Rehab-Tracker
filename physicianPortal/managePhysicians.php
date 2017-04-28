@@ -1,22 +1,14 @@
 <?php
-include 'top.php';
-print '<div id="header">
-    <h1>Manage Physicians</h1>
-</div>';
-//-------------form to add physician to database
-include 'addPhysician.php';
-print '<br>';
 //------------form to update/deactivate a physician
 
-/* the purpose of this page is to display a form to allow a user and allow us
- * to add a new user or update an existing user 
+/* the purpose of this page is to display a form to allow the admin to create a new clinician
  * 
  * Written By: Meaghan Winter
 
  */
 ?>
 
-<h2>Activate/Deactivate Physician</h2>
+<h2>Add Clinician</h2>
 
 <?php
 //%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%^%
@@ -39,8 +31,15 @@ $yourURL = $domain . $phpSelf;
 //
 // Initialize variables one for each form element
 // in the order they appear on the form
-$physician = $resultsInfo [0]['DocID'];
+$clinician = $resultsInfo [0]['DocID'];
+$admin = $resultsInfo[0]['fldAdmin'];
+$clinEmail = $resultsInfo[0]['fldEmail'];
+$password = $resultsInfo[0]['fldPass'];
 $active = $resultsInfo[0]['fldActive'];
+
+$hashed_password = password_hash($fldPass, PASSWORD_DEFAULT);
+
+
 //
 //query for movie pick initialization 
 if ($debug) {

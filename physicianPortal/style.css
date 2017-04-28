@@ -120,17 +120,19 @@ nav a{
 }
 
 .nav:link{
-    color:white;
+    color: rgb(28,117,127);
+    
 }
 
 .nav:hover {
     //background-color: rgb(64,63,76);
-   color: rgb(28,117,127);
+   color:white;
 }
 
 .activePage { 
     background-color: rgb(64,63,76); 
-    color: rgb(28,117,127); //teal of logo
+    color: white;
+   // color: rgb(28,117,127); //teal of logo
 }
 
 #page-pic {
@@ -147,7 +149,6 @@ nav a{
 }
 
 .button:hover {background-color: rgb(64,63,76)}
-
 
 
 .form-signup{
@@ -167,7 +168,7 @@ ul {
 
 a{
     text-decoration: none;
-    color: white;
+    color: teal;
 }
 
 /*a:visited { 
@@ -178,12 +179,12 @@ a{
 
 /* mouse over link */
 a:hover {
-    color: teal;
+    color: white;
 }
 
 /* selected link */
 a:active {
-    color: teal;
+    color: white;
 }
 
 #table {

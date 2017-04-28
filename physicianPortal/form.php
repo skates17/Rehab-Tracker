@@ -6,7 +6,7 @@
 
  */
 
-//include "top.php";
+include "top.php";
 ?>
 
 <?php
@@ -304,11 +304,12 @@ if (isset($_POST["btnSubmit"]) AND empty($errorMsg)) {
         <form action="<?php print $phpSelf; ?>"
               method="post"
               id="frmRegister">
-            <fieldset>
+            <!--<fieldset>-->
+                <div class="form-group">
                 <!--class="wrapper">-->
                 <!--                    <legend><h2>Add Patient</h2></legend><br>-->
                 <?php
-                print '<label for="fnkCLIN">Clinician ';
+                print '<label for="fnkCLIN"><b>Clinician</b> ';
                 print '<select id="fnkCLIN" name = "fnkCLIN"';
                 print '        name="fnkCLIN" ';
                 print '        tabindex="100" placeholder="Enter Clinician ID" >';
@@ -324,8 +325,10 @@ if (isset($_POST["btnSubmit"]) AND empty($errorMsg)) {
                 }
                 print '</select></label><br>';
                 ?>
+                </div>
 
-                <label for="pmkPatientID" class="required">Patient ID
+                <div class="form-group">
+                    <label for="pmkPatientID" class="required"><b>Patient ID</b>
                     <input type="text" id="pmkPatientID" name="pmkPatientID"
                            value="<?php print $pmkPatientID; ?>"
                            tabindex="110" maxlength="45" placeholder="Enter patient ID"
@@ -333,8 +336,10 @@ if (isset($_POST["btnSubmit"]) AND empty($errorMsg)) {
                            onfocus="this.select()"
                            >
                 </label><br>
+                </div>
 
-                <label for="fldPatientEmail" class="required"> Patient Email
+                <div class="form-group">
+                    <label for="fldPatientEmail" class="required"> <b>Patient Email</b>
                     <input type="text" id="fldPatientEmail" name="fldPatientEmail"
                            value="<?php print $patientEmail; ?>"
                            tabindex="120" maxlength="45" placeholder="Enter patient's email address"
@@ -342,8 +347,10 @@ if (isset($_POST["btnSubmit"]) AND empty($errorMsg)) {
                            onfocus="this.select()" 
                            autofocus>
                 </label><br>
+                </div>
 
-                <label for="fldPhone" class="required"> Patient Phone #
+                <div class="form-group">
+                    <label for="fldPhone" class="required"><b> Patient Phone #</b>
                     <input type="text" id="fldPhone" name="fldPhone"
                            value="<?php print $phone; ?>"
                            tabindex="130" maxlength="45" placeholder="Enter patient's phone #"
@@ -351,13 +358,15 @@ if (isset($_POST["btnSubmit"]) AND empty($errorMsg)) {
                            onfocus="this.select()" 
                            autofocus>
                 </label><br>
-
+                </div>
+                
                 <!--</fieldset>  ends contact -->
 
-
+    <div class="form-group">
                 <!--<fieldset class="buttons">-->
                 <input type="submit" id="btnSubmit" name="btnSubmit" value="Submit" tabindex="900" class="button">
-            </fieldset> <!-- ends buttons -->
+            <!--</fieldset>  ends buttons -->
+    </div>
         </form>
         <?php
     } // end body submit

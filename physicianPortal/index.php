@@ -20,9 +20,10 @@ if ($tableName != "") {
     print'<th><b>Compliance:</b></th>';
     print '<th><b>Phone: </b></th>';
     print '<th><b>Patient Email: </b></th>';
-    foreach ($complianceColumn as $field) {
-        $columns++;
-    }
+//    foreach ($complianceColumn as $field) {
+//        $columns++;
+//    }
+    $columns = 4;
     print '</tr>';
 }
 print '</article>';
@@ -43,11 +44,10 @@ foreach ($complianceResult as $rec) {
             print '<td>' . $rec[$i] . '</td>';
         }
     }
-    
     print '</tr>';
 }
-
 print '</table>';
+
 // all done
 
 print '</aside>';
@@ -99,7 +99,7 @@ if ($tblPatient != "") {
            // . "fldPatientEmail, fldPhone, "
             . "fldDeviceSynced, fldStartDate, fldWeekCompliance"
             . " FROM $tblPatient WHERE fnkCLIN = '" . $_SESSION['DocID'] . "'";
-
+    
     $displaySummary = $thisDatabaseReader->select($patientSummary, "", 1, 0, 2, 0, false, false);
     foreach ($displaySummary as $rec) {
         print '<tr>';
@@ -108,7 +108,7 @@ if ($tblPatient != "") {
 //            if ($i == 1) { //$i=1 is fldPatientEmail --> format so is a clickable link
 //                print '<a href="mailto:' . $rec[$i] . '">' . $rec[$i] . '</a></td>';
 //            } elseif
-            if ($i == 5) { //$i=5 is fldWeekCompliance --> format so a % is displayed
+            if ($i == 3) { //$i=3 is fldWeekCompliance --> format so a % is displayed
                 $percentage = $rec[$i] * 100;
                 print $percentage . '% </td>';
             } else {

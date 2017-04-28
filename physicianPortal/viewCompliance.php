@@ -1,4 +1,5 @@
 <?php
+
 //##############################################################################
 //
 // This page lists your tables and fields within your database. if you click on
@@ -35,11 +36,25 @@ if ($tblPatient != "") {
     print '</tr>';
 //now print out each record
     $query = 'SELECT * FROM ' . $tblPatient;
-    $info2 = $thisDatabaseReader->select($query, "", 0, 0, 0, 0, false, false);
+    if ($_SESSION['fldAdmin'] != 1) {
+        $query .= " WHERE fnkCLIN = '" . $_SESSION['DocID'] . "'";
+        $info2 = $thisDatabaseReader->select($query, "", 1, 0, 2, 0, false, false);
+    } else {
+        $info2 = $thisDatabaseReader->select($query, "", 0, 0, 0, 0, false, false);
+    }
+
     foreach ($info2 as $rec) {
         print '<tr>';
         for ($i = 0; $i < $columns; $i++) {
-            print '<td>' . htmlentities($rec[$i], ENT_QUOTES) . '</td>';
+            print '<td>';
+            if ($i == 3) { //$i=3 is fldPatientEmail --> format so is a clickable link
+                print '<a href="mailto:' . $rec[$i] . '">' . $rec[$i] . '</a></td>';
+            } elseif ($i == 8) { //$i=8 is fldWeekCompliance --> format so a % is displayed
+                $percentage = $rec[$i] * 100;
+                print $percentage . '% </td>';
+            } else {
+                print htmlentities($rec[$i], ENT_QUOTES) . '</td>';
+            }
         }
         print '</tr>';
     }

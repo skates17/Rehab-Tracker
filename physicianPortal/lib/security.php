@@ -34,6 +34,7 @@ function securityCheck($path_parts, $yourURL, $form = false) {
     $whiteListPages[] = "testForm.php";
     $whiteListPages[] = "viewCompliance.php";
     $whiteListPages[] = "patientSessions.php";
+    $whiteListPages[] = "selectPatient.php";
     
     if ($_SESSION['fldAdmin'] == 1){
     $whiteListPages[] = "updatePatient.php";
