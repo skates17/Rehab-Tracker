@@ -1,7 +1,5 @@
 <?php
 
-// from http://www.macoscoders.com/2009/05/17/iphone-apple-push-notification-service-apns/
-// call: /apns/apns.php?message=Hello%20from%20macoscoders&badge=2&sound=received5.caf
 
 $deviceToken = '0bb4c01dae3e96cb21e0033832751a47871f28e113e3a2be6cf3ab7bdb897fec';                        
 
