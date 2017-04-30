@@ -1,6 +1,0 @@
-framework module Pods_Rehab_TrackerTests {
-  umbrella header "Pods-Rehab TrackerTests-umbrella.h"
-
-  export *
-  module * { export * }
-}
