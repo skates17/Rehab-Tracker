@@ -183,7 +183,6 @@ class Util {
             let coreUser = try context.fetch( request  )
             
             for user in coreUser {
-                print("[DEBUG] Target Intensity from Database: ", returnedTargetIntensity)
                 user.targetIntensity = returnedTargetIntensity
             }
         }catch {

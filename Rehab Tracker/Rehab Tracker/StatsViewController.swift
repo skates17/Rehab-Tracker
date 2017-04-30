@@ -105,6 +105,7 @@ class StatsViewController: UIViewController {
         Util.updateTargetIntensity()
         
         // Set the global variable limit to the target intensity in core data
+        // Only reflects on graph if target intensity in in the data range
         limit = Util.returnTargetIntensity()
         
         // Send data to charts
