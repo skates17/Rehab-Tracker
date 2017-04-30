@@ -22,6 +22,7 @@
 	$parameters = array($name);
 	//execute the query on the database object
 	$results = $thisDatabaseReader->select($query, $parameters, 1, 0, 0, 0, false, false);
+        
 	
 	//extract the results and write them to a string for packaging to JSON
 	$resultString = "";
@@ -39,9 +40,8 @@
         $fldSessionCompliance = $_GET["fldSessionCompliance"];
         $fldIntensity1 = $_GET["fldIntensity1"];
         $fldIntensity2 = $_GET["fldIntensity2"];
-        $fldDate = $_GET["fldDate"];
         $fldNote = $_GET["fldNote"];
-        $fldLastUpdate = $_GET["fldLastUpdate"];
+        $fldDeviceSynced = $_GET["fldDeviceSynced"];
 	//create the database writerObject
 	$dbUserName = get_current_user() . '_writer';
 	$whichPass = "w"; //flag for which one to use.
@@ -51,12 +51,12 @@
         $I=  substr($pmkPatientID, 0, -8);
         $fldSessNum=$I.$fldSessNum;
 	//build and execute the query
-	$query = "INSERT INTO tblSession(pmkPatientID, fldSessNum, fldSessionCompliance, fldIntensity1, fldIntensity2, fldDate, fldNote) VALUES (?, ?, ?, ?, ?, ?, ?)";
-	$parameters = array($pmkPatientID, $fldSessNum, $fldSessionCompliance, $fldIntensity1, $fldIntensity2, $fldDate, $fldNote);
+	$query = "INSERT INTO tblSession(pmkPatientID, fldSessNum, fldSessionCompliance, fldIntensity1, fldIntensity2, fldNote) VALUES (?, ?, ?, ?, ?, ?)";
+	$parameters = array($pmkPatientID, $fldSessNum, $fldSessionCompliance, $fldIntensity1, $fldIntensity2, $fldNote);
 	$result = $thisDatabaseWriter->insert($query, $parameters, 0,0,0,0,false,false);
         
-        $query2= "Update tblPatient set fldLastUpdate = ? where pmkPatientID= ?";
-        $parameters2 = array($fldLastUpdate,$pmkPatientID);
+        $query2= "Update tblPatient set fldDeviceSynced = ? where pmkPatientID= ?";
+        $parameters2 = array($fldDeviceSynced,$pmkPatientID);
         $result = $thisDatabaseWriter->update($query2, $parameters2, 1,0,0,0,false,false);
 	
 	header( 'HTTP/1.1 201: Resource Created' );	
