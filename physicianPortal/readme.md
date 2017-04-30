@@ -18,10 +18,19 @@
 **Path of file usage:**
 
 --> start at index.php to see an overview of patients (redirected to login.php if not logged in yet)
+
+
 --> navigate to All Patients on nav bar (patientSessions.php) to see all patient information for the clinician who is logged in
+
+
 --> navigate to Patient Sessions on nav bar (selectPatient.php) and select a patient --> sets global variable for $_SESSION('fldPatient')
+
+
 --> auto-directs to PatientSessions.php where can see all patient information and sessions, ability to update intensity (updateIntensity.php)
-----> ability to go back to select another patient, re sets the global variable
+
+
+----> ability to go back to select another patient, resets the global variable
+
 
 --> click "logout" to log out (logout.php) and get redirected to login page (login.php)
 
