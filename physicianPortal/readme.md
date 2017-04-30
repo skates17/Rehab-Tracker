@@ -1,4 +1,4 @@
-**The physicianPortal folder refers to the code used in the online portal. **
+**The physicianPortal folder refers to the code used in the online portal.**
 
 
 **Purpose:** Clinicians can use this portal to view their pateints' compliance and update target intensity. 
@@ -22,10 +22,12 @@
 --> auto-directs to PatientSessions.php where can see all patient information and sessions, ability to update intensity (updateIntensity.php)
 ----> ability to go back to select another patient, re sets the global variable
 
+--click "logout" to log out (logout.php) and get redirected to login page (login.php)
+
 
 **The following only shows up if on Admin account**
 --> navigate to Add Clinician (addPhysician.php), add another clinician
 --> navigate to Add Patient (form.php), add another patient
 
 
---click "logout" to log out (logout.php) and get redirected to login page (login.php)
+
