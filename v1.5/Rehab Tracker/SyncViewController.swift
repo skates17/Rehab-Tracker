@@ -97,22 +97,21 @@ class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
                                             // Disconnects from the BLE Device
                                             if(self.activePeripheral != nil){
                                                 // Write true to the Blend so it knows we are disconnecting
-                                                var flag = true;
-                                                let data = NSData(bytes: &flag, length: MemoryLayout<Bool>.size)
-                                                self.write(data: data)
+                                                // var flag = true;
+                                                // let data = NSData(bytes: &flag, length: MemoryLayout<Bool>.size)
+                                                // self.write(data: data)
                                                     
                                                 // Disconnect
                                                 _ = self.disconnectFromPeripheral(peripheral: self.activePeripheral!)
                                             }else{
                                                 print("[DEBUG] There is no peripheral to be disconnected")
+                                                
+                                                // NEED TO CHANGE THIS
+                                                Util.overwriteSessions()
+                                                
+                                                // Parses the CSV and saves it in core data
+                                                try self.parseCSV()
                                             }
-                                            
-                                            // NEED TO CHANGE THIS
-                                            Util.overwriteSessions()
-                                            
-                                            // Parses the CSV and saves it in core data
-                                            // YOU SHOULD PUT THIS IN THE WRITE TO CSV FUNCTION
-                                            try self.parseCSV()
                                             
                                             // If the average compliance is higher than 55/60 minutes, give positive feedback
                                             if ( Util.average(array: self.lastSessionCompliance) >= 0.9167 ){
@@ -136,38 +135,39 @@ class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     // Function to parse data from CSV file
     private func parseCSV() throws {
         // Name of the database file, with newline-separated records
-        guard let dbfile = Bundle.main.path(forResource: "practiceData", ofType: "csv")else{
-            return
-        }
-        
-        // Record field delimeter (is a comma for csv)
-        let delimeter = ","
-        self.stats = []
-        
-        do {
-            let db = try NSString(contentsOfFile:dbfile, encoding: String.Encoding.utf8.rawValue)
-            let lines:[String] = db.components(separatedBy: "\n") as [String]
+        let fileName = "data"
+        let docDirectory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+        if let fileURL = docDirectory?.appendingPathComponent(fileName).appendingPathExtension("csv") {
             
-            for line in lines {
-                var fields = [String]()
-                if(line != "") {
-                    fields = line.components(separatedBy: delimeter)
-                    let stat = (sessionID: fields[0], avg_ch1_intensity:fields[1], avg_ch2_intensity:fields[2], session_compliance: fields[3])
-                    self.stats?.append(stat)
+            // Record field delimeter (is a comma for csv)
+            let delimeter = ","
+            self.stats = []
+        
+            do {
+                let dbfile = try String(contentsOf: fileURL)
+                let lines:[String] = dbfile.components(separatedBy: "\n") as [String]
+            
+                for line in lines {
+                    var fields = [String]()
+                    if(line != "") {
+                        fields = line.components(separatedBy: delimeter)
+                        let stat = (sessionID: fields[0], avg_ch1_intensity:fields[1], avg_ch2_intensity:fields[2], session_compliance: fields[3])
+                        self.stats?.append(stat)
                     
-                    // append the session_compliance to the array for calculating if we should give feedback
-                    let compDouble = (fields[3] as NSString).doubleValue
-                    lastSessionCompliance.append(compDouble)
+                        // append the session_compliance to the array for calculating if we should give feedback
+                        let compDouble = (fields[3] as NSString).doubleValue
+                        lastSessionCompliance.append(compDouble)
+                    }
                 }
+                self.addData()
             }
-            self.addData()
-        }
-        catch let error as NSError {
-            // Sync Error Alert
-            self.syncErrorAlert()
+            catch let error as NSError {
+                // Sync Error Alert
+                self.syncErrorAlert()
             
-            // Print error
-            print("file \(dbfile) input failed \(error), \(error.userInfo)")
+                // Print error
+                print("file input failed \(error), \(error.userInfo)")
+            }
         }
     }
     
@@ -540,9 +540,9 @@ class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
         let resultNSString = NSString(data: characteristic.value!, encoding: String.Encoding.utf8.rawValue)!
         let resultString = resultNSString as String
         
-        print("Got some stuff from read: " , resultString)
+        print(resultString)
         
-        // Append the data string to the data array!
+        // Append the data string to the data array
         dataFromPeripheral.append(resultString)
         
     }
@@ -587,28 +587,41 @@ class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     
     // Write what is in the dataFromPeripheral array to a CSV
     func writeToCSV() {
+        var singleSessionArray = [String]()
+        
+        // First break up the data array by newlines to seperate out each session
+        for myData in dataFromPeripheral{
+            singleSessionArray = myData.components(separatedBy: "\n")
+        }
+        
+        // Initialize variables to hold what we will be writing
         var csvText = ""
         var newLine = ""
-        var lastSessionCount: Character = " "
-        for myData in dataFromPeripheral{
-            let myDataArr = myData.components(separatedBy: ",")
+        
+        // Create an array to track which sessions weve synced
+        var sessionsAdded = [Character]()
+        
+        for session in singleSessionArray{
+            let myDataArr = session.components(separatedBy: ",")
             
             // Get the first character of the data string which is the session Count to make sure no duplicated
-            let index = myData.index(myData.startIndex, offsetBy: 0)
+            let index = session.index(session.startIndex, offsetBy: 0)
             
             // Check if the array contains 4 data points and that the sessionCount isnt duplicating
-            if (myDataArr.count == 4 && myData[index] != lastSessionCount){
+            if (myDataArr.count == 4 && !sessionsAdded.contains(session[index])){
                 // Add validated data to what will be written to csv
-                newLine += "\(myData)"
+                newLine = "\(session)\n"
                 csvText.append(newLine)
-                lastSessionCount = myData[index];
+                sessionsAdded.append(session[index]);
             }else{
-                print("[DEBUG] Invalid Data/Duplicate session number: " , myData)
+                print("[DEBUG] Invalid Data/Duplicate session number: " , session)
             }
         }
         
         // Clear out the dataFromPeripheral array once we have the data to prevent duplication
         dataFromPeripheral.removeAll()
+        singleSessionArray.removeAll()
+        sessionsAdded.removeAll()
         
         // Writing time!
         let fileName = "data"
@@ -623,8 +636,15 @@ class SyncViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
                 print("[DEBUG] What we are writing:\n", csvText)
                 
                 try csvText.write(to: fileURL, atomically: true, encoding: .utf8)
+                
+                // NEED TO CHANGE THIS
+                Util.overwriteSessions()
+                
+                // Parses the CSV and saves it in core data
+                try self.parseCSV()
+                
             } catch {
-                print("Failed writing to URL: \(fileURL), Error: " + error.localizedDescription)
+                print("[ERROR] Failed writing to URL: \(fileURL), Error: " + error.localizedDescription)
             }
         }
     }

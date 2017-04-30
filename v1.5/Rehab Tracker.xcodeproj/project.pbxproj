@@ -16,7 +16,6 @@
 		42A96A9C1DF5E7FC0016FD5B /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A96A981DF5E7FC0016FD5B /* User+CoreDataClass.swift */; };
 		42A96A9D1DF5E7FC0016FD5B /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A96A991DF5E7FC0016FD5B /* User+CoreDataProperties.swift */; };
 		42B654C61DCA90DA0031C21F /* SyncViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B654C51DCA90DA0031C21F /* SyncViewController.swift */; };
-		42C45B681EA4154D001F5840 /* practiceData.csv in Resources */ = {isa = PBXBuildFile; fileRef = 42C45B671EA4154D001F5840 /* practiceData.csv */; };
 		42CBBECF1E8EC32300B215A8 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CBBECE1E8EC32300B215A8 /* NotificationService.swift */; };
 		42CBBED31E8EC32300B215A8 /* NotificationService.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 42CBBECC1E8EC32200B215A8 /* NotificationService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		42CCA4291E39456F009CB0DE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 42CCA4271E39456F009CB0DE /* LaunchScreen.xib */; };
@@ -120,7 +119,6 @@
 		42A96A981DF5E7FC0016FD5B /* User+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
 		42A96A991DF5E7FC0016FD5B /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		42B654C51DCA90DA0031C21F /* SyncViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncViewController.swift; sourceTree = "<group>"; };
-		42C45B671EA4154D001F5840 /* practiceData.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = practiceData.csv; sourceTree = "<group>"; };
 		42CBBECC1E8EC32200B215A8 /* NotificationService.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationService.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		42CBBECE1E8EC32300B215A8 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		42CBBED01E8EC32300B215A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -231,7 +229,6 @@
 		42F252A71DC8F42200C79D99 /* Rehab Tracker */ = {
 			isa = PBXGroup;
 			children = (
-				42C45B671EA4154D001F5840 /* practiceData.csv */,
 				42CBBED71E8ED21F00B215A8 /* Rehab Tracker.entitlements */,
 				42F252B71DC8F42300C79D99 /* Info.plist */,
 				42F252A81DC8F42200C79D99 /* AppDelegate.swift */,
@@ -487,7 +484,6 @@
 				42CCA4291E39456F009CB0DE /* LaunchScreen.xib in Resources */,
 				42F252B31DC8F42300C79D99 /* Assets.xcassets in Resources */,
 				42F252AE1DC8F42300C79D99 /* Main.storyboard in Resources */,
-				42C45B681EA4154D001F5840 /* practiceData.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
