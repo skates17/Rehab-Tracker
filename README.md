@@ -2,6 +2,7 @@
 Rehab Tracker App for the University of Vermont
 
 Folder Directory:
+
 -Restful: 
   -Primary Author: Brandon Goodwin brandon.goodwin@uvm.edu
   -All of the scripts that involve RESTful communication, PUSH notifications, and compliance scripts as well as database architecture
