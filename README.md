@@ -1,5 +1,5 @@
 # Rehab-Tracker
-Rehab Tracker App for the University of Vermont. The overarching goal of the project was to create a mobile application/wireless-enabled NMES device to improve rehabilitation compliance of patients with ACL tears through increased monitoring and novel patient-provider interactions. The iOS app connects to the NMES electrotherapy device through bluetooth, and recieves data on the rehabilitation session. This data is saved in a database and is viewable to the physician on the physician-portal website.
+The overarching goal of the project was to create a mobile application/wireless-enabled NMES device to improve rehabilitation compliance of patients with ACL tears through increased monitoring and novel patient-provider interactions. The iOS app connects to the NMES electrotherapy device through bluetooth, and recieves data on the rehabilitation session. This data is saved in a database and is viewable to the physician on the physician-portal website. Copyright © University of Vermont.
 
 Folder Directory:
 
