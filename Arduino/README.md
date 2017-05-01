@@ -1,16 +1,8 @@
-# Rehab-Tracker
-Rehab Tracker App for the University of Vermont
+# Arduino
 
-Folder Directory:
+These are the two ardiuno scripts for the NMES machine. 
 
--Restful: 
-  -Primary Author: Brandon Goodwin brandon.goodwin@uvm.edu
-  -All of the scripts that involve RESTful communication, PUSH notifications, and compliance scripts as well as database architecture
+The RehabTracker script was written by Sean Kates for testing the BLE connection, the data is hardcoded into the bytes[] array.
 
--PhysicianPortal:
-  -Primary Author: Meaghan Winter meaghan.winter@uvm.edu
-  -The code for the online portal which clinicians can use to add/manage users as well as track compliance and patient sessions
+The MasterV1 script was written by the SEED team for the actual prototype that they created. I (Sean Kates) have not verified if it works, but the BLE protocol is the same as the test script, and should work similarly if the data is being created successfully.
 
--Rehab Tracker:
-  -Primary Author: Sean Kates sean.kates@uvm.edu
-  -The code for the mobile application(iOs) where patients upload their session information which writes to the database
