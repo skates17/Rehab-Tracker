@@ -1,16 +1,13 @@
-# Rehab-Tracker
-Rehab Tracker App for the University of Vermont
+# Rehab-Tracker iOS App
 
-Folder Directory:
+This is the mobile application codebase, created by Sean Kates. The main features are the BLE connection with the NMES device, and using Core Data to save/display data.
 
--Restful: 
-  -Primary Author: Brandon Goodwin brandon.goodwin@uvm.edu
-  -All of the scripts that involve RESTful communication, PUSH notifications, and compliance scripts as well as database architecture
+# Core Data Model
 
--PhysicianPortal:
-  -Primary Author: Meaghan Winter meaghan.winter@uvm.edu
-  -The code for the online portal which clinicians can use to add/manage users as well as track compliance and patient sessions
+The data is saved from the NMES device into Core Data, below is a ER diagram of the Core Data model.
 
--Rehab Tracker:
-  -Primary Author: Sean Kates sean.kates@uvm.edu
-  -The code for the mobile application(iOs) where patients upload their session information which writes to the database
+![Alt text](/Rehab Tracker/Assets.xcassets/Images/ER diagram.png?raw=true)
+
+# Bluetooth Low Energy (BLE)
+
+The BLE protocol is used to connect with the NMES device and retrieve the rehabiliation session data. The code in the Arduino folder writes the data using unsigned char array to the iOS app once it has established a stable connection. Once data has been recieved, we disconnect from the device, and sync the data to the database.
