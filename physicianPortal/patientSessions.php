@@ -1,11 +1,18 @@
 <?php
+/*
+ * The purpose of this page is to show granular information for an individual patient
+ * this displays:
+ * 1) an option to select another patient/go back
+ * 2) the ability to update a patient's goal intensity based on progress
+ * 3) if the patient is in/out of compliance
+ */
 
 include 'top.php';
 //initialize the patient variable from selectPatient.php to use in patientSessions.php
 $patient = $_SESSION['patient'];
 ?>
 
-
+<!--1) an option to select another patient/go back-->
 <input type="submit" value="Select another patient" class="button" onclick="goBack()">
 <br>
 
@@ -17,14 +24,15 @@ $patient = $_SESSION['patient'];
 
 <?php
 
+// 
+//2) the ability to update a patient's goal intensity based on progress
 include 'updateIntensity.php';
+
 
 print '<br>';
 
-
-//TBLSESSION INFORMATION
-//--------------------------DISPLAY IF PATIENT IS IN/OUT OF COMPLIANCE---------------------
-print"<h2>Patient " . $patient . " 's Sessions </h2>";
+//--------------------------3 DISPLAY PATIENT INFORMATION ---------------------
+print"<h2>Patient " . $patient . " 's Information </h2>";
 
 if (isset($_POST['btnSubmit'])) {
     print"<p>Patient $patient is ";
@@ -43,7 +51,7 @@ if (isset($_POST['btnSubmit'])) {
     }
 }
 
-//-------------------------DISPLAY ALL PATIENT INFORMATION--------------------------------
+//-------------------------DISPLAY PATIENT INFORMATION--------------------------------
 if ($tblPatient != "") {
     print '<aside id="records">';
     $queryPatient = 'SHOW COLUMNS FROM ' . $tblPatient;
@@ -84,7 +92,9 @@ foreach ($infopatient as $rec) {
     print '</tr>';
 }
 print '</table><br>';
-// all done
+
+
+
 //-------------------------DISPLAY ALL PATIENT SESSION HISTORY -------------------------
 // Display all the records for a given table
 print'<h2>Session History </h2>';
@@ -108,9 +118,7 @@ if ($tblSession != "") {
             <th>Note </th>
         </b> </tr>
     <?php
-
 }
-
 ////now print out each record
 $query = "SELECT tblPatient.pmkPatientID, fldSessNum, fldSessionCompliance, fldIntensity1, fldIntensity2, fldGoal, fldNote "
         . "FROM " . "$tblSession JOIN tblPatient ON tblPatient.pmkPatientID=tblSession.pmkPatientID " .

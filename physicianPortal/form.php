@@ -199,11 +199,14 @@ if (isset($_POST["btnSubmit"])) {
             $query .= 'fldPhone = ?, ';
             $query .= 'fldActive = 1, ';
             $query .= 'fldDeviceSynced = CURRENT_TIMESTAMP, ';
-            $query .= 'fldStartDate = CURRENT_TIMESTAMP ';
+            $query .= 'fldStartDate = CURRENT_TIMESTAMP, ';
+            $query .= 'fldGoal = 0, ';
+            $query .= 'fldWeekCompliance = 0 ';
 
 
 
-            $results = $thisDatabaseWriter->insert($query, $resultsInfo, 0, 0, 0, 0, false, false);
+            $results = $thisDatabaseWriter->insert
+                    ($query, $resultsInfo, 0, 0, 0, 0, false, false);
 
             // all sql statements are done so lets commit to our changes
             $dataEntered = $thisDatabaseWriter->db->commit();

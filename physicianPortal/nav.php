@@ -1,5 +1,5 @@
 <!-- ######################     Main Navigation   ########################## -->
-<nav color = "white">
+<nav>
 <ul><b>
         <?php
         // This sets the current page to not be a link. Repeat this if block for
