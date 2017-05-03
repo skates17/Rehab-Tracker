@@ -1,5 +1,7 @@
 **The physicianPortal folder refers to the code used in the online portal.**
 
+IMPORTANT: If/when you change the database is used, you will need to update the credentials in /bin/pass.php AND dbh.php
+
 
 **Purpose:** Clinicians can use this portal to view their pateints' compliance and update target intensity. 
 
@@ -10,7 +12,7 @@
 **bin:**
 
 
--database.php, pass.php --> these files are used in all files to access the database except for login.php and logout.php (which use .dbh to connect to the database)
+-database.php, pass.php --> these files are used in all files to access the database except for login.php and logout.php (which use dbh.php to connect to the database)
 
 
 -all code connects to Brandon Goodwin's database through webdb at UVM
