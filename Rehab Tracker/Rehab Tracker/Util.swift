@@ -233,9 +233,22 @@ class Util {
     // Returns a random String that is the positive feedback for the user
     class func getPositiveFeedback() -> String {
         // List of positive feedback from Dr. Toth
-        let positiveFeedback = ["Keep up the good work!",
-                                "Nice job!",
-                                "Wahoo"]
+        let positiveFeedback = ["Good job completing your NMES session!",
+                                "By completing your NMES session, you are preventing your muscles from atrophying andgetting weaker.",
+                                "Completing your NMES sessions is like putting money in the bank. It will pay off in larger, stronger muscles so you can get back to your activities faster.",
+                                "By completing your NMES session, you are being proactive in preventing muscle atrophy and maintaining your muscle strength.",
+                                "The 60 min you just spent doing NMES on your leg is keeping your muscles healthy.",
+                                "The Research Team says “congrats” for finishing your NMES session.",
+                                "NMES is FDA approved to help your muscles after injury and surgery. Keep up the good work!",
+                                "Keep up the good work on your NMES sessions!",
+                                "Each NMES session that you complete is another step closer to getting you back on your feet.",
+                                "Nice work on the NMES session. Contact the research team if you have any questions.",
+                                "Nice to see that you’re using up electrode pads on those NMES sessions. Contact the research team if you need more or have any questions.",
+                                "We like to see the batteries of your NMES device drain like that! Good work finishing your session.",
+                                "Great job finishing your NMES session!",
+                                "Another NMES session completed. You’re helping your muscles stay strong!",
+                                "Doing NMES now is like starting the rehab on your muscles early. Good work!",
+                                "The NMES sessions you’re completing now help maintain your muscles so you can get back to your activities sooner after your surgery."]
         
         // Return the positive feedback at the random index of the array
         return positiveFeedback[random(max: positiveFeedback.count)]
