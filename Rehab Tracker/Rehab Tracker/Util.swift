@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import Foundation
 
+// This is a bunch of utility functions used throughout the code
 class Util {
     
     // Returns current User's userID as a string

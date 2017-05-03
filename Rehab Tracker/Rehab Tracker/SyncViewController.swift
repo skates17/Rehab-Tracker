@@ -9,6 +9,8 @@
 // <a href="https://icons8.com">Icon pack by Icons8</a>
 //
 
+// The purpose of this file is for Syncing data to the database, and the BLE Code
+
 import UIKit
 import CoreData
 import Foundation

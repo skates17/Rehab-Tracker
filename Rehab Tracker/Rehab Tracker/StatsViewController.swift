@@ -15,6 +15,7 @@ import Foundation
 import CoreData
 import CoreBluetooth
 
+// This pulls all the stats from Core Data
 class StatsViewController: UIViewController {
     
     @IBOutlet weak var pieChartView: PieChartView!

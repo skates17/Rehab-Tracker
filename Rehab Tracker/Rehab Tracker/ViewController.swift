@@ -11,6 +11,7 @@ import CoreData
 import Foundation
 import CoreBluetooth
 
+// This is the main page, allows users to login and get into the app
 class ViewController: UIViewController {
 
     // Function to create a User and add in their userID
